@@ -1,3 +1,30 @@
+create table apuesta
+(
+	id int not null auto_increment
+		primary key,
+	nombre varchar(50) not null,
+	constraint apuesta_nombre_uindex
+	unique (nombre)
+)
+;
+
+create table apuesta_partido
+(
+	id int not null auto_increment
+		primary key,
+	partido_id int not null,
+	apuesta_id int not null,
+	constraint apuesta_partido_partido_id_apuesta_id_uindex
+	unique (partido_id, apuesta_id),
+	constraint apuesta_partido_apuesta_id_fk
+	foreign key (apuesta_id) references apuesta (id)
+)
+;
+
+create index apuesta_partido_apuesta_id_fk
+	on apuesta_partido (apuesta_id)
+;
+
 create table campo
 (
 	id int not null auto_increment
@@ -54,7 +81,7 @@ create table jugador
 	password varchar(100) not null,
 	email varchar(100) not null,
 	constraint jugador_email_uindex
-		unique (email)
+	unique (email)
 )
 ;
 
@@ -65,9 +92,9 @@ create table jugador_partido
 	jugador_id int not null,
 	partido_id int not null,
 	constraint jugador_partido_jugador_id_partido_id_uindex
-		unique (jugador_id, partido_id),
+	unique (jugador_id, partido_id),
 	constraint jugador_partido_jugador_id_fk
-		foreign key (jugador_id) references jugador (id)
+	foreign key (jugador_id) references jugador (id)
 )
 ;
 
@@ -85,11 +112,11 @@ create table partido
 	jugador_id int not null,
 	campo_id int not null,
 	constraint partido_clave_uindex
-		unique (clave),
+	unique (clave),
 	constraint partido_jugador_id_fk
-		foreign key (jugador_id) references jugador (id),
+	foreign key (jugador_id) references jugador (id),
 	constraint partido_campo_id_fk
-		foreign key (campo_id) references campo (id)
+	foreign key (campo_id) references campo (id)
 )
 ;
 
@@ -101,9 +128,14 @@ create index partido_campo_id_fk
 	on partido (campo_id)
 ;
 
+alter table apuesta_partido
+	add constraint apuesta_partido_partido_id_fk
+foreign key (partido_id) references partido (id)
+;
+
 alter table jugador_partido
 	add constraint jugador_partido_partido_id_fk
-		foreign key (partido_id) references partido (id)
+foreign key (partido_id) references partido (id)
 ;
 
 create table puntuaciones
@@ -116,11 +148,11 @@ create table puntuaciones
 	jugador_id int not null,
 	partido_id int not null,
 	constraint puntuaciones_jugador_id_partido_id_uindex
-		unique (jugador_id, partido_id),
+	unique (jugador_id, partido_id),
 	constraint puntuaciones_jugador_id_fk
-		foreign key (jugador_id) references jugador (id),
+	foreign key (jugador_id) references jugador (id),
 	constraint puntuaciones_partido_id_fk
-		foreign key (partido_id) references partido (id)
+	foreign key (partido_id) references partido (id)
 )
 ;
 
