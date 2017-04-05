@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Utils\RegexValidator;
 use App\Models\Jugador;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class JugadorController extends Controller
 {
@@ -16,17 +19,6 @@ class JugadorController extends Controller
     {
         $jugadores = Jugador::all();
         return response()->json($jugadores);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return response()->json(['code' => 404,
-            'message' => 'Ruta no implementada']);
     }
 
     /**
@@ -55,7 +47,10 @@ class JugadorController extends Controller
      */
     public function show($id)
     {
-        if (preg_match('/[0-9]+/', $id)) {
+        $validation = $this->validateJugadorId($id);
+        if ($validation instanceof JsonResponse) {
+            return $validation;
+        } else {
             $jugador = Jugador::find($id);
             if (!$jugador) {
                 return response()->json(['code' => 400,
@@ -63,20 +58,6 @@ class JugadorController extends Controller
             }
             return response()->json($jugador);
         }
-        return response()->json(['code' => 404,
-            'message' => 'Ruta no existente']);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        return response()->json(['code' => 404,
-            'message' => 'Ruta no implementada']);
     }
 
     /**
@@ -88,15 +69,20 @@ class JugadorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request['id'] = $id;
-        $jugador = $this->crearJugador($request);
-        if ($jugador instanceof Jugador) {
-            $jugador->save();
-            return response()->json(['code' => 200,
-                'message' => 'Jugador actualizado']);
+        $validation = $this->validateJugadorId($id);
+        if ($validation instanceof JsonResponse) {
+            return $validation;
+        } else {
+            $request['id'] = $id;
+            $jugador = $this->crearJugador($request);
+            if ($jugador instanceof Jugador) {
+                $jugador->save();
+                return response()->json(['code' => 200,
+                    'message' => 'Jugador actualizado']);
+            }
+            $errorResponse = $jugador;
+            return $errorResponse;
         }
-        $errorResponse = $jugador;
-        return $errorResponse;
     }
 
     /**
@@ -107,14 +93,19 @@ class JugadorController extends Controller
      */
     public function destroy($id)
     {
-        $jugador = Jugador::find($id);
-        if ($jugador) {
-            $jugador->delete();
-            return response()->json(['code' => 200,
-                'message' => 'Jugador eliminado']);
+        $validation = $this->validateJugadorId($id);
+        if ($validation instanceof JsonResponse) {
+            return $validation;
         } else {
-            return response()->json(['code' => 400,
-                'message' => 'Jugador no encontrado']);
+            $jugador = Jugador::find($id);
+            if ($jugador) {
+                $jugador->delete();
+                return response()->json(['code' => 200,
+                    'message' => 'Jugador eliminado']);
+            } else {
+                return response()->json(['code' => 400,
+                    'message' => 'Jugador no encontrado']);
+            }
         }
     }
 
@@ -169,5 +160,22 @@ class JugadorController extends Controller
         $email = $request['email'];
         return $nombre && $apodo && $handicap && $sexo && $url_foto &&
             $password && $email;
+    }
+
+    /**
+     * Valida que el id del jugador tenga el formato correcto
+     * @param $id Es el id a evaluar
+     * @return int 1 -> Si la validación es correcta, o JsonResponse -> Si la
+     * validación es incorrecta, y esa response representa lo que debería
+     * devolver el método que invoca a este validador.
+     */
+    private function validateJugadorId($id)
+    {
+        if (RegexValidator::isIntegerNumber($id)) {
+            return 1;
+        } else {
+            return response()->json(['code' => 404,
+                'message' => 'Ruta no existente']);
+        }
     }
 }
