@@ -55,12 +55,16 @@ class JugadorController extends Controller
      */
     public function show($id)
     {
-        $jugador = Jugador::find($id);
-        if (!$jugador) {
-            return response()->json(['code' => 400,
-                'message' => 'Jugador no encontrado']);
+        if (preg_match('/[0-9]+/', $id)) {
+            $jugador = Jugador::find($id);
+            if (!$jugador) {
+                return response()->json(['code' => 400,
+                    'message' => 'Jugador no encontrado']);
+            }
+            return response()->json($jugador);
         }
-        return response()->json($jugador);
+        return response()->json(['code' => 404,
+            'message' => 'Ruta no existente']);
     }
 
     /**

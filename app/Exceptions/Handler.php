@@ -47,7 +47,6 @@ class Handler extends ExceptionHandler
                 case 404:
                     return response()->json(['code' => 404,
                         'message' => 'Ruta no existente']);
-                    break;
             }
         } else if ($e instanceof ModelNotFoundException) {
             $e = new NotFoundHttpException($e->getMessage(), $e);
