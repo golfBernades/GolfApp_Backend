@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Jugador;
+use App\Models\Jugador;
 use Illuminate\Http\Request;
 
 class JugadorController extends Controller

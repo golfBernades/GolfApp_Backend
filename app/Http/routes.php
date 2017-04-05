@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('jugador', 'JugadorController');
+Route::resource('jugador', 'JugadorController',
+    ['except' => ['create', 'edit']]);
 
 Route::resource('campo', 'CampoController');
