@@ -23,5 +23,6 @@ class DatabaseSeeder extends Seeder
     private function seedTables()
     {
         $this->call(JugadorTableSeeder::class);
+        $this->call(CampoTableSeeder::class);
     }
 }

@@ -276,6 +276,7 @@ class ComposerStaticInit7e1d338a817a09ac84b2656416c67399
     );
 
     public static $classMap = array (
+        'CampoTableSeeder' => __DIR__ . '/../..' . '/database/seeds/CampoTableSeeder.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
         'File_Iterator' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Iterator.php',
         'File_Iterator_Facade' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Facade.php',
