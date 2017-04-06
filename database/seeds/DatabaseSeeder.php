@@ -12,10 +12,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Model::unguard();
+        // Deshabilita llaves foráneas
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        // Llena las tablas con los seeders
+        $this->seedTables();
+        // Habilita las llaves foráneas
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+    }
 
-        // $this->call(UserTableSeeder::class);
-
-        Model::reguard();
+    private function seedTables()
+    {
+        $this->call(JugadorTableSeeder::class);
     }
 }
