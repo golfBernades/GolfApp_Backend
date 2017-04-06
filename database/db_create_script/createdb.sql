@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.5.49, for debian-linux-gnu (x86_64)
 --
--- Host: 127.0.0.1    Database: golf
+-- Host: localhost    Database: golf
 -- ------------------------------------------------------
 -- Server version	5.5.49-0ubuntu0.14.04.1
 
@@ -31,15 +31,6 @@ CREATE TABLE `apuesta` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `apuesta`
---
-
-LOCK TABLES `apuesta` WRITE;
-/*!40000 ALTER TABLE `apuesta` DISABLE KEYS */;
-/*!40000 ALTER TABLE `apuesta` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `apuesta_partido`
 --
 
@@ -57,15 +48,6 @@ CREATE TABLE `apuesta_partido` (
   CONSTRAINT `apuesta_partido_partido_id_fk` FOREIGN KEY (`partido_id`) REFERENCES `partido` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `apuesta_partido`
---
-
-LOCK TABLES `apuesta_partido` WRITE;
-/*!40000 ALTER TABLE `apuesta_partido` DISABLE KEYS */;
-/*!40000 ALTER TABLE `apuesta_partido` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `campo`
@@ -118,18 +100,6 @@ CREATE TABLE `campo` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `campo`
---
-
-LOCK TABLES `campo` WRITE;
-/*!40000 ALTER TABLE `campo` DISABLE KEYS */;
-INSERT INTO `campo` VALUES (1,'Bernardes',5,6,4,3,8,9,3,7,8,4,7,9,3,9,4,4,5,7,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1);
-INSERT INTO `campo` VALUES (2,'Aguascalientes',6,45,5,6,6,5,7,6,5,6,6,5,4,4,5,5,6,5,1,2,3,4,5,10,9,8,7,6,11,12,13,14,15,18,17,16);
-INSERT INTO `campo` VALUES (3,'Jerez',4,4,6,6,6,5,5,5,7,6,5,4,5,4,6,5,7,6,1,3,5,7,9,11,13,15,17,2,4,6,8,10,12,14,16,18);
-/*!40000 ALTER TABLE `campo` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `jugador`
 --
 
@@ -151,19 +121,6 @@ CREATE TABLE `jugador` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `jugador`
---
-
-LOCK TABLES `jugador` WRITE;
-/*!40000 ALTER TABLE `jugador` DISABLE KEYS */;
-INSERT INTO `jugador` VALUES (2,'Martín Martínez Pérez','Martín',6,'H','fotos/usuario_2.jpg','holamundo','martin@gmail.com');
-INSERT INTO `jugador` VALUES (4,'Porfirio','Porfi',10,'h','foto.jpg','holamundo','porfirioads1@gmail.com');
-INSERT INTO `jugador` VALUES (5,'Porfirio','Porfi',10,'h','foto.jpg','holamundo','porfirioads11@gmail.com');
-INSERT INTO `jugador` VALUES (6,'Porfirio','Porfi',10,'h','foto.jpg','holamundo','porfirioads1s1@gmail.com');
-/*!40000 ALTER TABLE `jugador` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `jugador_partido`
 --
 
@@ -181,15 +138,6 @@ CREATE TABLE `jugador_partido` (
   CONSTRAINT `jugador_partido_partido_id_fk` FOREIGN KEY (`partido_id`) REFERENCES `partido` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `jugador_partido`
---
-
-LOCK TABLES `jugador_partido` WRITE;
-/*!40000 ALTER TABLE `jugador_partido` DISABLE KEYS */;
-/*!40000 ALTER TABLE `jugador_partido` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `partido`
@@ -215,15 +163,6 @@ CREATE TABLE `partido` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `partido`
---
-
-LOCK TABLES `partido` WRITE;
-/*!40000 ALTER TABLE `partido` DISABLE KEYS */;
-/*!40000 ALTER TABLE `partido` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `puntuaciones`
 --
 
@@ -244,15 +183,6 @@ CREATE TABLE `puntuaciones` (
   CONSTRAINT `puntuaciones_partido_id_fk` FOREIGN KEY (`partido_id`) REFERENCES `partido` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `puntuaciones`
---
-
-LOCK TABLES `puntuaciones` WRITE;
-/*!40000 ALTER TABLE `puntuaciones` DISABLE KEYS */;
-/*!40000 ALTER TABLE `puntuaciones` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -263,4 +193,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-04-06 13:54:32
+-- Dump completed on 2017-04-06 16:04:31
