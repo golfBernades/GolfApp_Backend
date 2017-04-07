@@ -19,3 +19,9 @@ Route::resource('jugador', 'JugadorController',
     ['except' => ['create', 'edit']]);
 
 Route::resource('campo', 'CampoController');
+
+Route::group(['middleware' => 'login'], function () {
+    Route::get('testautentication', function () {
+        return "Autenticado";
+    });
+});
