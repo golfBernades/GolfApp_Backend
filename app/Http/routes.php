@@ -11,17 +11,28 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+/*
+--------------------------------------------------------------------------------
+Rutas de los jugadores
+--------------------------------------------------------------------------------
+*/
 
-Route::resource('jugador', 'JugadorController',
-    ['except' => ['create', 'edit']]);
-
+Route::resource('jugador', 'JugadorController', ['except' => ['create', 'edit']]);
 Route::post('update_jugador_password', 'JugadorController@cambiarPassword');
 
-Route::resource('campo', 'CampoController',
-    ['except' => ['create', 'edit']]);
+/*
+--------------------------------------------------------------------------------
+Rutas de los campos
+--------------------------------------------------------------------------------
+*/
+
+Route::resource('campo', 'CampoController', ['except' => ['create', 'edit']]);
+
+/*
+--------------------------------------------------------------------------------
+Rutas de prueba
+--------------------------------------------------------------------------------
+*/
 
 Route::group(['middleware' => 'login'], function () {
     Route::get('testautentication', function () {
