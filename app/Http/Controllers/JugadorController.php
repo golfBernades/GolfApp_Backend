@@ -7,7 +7,6 @@ use App\Http\Utils\RegexValidator;
 use App\Models\Jugador;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use League\Flysystem\Exception;
 
 class JugadorController extends Controller
 {
