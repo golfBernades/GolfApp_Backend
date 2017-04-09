@@ -18,6 +18,8 @@ Route::get('/', function () {
 Route::resource('jugador', 'JugadorController',
     ['except' => ['create', 'edit']]);
 
+Route::post('update_jugador_password', 'JugadorController@cambiarPassword');
+
 Route::resource('campo', 'CampoController');
 
 Route::group(['middleware' => 'login'], function () {

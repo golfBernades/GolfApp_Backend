@@ -4,7 +4,6 @@ namespace App\Http\Middleware;
 
 use App\Http\Controllers\LoginController;
 use Closure;
-use Illuminate\Support\Facades\DB;
 
 class LoginMiddleware
 {
