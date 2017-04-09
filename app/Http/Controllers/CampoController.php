@@ -126,7 +126,6 @@ class CampoController extends Controller
     {
         if (!$this->isCampoCompleto($request))
             return HttpResponses::parametrosIncompletosReponse();
-        $campo = null;
         if ($request['id']) {
             $campo = Campo::find($request['id']);
             if (!$campo)

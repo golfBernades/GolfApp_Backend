@@ -156,7 +156,6 @@ class JugadorController extends Controller
     {
         if (!$this->isJugadorCompleto($request))
             return HttpResponses::parametrosIncompletosReponse();
-        $jugador = null;
         if ($request['id']) {
             $jugador = Jugador::find($request['id']);
             if (!$jugador) {
