@@ -20,7 +20,8 @@ Route::resource('jugador', 'JugadorController',
 
 Route::post('update_jugador_password', 'JugadorController@cambiarPassword');
 
-Route::resource('campo', 'CampoController');
+Route::resource('campo', 'CampoController',
+    ['except' => ['create', 'edit']]);
 
 Route::group(['middleware' => 'login'], function () {
     Route::get('testautentication', function () {
