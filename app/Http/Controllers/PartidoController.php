@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Utils\FieldValidator;
 use App\Http\Utils\HttpResponses;
-use App\Http\Utils\RegexValidator;
 use App\Models\Campo;
 use App\Models\Jugador;
 use App\Models\Partido;
@@ -52,7 +52,7 @@ class PartidoController extends Controller
      */
     public function show($id)
     {
-        $validation = $this->validatePartidoId($id);
+        $validation = FieldValidator::validateIntegerParameterURL($id);
         if ($validation instanceof JsonResponse) {
             return $validation;
         } else {
@@ -72,7 +72,7 @@ class PartidoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validation = $this->validatePartidoId($id);
+        $validation = FieldValidator::validateIntegerParameterURL($id);
         if ($validation instanceof JsonResponse) {
             return $validation;
         } else {
@@ -99,7 +99,7 @@ class PartidoController extends Controller
      */
     public function destroy($id)
     {
-        $validation = $this->validatePartidoId($id);
+        $validation = FieldValidator::validateIntegerParameterURL($id);
         if ($validation instanceof JsonResponse) {
             return $validation;
         } else {
@@ -172,21 +172,5 @@ class PartidoController extends Controller
             return $clave || $inicio || $jugadorId || $campoId;
         else
             return $clave && $inicio && $jugadorId && $campoId;
-    }
-
-    /**
-     * Valida que el id del partido tenga el formato correcto
-     * @param $id Es el id a evaluar
-     * @return int 1 -> Si la validación es correcta, o JsonResponse -> Si la
-     * validación es incorrecta, y esa response representa lo que debería
-     * devolver el método que invoca a este validador.
-     */
-    private function validatePartidoId($id)
-    {
-        if (RegexValidator::isIntegerNumber($id)) {
-            return 1;
-        } else {
-            return HttpResponses::rutaInexistenteResponse();
-        }
     }
 }

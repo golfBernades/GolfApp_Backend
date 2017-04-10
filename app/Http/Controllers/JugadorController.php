@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Utils\FieldValidator;
 use App\Http\Utils\HttpResponses;
-use App\Http\Utils\RegexValidator;
 use App\Models\Jugador;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -50,7 +50,7 @@ class JugadorController extends Controller
      */
     public function show($id)
     {
-        $validation = $this->validateJugadorId($id);
+        $validation = FieldValidator::validateIntegerParameterURL($id);
         if ($validation instanceof JsonResponse) {
             return $validation;
         } else {
@@ -70,7 +70,7 @@ class JugadorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validation = $this->validateJugadorId($id);
+        $validation = FieldValidator::validateIntegerParameterURL($id);
         if ($validation instanceof JsonResponse) {
             return $validation;
         } else {
@@ -97,7 +97,7 @@ class JugadorController extends Controller
      */
     public function destroy($id)
     {
-        $validation = $this->validateJugadorId($id);
+        $validation = FieldValidator::validateIntegerParameterURL($id);
         if ($validation instanceof JsonResponse) {
             return $validation;
         } else {
@@ -210,22 +210,6 @@ class JugadorController extends Controller
         else {
             return $nombre && $apodo && $handicap && $sexo && $url_foto &&
                 $password && $email;
-        }
-    }
-
-    /**
-     * Valida que el id del jugador tenga el formato correcto
-     * @param $id Es el id a evaluar
-     * @return int 1 -> Si la validación es correcta, o JsonResponse -> Si la
-     * validación es incorrecta, y esa response representa lo que debería
-     * devolver el método que invoca a este validador.
-     */
-    private function validateJugadorId($id)
-    {
-        if (RegexValidator::isIntegerNumber($id)) {
-            return 1;
-        } else {
-            return HttpResponses::rutaInexistenteResponse();
         }
     }
 }

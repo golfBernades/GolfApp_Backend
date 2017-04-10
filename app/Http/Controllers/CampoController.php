@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Utils\FieldValidator;
 use App\Http\Utils\HttpResponses;
-use App\Http\Utils\RegexValidator;
 use App\Models\Campo;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -50,7 +50,7 @@ class CampoController extends Controller
      */
     public function show($id)
     {
-        $validation = $this->validateCampoId($id);
+        $validation = FieldValidator::validateIntegerParameterURL($id);
         if ($validation instanceof JsonResponse) {
             return $validation;
         } else {
@@ -70,7 +70,7 @@ class CampoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validation = $this->validateCampoId($id);
+        $validation = FieldValidator::validateIntegerParameterURL($id);
         if ($validation instanceof JsonResponse) {
             return $validation;
         } else {
@@ -97,7 +97,7 @@ class CampoController extends Controller
      */
     public function destroy($id)
     {
-        $validation = $this->validateCampoId($id);
+        $validation = FieldValidator::validateIntegerParameterURL($id);
         if ($validation instanceof JsonResponse) {
             return $validation;
         } else {
@@ -282,22 +282,5 @@ class CampoController extends Controller
                 && $ventaja_hoyo_10 && $ventaja_hoyo_11 && $ventaja_hoyo_12
                 && $ventaja_hoyo_13 && $ventaja_hoyo_14 && $ventaja_hoyo_15
                 && $ventaja_hoyo_16 && $ventaja_hoyo_17 && $ventaja_hoyo_18;
-    }
-
-    /**
-     * Valida que el id del campo tenga el formato correcto
-     * @param $id Es el id a evaluar
-     * @return int 1 -> Si la validación es correcta, o JsonResponse -> Si la
-     * validación es incorrecta, y esa response representa lo que debería
-     * devolver el método que invoca a este validador.
-     */
-    private
-    function validateCampoId($id)
-    {
-        if (RegexValidator::isIntegerNumber($id)) {
-            return 1;
-        } else {
-            return HttpResponses::rutaInexistenteResponse();
-        }
     }
 }
