@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
@@ -42,12 +43,11 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
-        if ($this->isHttpException($e)) {
-            switch ($e->getStatusCode()) {
-                case 404:
-                    return response()->json(['code' => 404,
-                        'message' => 'Ruta no existente']);
-            }
+        if ($e instanceof MethodNotAllowedHttpException
+            || $e instanceof NotFoundHttpException
+        ) {
+            return response()->json(['code' => 404,
+                'message' => 'Ruta no existente']);
         } else if ($e instanceof ModelNotFoundException) {
             $e = new NotFoundHttpException($e->getMessage(), $e);
         }
