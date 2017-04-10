@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="16df6c25-8ea6-4bb9-9c3c-df6e63c1bf54" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Http/Utils/FieldValidator.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Http/Controllers/JugadorPartidoController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ApuestaController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ApuestaController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/CampoController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/CampoController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/JugadorController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/JugadorController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/PartidoController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/PartidoController.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -110,10 +106,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JugadorPartidoController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="JugadorPartidoController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/JugadorPartidoController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="196">
+            <state relative-caret-position="532">
               <caret line="19" column="5" lean-forward="false" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
               <folding>
                 <element signature="e#40#63#0#PHP" expanded="true" />
@@ -122,7 +118,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LoginController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="LoginController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/LoginController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="504">
@@ -547,7 +543,7 @@
       <workItem from="1491600076869" duration="11580000" />
       <workItem from="1491747833594" duration="12554000" />
       <workItem from="1491777695057" duration="2189000" />
-      <workItem from="1491846228745" duration="5623000" />
+      <workItem from="1491846228745" duration="5812000" />
     </task>
     <task id="LOCAL-00001" summary="Primer commit">
       <created>1490573623957</created>
@@ -759,11 +755,18 @@
       <option name="project" value="LOCAL" />
       <updated>1491849144183</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Se refactorizó el validador de parámetros numéricos de la url en los controllers">
+      <created>1491851886082</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1491851886082</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="62722000" />
+    <option name="totallyTimeSpent" value="62911000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="1922" height="1050" extended-state="6" />
@@ -821,7 +824,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Se eliminó el atributo fillable del modelo Jugador" />
     <MESSAGE value="Se importó el repo de github a gitlab" />
     <MESSAGE value="Se comenzó a versionar el script de creación de la BD" />
     <MESSAGE value="Creación del modelo Campo y del controlador CampoController" />
@@ -846,7 +848,8 @@
     <MESSAGE value="Se creó el ApuestaTableSeeder" />
     <MESSAGE value="Se creó el CRUD básico de la tabla partido" />
     <MESSAGE value="Se creó el PartidoTableSeeder" />
-    <option name="LAST_COMMIT_MESSAGE" value="Se creó el PartidoTableSeeder" />
+    <MESSAGE value="Se refactorizó el validador de parámetros numéricos de la url en los controllers" />
+    <option name="LAST_COMMIT_MESSAGE" value="Se refactorizó el validador de parámetros numéricos de la url en los controllers" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1233,21 +1236,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/JugadorPartidoController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="19" column="5" lean-forward="false" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
-          <folding>
-            <element signature="e#40#63#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/LoginController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="504">
           <caret line="22" column="20" lean-forward="false" selection-start-line="22" selection-start-column="20" selection-end-line="22" selection-end-column="20" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/JugadorPartidoController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="532">
+          <caret line="19" column="5" lean-forward="false" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+          <folding>
+            <element signature="e#40#63#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
