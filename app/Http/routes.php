@@ -48,6 +48,16 @@ Route::resource('partido', 'PartidoController', ['except' => ['create',
 
 /*
 --------------------------------------------------------------------------------
+Rutas de la gestión de los jugadores asociados a los partidos
+--------------------------------------------------------------------------------
+*/
+
+Route::get('add_jugador_to_partido/{jugador_id}/{partido_id}',
+    'JugadorPartidoController@addJugador');
+
+
+/*
+--------------------------------------------------------------------------------
 Rutas de prueba
 --------------------------------------------------------------------------------
 */
