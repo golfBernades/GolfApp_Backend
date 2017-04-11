@@ -21,7 +21,7 @@ class JugadorPartidoController extends Controller
      */
     public function allJugadorAllPartido()
     {
-        $jugadores_partidos = DB::table('jugador_partido as jp')
+        $jugadoresPartidos = DB::table('jugador_partido as jp')
             ->join('jugador as ju', function ($join) {
                 $join->on('ju.id', '=', 'jp.jugador_id');
             })
@@ -32,7 +32,7 @@ class JugadorPartidoController extends Controller
                 'ju.apodo as apodo_jugador',
                 'partido_id', 'pa.clave as clave_partido'])
             ->get();
-        return response()->json($jugadores_partidos);
+        return response()->json($jugadoresPartidos);
     }
 
     /**
@@ -94,7 +94,17 @@ class JugadorPartidoController extends Controller
      */
     public function getJugadoresEnPartido($partidoId)
     {
-
+        $partido = $this->getPartidoById($partidoId);
+        if ($partido instanceof JsonResponse) return $partido;
+        $jugadoresEnPartido = DB::table('jugador as ju')
+            ->join('jugador_partido as jp', function ($join) {
+                $join->on('ju.id', '=', 'jp.jugador_id');
+            })
+            ->select(['ju.id', 'nombre', 'apodo', 'handicap', 'sexo',
+                'url_foto', 'password', 'email'])
+            ->where('partido_id', '=', $partidoId)
+            ->get();
+        return $jugadoresEnPartido;
     }
 
     /**

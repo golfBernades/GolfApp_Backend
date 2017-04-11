@@ -4,7 +4,6 @@
     <list default="true" id="16df6c25-8ea6-4bb9-9c3c-df6e63c1bf54" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/JugadorPartidoController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/JugadorPartidoController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Utils/HttpResponses.php" afterPath="$PROJECT_DIR$/app/Http/Utils/HttpResponses.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -79,8 +78,8 @@
       <file leaf-file-name="JugadorPartidoController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/JugadorPartidoController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1037">
-              <caret line="96" column="0" lean-forward="false" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
+            <state relative-caret-position="225">
+              <caret line="94" column="41" lean-forward="false" selection-start-line="94" selection-start-column="20" selection-end-line="94" selection-end-column="41" />
               <folding>
                 <element signature="e#40#74#0#PHP" expanded="true" />
               </folding>
@@ -91,8 +90,8 @@
       <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="393">
-              <caret line="58" column="39" lean-forward="false" selection-start-line="58" selection-start-column="12" selection-end-line="58" selection-end-column="39" />
+            <state relative-caret-position="449">
+              <caret line="60" column="32" lean-forward="false" selection-start-line="60" selection-start-column="12" selection-end-line="60" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -524,7 +523,7 @@
       <workItem from="1491747833594" duration="12554000" />
       <workItem from="1491777695057" duration="2189000" />
       <workItem from="1491846228745" duration="7113000" />
-      <workItem from="1491926642651" duration="5917000" />
+      <workItem from="1491926642651" duration="6797000" />
     </task>
     <task id="LOCAL-00001" summary="Primer commit">
       <created>1490573623957</created>
@@ -757,11 +756,18 @@
       <option name="project" value="LOCAL" />
       <updated>1491853297419</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Se implementó el método removeJugador del JugadorPartidoController">
+      <created>1491932641305</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1491932641305</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="70129000" />
+    <option name="totallyTimeSpent" value="71009000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="1922" height="1050" extended-state="6" />
@@ -819,7 +825,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Creación del modelo Campo y del controlador CampoController" />
     <MESSAGE value="Olvidé hacer el git add para agregar los archivos del commit anterior al repositorio" />
     <MESSAGE value="Agregar tablas que tienen que ver con las apuestas de los partidos" />
     <MESSAGE value="Se modificó el Handler.php para manejar las rutas no existentes" />
@@ -844,7 +849,8 @@
     <MESSAGE value="Se refactorizó el validador de parámetros numéricos de la url en los controllers" />
     <MESSAGE value="Se creó el esqueleto no implementado aún del JugadorPartidoController" />
     <MESSAGE value="Se implementó el método addJugador del JugadorPartidoController" />
-    <option name="LAST_COMMIT_MESSAGE" value="Se implementó el método addJugador del JugadorPartidoController" />
+    <MESSAGE value="Se implementó el método removeJugador del JugadorPartidoController" />
+    <option name="LAST_COMMIT_MESSAGE" value="Se implementó el método removeJugador del JugadorPartidoController" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1228,14 +1234,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="393">
-          <caret line="58" column="39" lean-forward="false" selection-start-line="58" selection-start-column="12" selection-end-line="58" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CampoController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1372">
@@ -1246,10 +1244,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="449">
+          <caret line="60" column="32" lean-forward="false" selection-start-line="60" selection-start-column="12" selection-end-line="60" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/JugadorPartidoController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1037">
-          <caret line="96" column="0" lean-forward="false" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
+        <state relative-caret-position="225">
+          <caret line="94" column="41" lean-forward="false" selection-start-line="94" selection-start-column="20" selection-end-line="94" selection-end-column="41" />
           <folding>
             <element signature="e#40#74#0#PHP" expanded="true" />
           </folding>

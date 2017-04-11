@@ -58,6 +58,8 @@ Route::get('all_jugador_all_partido',
     'JugadorPartidoController@allJugadorAllPartido');
 Route::get('remove_jugador_from_partido/{jugador_id}/{partido_id}',
     'JugadorPartidoController@removeJugador');
+Route::get('jugadores_en_partido/{partido_id}',
+    'JugadorPartidoController@getJugadoresEnPartido');
 
 /*
 --------------------------------------------------------------------------------
