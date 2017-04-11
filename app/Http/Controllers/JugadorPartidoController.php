@@ -132,10 +132,22 @@ class JugadorPartidoController extends Controller
      * Vacía todos los registros del partido con el id especificado.
      *
      * @param $partidoId
+     * @return Partido|JsonResponse
      */
     public function vaciarPartido($partidoId)
     {
-
+        $partido = $this->getPartidoById($partidoId);
+        if ($partido instanceof JsonResponse) return $partido;
+        $jugadoresPartidos = JugadorPartido::where('partido_id', '=',
+            $partidoId);
+        if ($jugadoresPartidos->get()->count() == 0)
+            return HttpResponses::noRegistrosDePartido();
+        try {
+            $jugadoresPartidos->delete();
+            return HttpResponses::partidoVaciadoOK();
+        } catch (\Exception $e) {
+            return HttpResponses::partidoVaciadoError();
+        }
     }
 
     /**

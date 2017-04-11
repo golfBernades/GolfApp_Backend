@@ -62,6 +62,8 @@ Route::get('jugadores_en_partido/{partido_id}',
     'JugadorPartidoController@getJugadoresEnPartido');
 Route::get('partidos_de_jugador/{jugador_id}',
     'JugadorPartidoController@getPartidosDelJugador');
+Route::get('vaciar_partido/{partido_id}',
+    'JugadorPartidoController@vaciarPartido');
 
 /*
 --------------------------------------------------------------------------------

@@ -82,4 +82,22 @@ class HttpResponses
         return self::createResponse(400,
             'El jugador no está participando en el partido');
     }
+
+    public static function partidoVaciadoOk()
+    {
+        return self::createResponse(200,
+            'Se vaciaron los registros asociados al partido');
+    }
+
+    public static function partidoVaciadoError()
+    {
+        return self::createResponse(400,
+            'Error al vaciar los registros asociados al partido');
+    }
+
+    public static function noRegistrosDePartido()
+    {
+        return self::createResponse(400,
+            'No hay registros asociados al partido');
+    }
 }
