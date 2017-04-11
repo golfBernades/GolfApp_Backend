@@ -9,7 +9,6 @@ use App\Models\JugadorPartido;
 use App\Models\Partido;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
-use Psy\Util\Json;
 
 class JugadorPartidoController extends Controller
 {
@@ -112,10 +111,21 @@ class JugadorPartidoController extends Controller
      * especificado.
      *
      * @param $jugadorId
+     * @return Partido|JsonResponse
      */
     public function getPartidosDelJugador($jugadorId)
     {
-
+        $jugador = $this->getJugadorById($jugadorId);
+        if ($jugador instanceof JsonResponse) return $jugador;
+        $partidosDelJugador = DB::table('partido as pa')
+            ->join('jugador_partido as jp', function ($join) {
+                $join->on('pa.id', '=', 'jp.partido_id');
+            })
+            ->select(['pa.id', 'clave', 'inicio', 'fin', 'pa.jugador_id',
+                'campo_id'])
+            ->where('jp.jugador_id', '=', $jugadorId)
+            ->get();
+        return $partidosDelJugador;
     }
 
     /**
