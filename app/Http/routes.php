@@ -54,7 +54,10 @@ Rutas de la gestión de los jugadores asociados a los partidos
 
 Route::get('add_jugador_to_partido/{jugador_id}/{partido_id}',
     'JugadorPartidoController@addJugador');
-
+Route::get('all_jugador_all_partido',
+    'JugadorPartidoController@allJugadorAllPartido');
+Route::get('remove_jugador_from_partido/{jugador_id}/{partido_id}',
+    'JugadorPartidoController@removeJugador');
 
 /*
 --------------------------------------------------------------------------------

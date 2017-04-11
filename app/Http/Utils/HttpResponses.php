@@ -76,4 +76,10 @@ class HttpResponses
     {
         return self::createResponse(400, 'El email ya está en uso');
     }
+
+    public static function jugadorNoEnPartido()
+    {
+        return self::createResponse(400,
+            'El jugador no está participando en el partido');
+    }
 }
