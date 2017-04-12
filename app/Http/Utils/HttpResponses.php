@@ -100,4 +100,10 @@ class HttpResponses
         return self::createResponse(400,
             'No hay registros asociados al partido');
     }
+
+    public static function apuestaNoEnPartido()
+    {
+        return self::createResponse(400,
+            'La apuesta no se está llevando a cabo en el partido');
+    }
 }
