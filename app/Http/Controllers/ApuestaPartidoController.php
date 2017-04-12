@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\DB;
 
 class ApuestaPartidoController extends Controller
 {
+    /**
+     * Obtiene un Join de todas las apuestas que se están llevando a cabo en
+     * cualquiera de los partidos.
+     *
+     * @return JsonResponse
+     */
     public function allApuestaAllPartido()
     {
         $apuestasPartidos = DB::table('apuesta_partido as ap')
@@ -24,6 +30,13 @@ class ApuestaPartidoController extends Controller
         return response()->json($apuestasPartidos);
     }
 
+    /**
+     * Agrega una apuesta a un partido.
+     *
+     * @param $apuestaId
+     * @param $partidoId
+     * @return JsonResponse|int
+     */
     public function addApuesta($apuestaId, $partidoId)
     {
         $apuesta = EntityByIdController::getApuestaById($apuestaId);
@@ -43,6 +56,13 @@ class ApuestaPartidoController extends Controller
         }
     }
 
+    /**
+     * Elimina una apuesta de un partido.
+     *
+     * @param $apuestaId
+     * @param $partidoId
+     * @return JsonResponse|int
+     */
     public function removeApuesta($apuestaId, $partidoId)
     {
         $apuesta = EntityByIdController::getApuestaById($apuestaId);
@@ -62,6 +82,13 @@ class ApuestaPartidoController extends Controller
         }
     }
 
+    /**
+     * Obtiene una lista con las apuestas que se están llevando a cabo en el
+     * partido con el id dado.
+     *
+     * @param $partidoId
+     * @return JsonResponse|int
+     */
     public function getApuestasEnPartido($partidoId)
     {
         $partido = EntityByIdController::getPartidoById($partidoId);
@@ -76,6 +103,13 @@ class ApuestaPartidoController extends Controller
         return $apuestasEnPartido;
     }
 
+    /**
+     * Obtiene una lista con los partidos donde se está llevando a cabo la
+     * apuesta con el id dado.
+     *
+     * @param $apuestaId
+     * @return JsonResponse|int
+     */
     public function getPartidosConApuesta($apuestaId)
     {
         $apuesta = EntityByIdController::getApuestaById($apuestaId);
