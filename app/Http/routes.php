@@ -71,6 +71,17 @@ Rutas de la gestión de las apuestas asociadas a los partidos
 --------------------------------------------------------------------------------
 */
 
+Route::get('all_apuesta_all_partido',
+    'ApuestaPartidoController@allApuestaAllPartido');
+Route::get('add_apuesta_to_partido/{apuesta_id}/{partido_id}',
+    'ApuestaPartidoController@addApuesta');
+Route::get('remove_apuesta_from_partido/{apuesta_id}/{partido_id}',
+    'ApuestaPartidoController@addApuesta');
+Route::get('apuestas_en_partido/{partido_id}',
+    'ApuestaPartidoController@getApuestasEnPartido');
+Route::get('partidos_con_apuesta/{apuesta_id}',
+    'ApuestaPartidoController@getPartidosConApuesta');
+
 /*
 --------------------------------------------------------------------------------
 Rutas de prueba

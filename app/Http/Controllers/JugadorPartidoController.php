@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Utils\FieldValidator;
 use App\Http\Utils\HttpResponses;
 use App\Models\Jugador;
 use App\Models\JugadorPartido;
@@ -43,10 +42,10 @@ class JugadorPartidoController extends Controller
      */
     public function addJugador($jugadorId, $partidoId)
     {
-        $jugador = $this->getJugadorById($jugadorId);
+        $jugador = EntityByIdController::getJugadorById($jugadorId);
         if ($jugador instanceof JsonResponse)
             return $jugador;
-        $partido = $this->getPartidoById($partidoId);
+        $partido = EntityByIdController::getPartidoById($partidoId);
         if ($partido instanceof JsonResponse)
             return $partido;
         $jugadorPartido = new JugadorPartido();
@@ -69,9 +68,9 @@ class JugadorPartidoController extends Controller
      */
     public function removeJugador($jugadorId, $partidoId)
     {
-        $jugador = $this->getJugadorById($jugadorId);
+        $jugador = EntityByIdController::getJugadorById($jugadorId);
         if ($jugador instanceof JsonResponse) return $jugador;
-        $partido = $this->getPartidoById($partidoId);
+        $partido = EntityByIdController::getPartidoById($partidoId);
         if ($partido instanceof JsonResponse) return $partido;
         $jugadorPartido = JugadorPartido::where('jugador_id', '=', $jugadorId)
             ->where('partido_id', '=', $partidoId)->first();
@@ -89,11 +88,11 @@ class JugadorPartidoController extends Controller
      * especificado.
      *
      * @param $partidoId
-     * @return JsonResponse|int
+     * @return Jugador|JsonResponse
      */
     public function getJugadoresEnPartido($partidoId)
     {
-        $partido = $this->getPartidoById($partidoId);
+        $partido = EntityByIdController::getPartidoById($partidoId);
         if ($partido instanceof JsonResponse) return $partido;
         $jugadoresEnPartido = DB::table('jugador as ju')
             ->join('jugador_partido as jp', function ($join) {
@@ -115,7 +114,7 @@ class JugadorPartidoController extends Controller
      */
     public function getPartidosDelJugador($jugadorId)
     {
-        $jugador = $this->getJugadorById($jugadorId);
+        $jugador = EntityByIdController::getJugadorById($jugadorId);
         if ($jugador instanceof JsonResponse) return $jugador;
         $partidosDelJugador = DB::table('partido as pa')
             ->join('jugador_partido as jp', function ($join) {
@@ -132,11 +131,11 @@ class JugadorPartidoController extends Controller
      * Vacía todos los registros del partido con el id especificado.
      *
      * @param $partidoId
-     * @return Partido|JsonResponse
+     * @return JsonResponse|int
      */
     public function vaciarPartido($partidoId)
     {
-        $partido = $this->getPartidoById($partidoId);
+        $partido = EntityByIdController::getPartidoById($partidoId);
         if ($partido instanceof JsonResponse) return $partido;
         $jugadoresPartidos = JugadorPartido::where('partido_id', '=',
             $partidoId);
@@ -148,40 +147,6 @@ class JugadorPartidoController extends Controller
         } catch (\Exception $e) {
             return HttpResponses::partidoVaciadoError();
         }
-    }
-
-    /**
-     * Obtiene el jugador con el id especificado o bien una JsonResponse con
-     * el mensaje de error ya sea de que el id tiene un formato inválido o
-     * que el registro no existe.
-     *
-     * @param $jugadorId
-     * @return JsonResponse|Jugador
-     */
-    private function getJugadorById($jugadorId)
-    {
-        $validation = FieldValidator::validateIntegerParameterURL($jugadorId);
-        if ($validation instanceof JsonResponse) return $validation;
-        $jugador = Jugador::find($jugadorId);
-        if (!$jugador) return HttpResponses::noEncontradoResponse('jugador');
-        return $jugador;
-    }
-
-    /**
-     * Obtiene el partido con el id especificado o bien una JsonResponse con
-     * el mensaje de error ya sea de que el id tiene un formato inválido o
-     * que el registro no existe.
-     *
-     * @param $partidoId
-     * @return JsonResponse|Partido
-     */
-    private function getPartidoById($partidoId)
-    {
-        $validation = FieldValidator::validateIntegerParameterURL($partidoId);
-        if ($validation instanceof JsonResponse) return $validation;
-        $partido = Partido::find($partidoId);
-        if (!$partido) return HttpResponses::noEncontradoResponse('partido');
-        return $partido;
     }
 
 }
