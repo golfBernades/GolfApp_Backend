@@ -88,7 +88,14 @@ Rutas de la gestión de las puntuaciones de los jugadores en los partidos
 --------------------------------------------------------------------------------
 */
 
-
+Route::get('puntuaciones_all_jugador_all_partido',
+    'PuntuacionesController@getPuntuacionesAllJugadorAllPartido');
+Route::get('puntuaciones_jugador_partido/{jugador_id}/{partido_id}',
+    'PuntuacionesController@getPuntuacionesJugadorPartido');
+Route::get('puntuaciones_jugador_partido_hoyo/{jugador_id}/{partido_id}/{hoyo}',
+    'PuntuacionesController@getPuntuacionesJugadorPartidoHoyo');
+Route::post('registrar_puntuaciones',
+    'PuntuacionesController@registrarPuntuaciones');
 
 /*
 --------------------------------------------------------------------------------

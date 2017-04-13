@@ -51,6 +51,12 @@ class HttpResponses
             $entidad);
     }
 
+    public static function errorActualizadoResponse($entidad)
+    {
+        return self::createResponse(400, 'Error al actualizar  el registro de ' .
+            $entidad);
+    }
+
     public static function errorEliminadoResponse($entidad)
     {
         return self::createResponse(400, 'Error al eliminar el registro de ' .
@@ -105,5 +111,29 @@ class HttpResponses
     {
         return self::createResponse(400,
             'La apuesta no se está llevando a cabo en el partido');
+    }
+
+    public static function hoyoRangoInvalido()
+    {
+        return self::createResponse(400,
+            'El hoyo especificado está fuera del rango');
+    }
+
+    public static function golpesValorInvalido()
+    {
+        return self::createResponse(400,
+            'El valor de los golpes es inválido');
+    }
+
+    public static function unidadesValorInvalido()
+    {
+        return self::createResponse(400,
+            'El valor de las unidades es inválido');
+    }
+
+    public static function noPuntosJugadorPartidoHoyo()
+    {
+        return self::createResponse(400,
+            'No hay puntuaciones registradas con los parámetros dados');
     }
 }
