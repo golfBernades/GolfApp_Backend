@@ -1,16 +1,16 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: porfirio
- * Date: 4/8/17
- * Time: 6:12 PM
- */
 
 namespace App\Http\Utils;
 
 
 class HttpResponses
 {
+    /*
+    ----------------------------------------------------------------------------
+    Responses generales
+    ----------------------------------------------------------------------------
+    */
+
     private static function createResponse($code, $message)
     {
         return response()->json(['code' => $code, 'message' => $message]);
@@ -21,16 +21,33 @@ class HttpResponses
         return self::createResponse(400, 'Parámetros incompletos');
     }
 
+    public static function rutaInexistenteResponse()
+    {
+        return self::createResponse(400, 'Ruta no existente');
+    }
+
+    /*
+    ----------------------------------------------------------------------------
+    Responses de CRUDS simples
+    ----------------------------------------------------------------------------
+    */
+
+    public static function noEncontradoResponse($entidad)
+    {
+        return self::createResponse(400, 'Registro de ' . $entidad
+            . ' no encontrado');
+    }
+
     public static function insertadoOkResponse($entidad)
     {
         return self::createResponse(200, 'Registro de ' . $entidad
             . ' insertado');
     }
 
-    public static function eliminadoOkResponse($entidad)
+    public static function insertadoErrorResponse($entidad)
     {
-        return self::createResponse(200, 'Registro de ' . $entidad
-            . ' eliminado');
+        return self::createResponse(400, 'Error al guardar el registro de ' .
+            $entidad);
     }
 
     public static function actualizadoOkResponse($entidad)
@@ -39,34 +56,29 @@ class HttpResponses
             . ' actualizado');
     }
 
-    public static function noEncontradoResponse($entidad)
-    {
-        return self::createResponse(400, 'Registro de ' . $entidad
-            . ' no encontrado');
-    }
-
-    public static function errorGuardadoResponse($entidad)
-    {
-        return self::createResponse(400, 'Error al guardar el registro de ' .
-            $entidad);
-    }
-
-    public static function errorActualizadoResponse($entidad)
+    public static function actualizadoErrorResponse($entidad)
     {
         return self::createResponse(400, 'Error al actualizar  el registro de ' .
             $entidad);
     }
 
-    public static function errorEliminadoResponse($entidad)
+    public static function eliminadoOkResponse($entidad)
+    {
+        return self::createResponse(200, 'Registro de ' . $entidad
+            . ' eliminado');
+    }
+
+    public static function eliminadoErrorResponse($entidad)
     {
         return self::createResponse(400, 'Error al eliminar el registro de ' .
             $entidad);
     }
 
-    public static function rutaInexistenteResponse()
-    {
-        return self::createResponse(400, 'Ruta no existente');
-    }
+    /*
+    ----------------------------------------------------------------------------
+    Responses de autenticación y validación de usuarios
+    ----------------------------------------------------------------------------
+    */
 
     public static function passwordIncorrectaResponse()
     {
@@ -82,6 +94,12 @@ class HttpResponses
     {
         return self::createResponse(400, 'El email ya está en uso');
     }
+
+    /*
+    ----------------------------------------------------------------------------
+    Responses de la gestión de los jugadores y apuestas de los partidos
+    ----------------------------------------------------------------------------
+    */
 
     public static function jugadorNoEnPartido()
     {
@@ -112,6 +130,12 @@ class HttpResponses
         return self::createResponse(400,
             'La apuesta no se está llevando a cabo en el partido');
     }
+
+    /*
+    ----------------------------------------------------------------------------
+    Responses de la gestión de las puntuaciones de los partidos
+    ----------------------------------------------------------------------------
+    */
 
     public static function hoyoRangoInvalido()
     {

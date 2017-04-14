@@ -52,7 +52,7 @@ class ApuestaPartidoController extends Controller
             $apuestaPartido->save();
             return HttpResponses::insertadoOkResponse('apuesta_partido');
         } catch (\Exception $e) {
-            return HttpResponses::errorGuardadoResponse('apuesta_partido');
+            return HttpResponses::insertadoErrorResponse('apuesta_partido');
         }
     }
 
@@ -78,7 +78,7 @@ class ApuestaPartidoController extends Controller
             $apuestaPartido->delete();
             return HttpResponses::eliminadoOkResponse('apuesta_partido');
         } catch (\Exception $e) {
-            return HttpResponses::errorEliminadoResponse('apuesta_partido');
+            return HttpResponses::eliminadoErrorResponse('apuesta_partido');
         }
     }
 

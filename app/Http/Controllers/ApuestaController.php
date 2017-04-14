@@ -35,7 +35,7 @@ class ApuestaController extends Controller
                 $apuesta->save();
                 return HttpResponses::insertadoOkResponse('apuesta');
             } catch (\Exception $e) {
-                return HttpResponses::errorGuardadoResponse('apuesta');
+                return HttpResponses::insertadoErrorResponse('apuesta');
             }
         }
         $errorResponse = $apuesta;
@@ -81,7 +81,7 @@ class ApuestaController extends Controller
                     $apuesta->save();
                     return HttpResponses::actualizadoOkResponse('apuesta');
                 } catch (\Exception $e) {
-                    return HttpResponses::errorGuardadoResponse('apuesta');
+                    return HttpResponses::actualizadoErrorResponse('apuesta');
                 }
             }
             $errorResponse = $apuesta;
@@ -107,7 +107,7 @@ class ApuestaController extends Controller
                     $apuesta->delete();
                     return HttpResponses::eliminadoOkResponse('apuesta');
                 } catch (\Exception $e) {
-                    return HttpResponses::errorEliminadoResponse('apuesta');
+                    return HttpResponses::eliminadoErrorResponse('apuesta');
                 }
             } else {
                 return HttpResponses::noEncontradoResponse('apuesta');

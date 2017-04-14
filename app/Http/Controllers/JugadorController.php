@@ -35,7 +35,7 @@ class JugadorController extends Controller
                 $jugador->save();
                 return HttpResponses::insertadoOkResponse('jugador');
             } catch (\Exception $e) {
-                return HttpResponses::errorGuardadoResponse('jugador');
+                return HttpResponses::insertadoErrorResponse('jugador');
             }
         }
         $errorResponse = $jugador;
@@ -81,7 +81,7 @@ class JugadorController extends Controller
                     $jugador->save();
                     return HttpResponses::actualizadoOkResponse('jugador');
                 } catch (\Exception $e) {
-                    return HttpResponses::errorGuardadoResponse('jugador');
+                    return HttpResponses::actualizadoErrorResponse('jugador');
                 }
             }
             $errorResponse = $jugador;
@@ -107,7 +107,7 @@ class JugadorController extends Controller
                     $jugador->delete();
                     return HttpResponses::eliminadoOkResponse('jugador');
                 } catch (\Exception $e) {
-                    return HttpResponses::errorEliminadoResponse('jugador');
+                    return HttpResponses::eliminadoErrorResponse('jugador');
                 }
             } else {
                 return HttpResponses::noEncontradoResponse('jugador');
@@ -141,7 +141,7 @@ class JugadorController extends Controller
             $jugador->save();
             return HttpResponses::actualizadoOkResponse('jugador');
         } catch (\Exception $e) {
-            return HttpResponses::errorGuardadoResponse('jugador');
+            return HttpResponses::actualizadoErrorResponse('jugador');
         }
     }
 

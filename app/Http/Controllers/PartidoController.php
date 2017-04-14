@@ -37,7 +37,7 @@ class PartidoController extends Controller
                 $partido->save();
                 return HttpResponses::insertadoOkResponse('partido');
             } catch (\Exception $e) {
-                return HttpResponses::errorGuardadoResponse('partido');
+                return HttpResponses::insertadoErrorResponse('partido');
             }
         }
         $errorResponse = $partido;
@@ -83,7 +83,7 @@ class PartidoController extends Controller
                     $partido->save();
                     return HttpResponses::actualizadoOkResponse('partido');
                 } catch (\Exception $e) {
-                    return HttpResponses::errorGuardadoResponse('partido');
+                    return HttpResponses::actualizadoErrorResponse('partido');
                 }
             }
             $errorResponse = $partido;
@@ -109,7 +109,7 @@ class PartidoController extends Controller
                     $partido->delete();
                     return HttpResponses::eliminadoOkResponse('partido');
                 } catch (\Exception $e) {
-                    return HttpResponses::errorEliminadoResponse('partido');
+                    return HttpResponses::eliminadoErrorResponse('partido');
                 }
             } else {
                 return HttpResponses::noEncontradoResponse('partido');

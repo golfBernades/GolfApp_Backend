@@ -94,18 +94,18 @@ class PuntuacionesController extends Controller
         $puntuaciones = $this->crearPuntuaciones($request);
         if ($puntuaciones instanceof JsonResponse)
             return $puntuaciones;
-        $nuevo = $puntuaciones->id;
+        $existente = $puntuaciones->id;
         try {
             $puntuaciones->save();
-            if ($nuevo)
+            if ($existente)
                 return HttpResponses::actualizadoOkResponse('puntuaciones');
             else
                 return HttpResponses::insertadoOkResponse('puntuaciones');
         } catch (\Exception $e) {
-            if ($nuevo)
-                return HttpResponses::errorActualizadoResponse('puntuaciones');
+            if ($existente)
+                return HttpResponses::actualizadoErrorResponse('puntuaciones');
             else
-                return HttpResponses::errorGuardadoResponse('puntuaciones');
+                return HttpResponses::insertadoErrorResponse('puntuaciones');
         }
     }
 

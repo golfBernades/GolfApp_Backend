@@ -35,7 +35,7 @@ class CampoController extends Controller
                 $campo->save();
                 return HttpResponses::insertadoOkResponse('campo');
             } catch (\Exception $e) {
-                return HttpResponses::errorGuardadoResponse('campo');
+                return HttpResponses::insertadoErrorResponse('campo');
             }
         }
         $errorResponse = $campo;
@@ -81,7 +81,7 @@ class CampoController extends Controller
                     $campo->save();
                     return HttpResponses::actualizadoOkResponse('campo');
                 } catch (\Exception $e) {
-                    return HttpResponses::errorGuardadoResponse('campo');
+                    return HttpResponses::actualizadoErrorResponse('campo');
                 }
             }
             $errorResponse = $campo;
@@ -107,7 +107,7 @@ class CampoController extends Controller
                     $campo->delete();
                     return HttpResponses::eliminadoOkResponse('campo');
                 } catch (\Exception $e) {
-                    return HttpResponses::errorEliminadoResponse('campo');
+                    return HttpResponses::eliminadoErrorResponse('campo');
                 }
             } else {
                 return HttpResponses::noEncontradoResponse('campo');

@@ -55,7 +55,7 @@ class JugadorPartidoController extends Controller
             $jugadorPartido->save();
             return HttpResponses::insertadoOkResponse('jugador_partido');
         } catch (\Exception $e) {
-            return HttpResponses::errorGuardadoResponse('jugador_partido');
+            return HttpResponses::insertadoErrorResponse('jugador_partido');
         }
     }
 
@@ -79,7 +79,7 @@ class JugadorPartidoController extends Controller
             $jugadorPartido->delete();
             return HttpResponses::eliminadoOkResponse('jugador_partido');
         } catch (\Exception $e) {
-            return HttpResponses::errorEliminadoResponse('jugador_partido');
+            return HttpResponses::eliminadoErrorResponse('jugador_partido');
         }
     }
 
