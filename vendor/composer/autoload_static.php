@@ -279,6 +279,7 @@ class ComposerStaticInit7e1d338a817a09ac84b2656416c67399
         'ApuestaPartidoTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ApuestaPartidoTableSeeder.php',
         'ApuestaTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ApuestaTableSeeder.php',
         'CampoTableSeeder' => __DIR__ . '/../..' . '/database/seeds/CampoTableSeeder.php',
+        'ClavePartidoTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ClavePartidoTableSeeder.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
         'File_Iterator' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Iterator.php',
         'File_Iterator_Facade' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Facade.php',

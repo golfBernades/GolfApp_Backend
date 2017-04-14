@@ -46,7 +46,7 @@ CREATE TABLE `apuesta_partido` (
   KEY `apuesta_partido_apuesta_id_fk` (`apuesta_id`),
   CONSTRAINT `apuesta_partido_apuesta_id_fk` FOREIGN KEY (`apuesta_id`) REFERENCES `apuesta` (`id`),
   CONSTRAINT `apuesta_partido_partido_id_fk` FOREIGN KEY (`partido_id`) REFERENCES `partido` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -97,6 +97,20 @@ CREATE TABLE `campo` (
   `ventaja_hoyo_18` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `clave_partido`
+--
+
+DROP TABLE IF EXISTS `clave_partido`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `clave_partido` (
+  `clave` char(8) NOT NULL,
+  PRIMARY KEY (`clave`),
+  UNIQUE KEY `clave_partido_clave_uindex` (`clave`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -157,6 +171,7 @@ CREATE TABLE `partido` (
   UNIQUE KEY `partido_clave_uindex` (`clave`),
   KEY `partido_jugador_id_fk` (`jugador_id`),
   KEY `partido_campo_id_fk` (`campo_id`),
+  CONSTRAINT `partido_clave_partido_clave_fk` FOREIGN KEY (`clave`) REFERENCES `clave_partido` (`clave`),
   CONSTRAINT `partido_campo_id_fk` FOREIGN KEY (`campo_id`) REFERENCES `campo` (`id`),
   CONSTRAINT `partido_jugador_id_fk` FOREIGN KEY (`jugador_id`) REFERENCES `jugador` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
@@ -180,9 +195,9 @@ CREATE TABLE `puntuaciones` (
   UNIQUE KEY `puntuaciones_id_uindex` (`id`),
   UNIQUE KEY `puntuaciones_jugador_id_partido_id_hoyo_uindex` (`jugador_id`,`partido_id`,`hoyo`),
   KEY `puntuaciones_partido_id_fk` (`partido_id`),
-  CONSTRAINT `puntuaciones_partido_id_fk` FOREIGN KEY (`partido_id`) REFERENCES `partido` (`id`),
-  CONSTRAINT `puntuaciones_jugador_id_fk` FOREIGN KEY (`jugador_id`) REFERENCES `jugador` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+  CONSTRAINT `puntuaciones_jugador_id_fk` FOREIGN KEY (`jugador_id`) REFERENCES `jugador` (`id`),
+  CONSTRAINT `puntuaciones_partido_id_fk` FOREIGN KEY (`partido_id`) REFERENCES `partido` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -194,4 +209,4 @@ CREATE TABLE `puntuaciones` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-04-12 15:58:21
+-- Dump completed on 2017-04-14 18:05:01

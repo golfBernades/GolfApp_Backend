@@ -108,3 +108,5 @@ Route::group(['middleware' => 'login'], function () {
         return "Autenticado";
     });
 });
+
+Route::get('clave', 'ClavePartidoController@obtenerClave');
