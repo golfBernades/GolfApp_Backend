@@ -104,7 +104,7 @@ Rutas de prueba
 */
 
 Route::group(['middleware' => 'login'], function () {
-    Route::get('testautentication', function () {
+    Route::post('testautentication', function () {
         return "Autenticado";
     });
 });

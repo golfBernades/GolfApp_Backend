@@ -95,6 +95,17 @@ class HttpResponses
         return self::createResponse(400, 'El email ya está en uso');
     }
 
+    public static function parametrosLoginIncompletosResponse()
+    {
+        return self::createResponse(400,
+            'Parámetros de autenticación incompletos');
+    }
+
+    public static function falloAutenticacionResponse()
+    {
+        return self::createResponse(400, 'Falló la autenticación del usuario');
+    }
+
     /*
     ----------------------------------------------------------------------------
     Responses de la gestión de los jugadores y apuestas de los partidos

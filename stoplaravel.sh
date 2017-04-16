@@ -8,5 +8,3 @@ else
     kill $running_id
     echo Laravel se detuvo
 fi
-
-php artisan db:seed

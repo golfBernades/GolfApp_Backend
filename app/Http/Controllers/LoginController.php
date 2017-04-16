@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Utils\HttpResponses;
 use Illuminate\Http\Request;
-
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 
 class LoginController extends Controller
@@ -14,19 +12,13 @@ class LoginController extends Controller
     {
         $email = $request['email'];
         $password = $request['password'];
-        if (!$email)
-            return response()->json(['code' => 400,
-                'message' => 'Falta el email para autenticar el usuario']);
-        if (!$password)
-            return response()->json(['code' => 400,
-                'message' => 'Falta la contraseña para autenticar el usuario']);
+        if (!$email || !$password)
+            return HttpResponses::parametrosLoginIncompletosResponse();
         $jugador = DB::table('jugador')
             ->where('email', '=', $email)
             ->where('password', '=', $password)
             ->first();
-        if (!$jugador)
-            return response()->json(['code' => 400,
-                'message' => 'Falló la autenticación del usuario']);
+        if (!$jugador) return HttpResponses::falloAutenticacionResponse();
         return response()->json(['code' => 200, 'message' => 'OK']);
     }
 }
