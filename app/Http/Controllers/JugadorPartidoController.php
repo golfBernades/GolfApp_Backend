@@ -102,7 +102,7 @@ class JugadorPartidoController extends Controller
                 'url_foto', 'password', 'email'])
             ->where('partido_id', '=', $partidoId)
             ->get();
-        return $jugadoresEnPartido;
+        return response()->json($jugadoresEnPartido);
     }
 
     /**
@@ -124,7 +124,7 @@ class JugadorPartidoController extends Controller
                 'campo_id'])
             ->where('jp.jugador_id', '=', $jugadorId)
             ->get();
-        return $partidosDelJugador;
+        return response()->json($partidosDelJugador);
     }
 
     /**

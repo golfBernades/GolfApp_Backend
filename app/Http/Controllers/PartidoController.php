@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Utils\DateTimeOperations;
 use App\Http\Utils\FieldValidator;
 use App\Http\Utils\HttpResponses;
+use App\Http\Utils\JsonResponseParser;
 use App\Models\Campo;
 use App\Models\Jugador;
 use App\Models\Partido;
+use Faker\Provider\cs_CZ\DateTime;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PartidoController extends Controller
 {
@@ -172,5 +176,46 @@ class PartidoController extends Controller
             return $clave || $inicio || $jugadorId || $campoId;
         else
             return $clave && $inicio && $jugadorId && $campoId;
+    }
+
+    /**
+     * Vacía los registros asociados a los partidos que tienen más de 24
+     * horas de que finalizaron.
+     *
+     * @return JsonResponse|int
+     */
+    public function vaciarPartidosFinalizados()
+    {
+        $partidos = Partido::all();
+        for ($i = 0; $i < count($partidos); $i++) {
+            $now = date_create();
+            $inicio = date_create($partidos[$i]->inicio);
+            $diferencia = DateTimeOperations::getDifferenceInHours($now,
+                $inicio);
+            if ($diferencia > 24) {
+                $apuestaPartidoController = new ApuestaPartidoController();
+                $jugadorPartidoController = new JugadorPartidoController();
+                $puntuacionesController = new PuntuacionesController();
+                $partidoId = $partidos[$i]->id;
+                DB::beginTransaction();
+                $response = $jugadorPartidoController->vaciarPartido($partidoId);
+                if ($response == HttpResponses::partidoVaciadoError()) {
+                    DB::rollBack();
+                    return $response;
+                }
+                $response = $apuestaPartidoController->vaciarPartido($partidoId);
+                if ($response == HttpResponses::partidoVaciadoError()) {
+                    DB::rollBack();
+                    return $response;
+                }
+                $response = $puntuacionesController->vaciarPartido($partidoId);
+                if ($response == HttpResponses::partidoVaciadoError()) {
+                    DB::rollBack();
+                    return $response;
+                }
+                DB::commit();
+            }
+        }
+        return HttpResponses::partidosFinalizadosVaciadosOk();
     }
 }

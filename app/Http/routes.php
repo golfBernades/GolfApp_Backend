@@ -45,6 +45,8 @@ Rutas de los partidos
 
 Route::resource('partido', 'PartidoController', ['except' => ['create',
     'edit']]);
+Route::get('vaciar_partidos_finalizados',
+    'PartidoController@vaciarPartidosFinalizados');
 
 /*
 --------------------------------------------------------------------------------

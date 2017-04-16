@@ -100,7 +100,7 @@ class ApuestaPartidoController extends Controller
             ->select(['apu.id', 'nombre'])
             ->where('partido_id', '=', $partidoId)
             ->get();
-        return $apuestasEnPartido;
+        return response()->json($apuestasEnPartido);
     }
 
     /**
@@ -122,6 +122,28 @@ class ApuestaPartidoController extends Controller
                 'campo_id'])
             ->where('apuesta_id', '=', $apuestaId)
             ->get();
-        return $partidosConApuesta;
+        return response()->json($partidosConApuesta);
+    }
+
+    /**
+     * Vacía todos los registros del partido con el id especificado.
+     *
+     * @param $partidoId
+     * @return JsonResponse|int
+     */
+    public function vaciarPartido($partidoId)
+    {
+        $partido = EntityByIdController::getPartidoById($partidoId);
+        if ($partido instanceof JsonResponse) return $partido;
+        $apuestasPartido = ApuestaPartido::where('partido_id', '=',
+            $partidoId);
+        if ($apuestasPartido->get()->count() == 0)
+            return HttpResponses::noRegistrosDePartido();
+        try {
+            $apuestasPartido->delete();
+            return HttpResponses::partidoVaciadoOK();
+        } catch (\Exception $e) {
+            return HttpResponses::partidoVaciadoError();
+        }
     }
 }
