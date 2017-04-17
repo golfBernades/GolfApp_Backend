@@ -101,7 +101,7 @@ Route::post('registrar_puntuaciones',
 
 /*
 --------------------------------------------------------------------------------
-Rutas de prueba
+Grupo de rutas que requieren que el usuario esté autenticado
 --------------------------------------------------------------------------------
 */
 
@@ -110,9 +110,27 @@ Route::group(['middleware' => 'login'], function () {
         return "Autenticado";
     });
 
-    Route::group(['middleware' => 'permisos_partido'], function () {
-        Route::post('testpermisos', function () {
-            return "Permisos";
+    /*
+    ----------------------------------------------------------------------------
+    Grupo de rutas que requieren que el usuario tenga permisos para editar el
+    partido
+    ----------------------------------------------------------------------------
+    */
+    Route::group(['middleware' => 'creador_partido'], function () {
+        Route::post('test_creador', function () {
+            return "Creador OK";
+        });
+    });
+
+    /*
+    ----------------------------------------------------------------------------
+    Grupo de rutas que requieren que el usuario tenga permisos para ver el
+    partido
+    ----------------------------------------------------------------------------
+    */
+    Route::group(['middleware' => 'miembro_partido'], function () {
+        Route::post('test_miembro', function () {
+            return "Miembro OK";
         });
     });
 });

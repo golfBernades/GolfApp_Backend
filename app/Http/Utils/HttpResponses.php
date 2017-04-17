@@ -115,7 +115,7 @@ class HttpResponses
     public static function permisosPartidoErrorReponse()
     {
         return self::createResponse(400,
-            'El usuario no tiene permisos para modificar el partido');
+            'El usuario no tiene permisos para acceder al partido');
     }
 
     /*
