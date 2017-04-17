@@ -26,6 +26,12 @@ class HttpResponses
         return self::createResponse(400, 'Ruta no existente');
     }
 
+    public static function okResponse()
+    {
+        return self::createResponse(200, 'OK');
+    }
+
+
     /*
     ----------------------------------------------------------------------------
     Responses de CRUDS simples
@@ -104,6 +110,12 @@ class HttpResponses
     public static function falloAutenticacionResponse()
     {
         return self::createResponse(400, 'Falló la autenticación del usuario');
+    }
+
+    public static function permisosPartidoErrorReponse()
+    {
+        return self::createResponse(400,
+            'El usuario no tiene permisos para modificar el partido');
     }
 
     /*

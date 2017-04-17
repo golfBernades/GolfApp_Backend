@@ -109,6 +109,12 @@ Route::group(['middleware' => 'login'], function () {
     Route::post('testautentication', function () {
         return "Autenticado";
     });
+
+    Route::group(['middleware' => 'permisos_partido'], function () {
+        Route::post('testpermisos', function () {
+            return "Permisos";
+        });
+    });
 });
 
 Route::get('clave', 'ClavePartidoController@obtenerClave');

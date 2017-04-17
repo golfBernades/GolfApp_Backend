@@ -19,6 +19,7 @@ class LoginController extends Controller
             ->where('password', '=', $password)
             ->first();
         if (!$jugador) return HttpResponses::falloAutenticacionResponse();
-        return response()->json(['code' => 200, 'message' => 'OK']);
+        $request['autenticado_id'] = $jugador->id;
+        return HttpResponses::okResponse();
     }
 }

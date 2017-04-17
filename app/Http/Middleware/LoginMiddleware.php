@@ -17,12 +17,12 @@ class LoginMiddleware
      */
     public function handle($request, Closure $next)
     {
+//        echo '<h1>LoginMiddleware</h1>';
         $loginController = new LoginController();
         $loginResponse = $loginController->autenticarUsuario($request);
         $responseData = JsonResponseParser::parse($loginResponse);
         if ($responseData->code == 200 and $responseData->message == 'OK')
             return $next($request);
-        else
-            return $loginResponse;
+        else return $loginResponse;
     }
 }
