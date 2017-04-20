@@ -527,5 +527,6 @@ return array(
     'SebastianBergmann\\Version' => $vendorDir . '/sebastian/version/src/Version.php',
     'SessionHandlerInterface' => $vendorDir . '/symfony/http-foundation/Resources/stubs/SessionHandlerInterface.php',
     'TestCase' => $baseDir . '/tests/TestCase.php',
+    'TestJuego1Seeder' => $baseDir . '/database/seeds/TestJuego1Seeder.php',
     'Text_Template' => $vendorDir . '/phpunit/php-text-template/src/Template.php',
 );

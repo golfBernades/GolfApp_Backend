@@ -46,7 +46,7 @@ CREATE TABLE `apuesta_partido` (
   KEY `apuesta_partido_apuesta_id_fk` (`apuesta_id`),
   CONSTRAINT `apuesta_partido_apuesta_id_fk` FOREIGN KEY (`apuesta_id`) REFERENCES `apuesta` (`id`),
   CONSTRAINT `apuesta_partido_partido_id_fk` FOREIGN KEY (`partido_id`) REFERENCES `partido` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -59,6 +59,7 @@ DROP TABLE IF EXISTS `campo`;
 CREATE TABLE `campo` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(100) NOT NULL,
+  `ciudad` char(100) NOT NULL,
   `par_hoyo_1` int(11) DEFAULT NULL,
   `par_hoyo_2` int(11) DEFAULT NULL,
   `par_hoyo_3` int(11) DEFAULT NULL,
@@ -100,16 +101,29 @@ CREATE TABLE `campo` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `clave_partido`
+-- Table structure for table `clave_consulta_partido`
 --
 
-DROP TABLE IF EXISTS `clave_partido`;
+DROP TABLE IF EXISTS `clave_consulta_partido`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `clave_partido` (
+CREATE TABLE `clave_consulta_partido` (
   `clave` char(8) NOT NULL,
   PRIMARY KEY (`clave`),
   UNIQUE KEY `clave_partido_clave_uindex` (`clave`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `clave_edicion_partido`
+--
+
+DROP TABLE IF EXISTS `clave_edicion_partido`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `clave_edicion_partido` (
+  `clave` char(8) NOT NULL,
+  UNIQUE KEY `clave_edicion_partido_clave_uindex` (`clave`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -122,15 +136,9 @@ DROP TABLE IF EXISTS `jugador`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `jugador` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(255) NOT NULL,
-  `apodo` varchar(10) NOT NULL,
+  `nombre` varchar(20) NOT NULL,
   `handicap` int(11) NOT NULL,
-  `sexo` char(1) NOT NULL,
-  `url_foto` varchar(255) NOT NULL,
-  `password` varchar(100) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `jugador_email_uindex` (`email`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -162,18 +170,16 @@ DROP TABLE IF EXISTS `partido`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `partido` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `clave` char(8) NOT NULL,
   `inicio` datetime NOT NULL,
   `fin` datetime DEFAULT NULL,
-  `jugador_id` int(11) NOT NULL,
   `campo_id` int(11) NOT NULL,
+  `clave_consulta` char(8) NOT NULL,
+  `clave_edicion` char(8) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `partido_clave_uindex` (`clave`),
-  KEY `partido_jugador_id_fk` (`jugador_id`),
+  UNIQUE KEY `partido_clave_consulta_uindex` (`clave_consulta`),
+  UNIQUE KEY `partido_clave_edicion_uindex` (`clave_edicion`),
   KEY `partido_campo_id_fk` (`campo_id`),
-  CONSTRAINT `partido_clave_partido_clave_fk` FOREIGN KEY (`clave`) REFERENCES `clave_partido` (`clave`),
-  CONSTRAINT `partido_campo_id_fk` FOREIGN KEY (`campo_id`) REFERENCES `campo` (`id`),
-  CONSTRAINT `partido_jugador_id_fk` FOREIGN KEY (`jugador_id`) REFERENCES `jugador` (`id`)
+  CONSTRAINT `partido_campo_id_fk` FOREIGN KEY (`campo_id`) REFERENCES `campo` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -197,7 +203,7 @@ CREATE TABLE `puntuaciones` (
   KEY `puntuaciones_partido_id_fk` (`partido_id`),
   CONSTRAINT `puntuaciones_jugador_id_fk` FOREIGN KEY (`jugador_id`) REFERENCES `jugador` (`id`),
   CONSTRAINT `puntuaciones_partido_id_fk` FOREIGN KEY (`partido_id`) REFERENCES `partido` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -209,4 +215,4 @@ CREATE TABLE `puntuaciones` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-04-14 18:05:01
+-- Dump completed on 2017-04-20 13:49:01

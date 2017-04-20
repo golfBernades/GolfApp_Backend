@@ -797,6 +797,7 @@ class ComposerStaticInit7e1d338a817a09ac84b2656416c67399
         'SebastianBergmann\\Version' => __DIR__ . '/..' . '/sebastian/version/src/Version.php',
         'SessionHandlerInterface' => __DIR__ . '/..' . '/symfony/http-foundation/Resources/stubs/SessionHandlerInterface.php',
         'TestCase' => __DIR__ . '/../..' . '/tests/TestCase.php',
+        'TestJuego1Seeder' => __DIR__ . '/../..' . '/database/seeds/TestJuego1Seeder.php',
         'Text_Template' => __DIR__ . '/..' . '/phpunit/php-text-template/src/Template.php',
     );
 
