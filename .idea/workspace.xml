@@ -1,22 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="16df6c25-8ea6-4bb9-9c3c-df6e63c1bf54" name="Default" comment="Se modificó la base de datos porque ya no habrá cuentas de usuario">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Models/ClavePartido.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/database/seeds/ClavePartidoTableSeeder.php" afterPath="" />
+    <list default="true" id="16df6c25-8ea6-4bb9-9c3c-df6e63c1bf54" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Models/ClaveConsultaPartido.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Models/ClaveEdicionPartido.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/database/seeds/ClaveConsultaPartidoTableSeeder.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/database/seeds/ClaveEdicionPartidoTableSeeder.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/CampoController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/CampoController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ClavePartidoController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ClavePartidoController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/JugadorController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/JugadorController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/PartidoController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/PartidoController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/db_create_script/createdb.sql" afterPath="$PROJECT_DIR$/database/db_create_script/createdb.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/seeds/CampoTableSeeder.php" afterPath="$PROJECT_DIR$/database/seeds/CampoTableSeeder.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/seeds/JugadorTableSeeder.php" afterPath="$PROJECT_DIR$/database/seeds/JugadorTableSeeder.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/seeds/PartidoTableSeeder.php" afterPath="$PROJECT_DIR$/database/seeds/PartidoTableSeeder.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -110,8 +101,8 @@
       <file leaf-file-name="ClavePartidoController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ClavePartidoController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="392">
-              <caret line="26" column="9" lean-forward="false" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="9" />
+            <state relative-caret-position="-1344">
+              <caret line="7" column="34" lean-forward="false" selection-start-line="7" selection-start-column="34" selection-end-line="7" selection-end-column="34" />
               <folding>
                 <element signature="e#40#76#0#PHP" expanded="true" />
               </folding>
@@ -525,14 +516,7 @@
       <workItem from="1492533850278" duration="1270000" />
       <workItem from="1492707607607" duration="3656000" />
       <workItem from="1492732535817" duration="3793000" />
-      <workItem from="1492791199416" duration="1876000" />
-    </task>
-    <task id="LOCAL-00006" summary="Se eliminó el atributo fillable del modelo Jugador">
-      <created>1491091669821</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1491091669821</updated>
+      <workItem from="1492791199416" duration="2015000" />
     </task>
     <task id="LOCAL-00007" summary="Se importó el repo de github a gitlab">
       <created>1491091875733</created>
@@ -870,11 +854,18 @@
       <option name="project" value="LOCAL" />
       <updated>1492714387177</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="Se tienen corregidos la DB y los seeders">
+      <created>1492793096315</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1492793096319</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="143021000" />
+    <option name="totallyTimeSpent" value="143160000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1050" extended-state="0" />
@@ -932,7 +923,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Se creó el PartidoTableSeeder" />
     <MESSAGE value="Se refactorizó el validador de parámetros numéricos de la url en los controllers" />
     <MESSAGE value="Se creó el esqueleto no implementado aún del JugadorPartidoController" />
     <MESSAGE value="Se implementó el método addJugador del JugadorPartidoController" />
@@ -957,7 +947,8 @@
     <MESSAGE value="Se actualizó el readme.md" />
     <MESSAGE value="Se agregó la clase HttpRequests para probar solicitudes http desde php" />
     <MESSAGE value="Se modificó la base de datos porque ya no habrá cuentas de usuario" />
-    <option name="LAST_COMMIT_MESSAGE" value="Se modificó la base de datos porque ya no habrá cuentas de usuario" />
+    <MESSAGE value="Se tienen corregidos la DB y los seeders" />
+    <option name="LAST_COMMIT_MESSAGE" value="Se tienen corregidos la DB y los seeders" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1332,8 +1323,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ClavePartidoController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="26" column="9" lean-forward="false" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="9" />
+        <state relative-caret-position="-1344">
+          <caret line="7" column="34" lean-forward="false" selection-start-line="7" selection-start-column="34" selection-end-line="7" selection-end-column="34" />
           <folding>
             <element signature="e#40#76#0#PHP" expanded="true" />
           </folding>
