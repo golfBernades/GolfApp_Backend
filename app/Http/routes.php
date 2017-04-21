@@ -18,7 +18,6 @@ Rutas de los jugadores
 */
 
 Route::resource('jugador', 'JugadorController', ['except' => ['create', 'edit']]);
-Route::post('update_jugador_password', 'JugadorController@cambiarPassword');
 
 /*
 --------------------------------------------------------------------------------

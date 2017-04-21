@@ -15,28 +15,13 @@ class JugadorTableSeeder extends Seeder
 
         DB::table('jugador')->insert(array([
             'nombre' => 'Porfirio',
-            'apodo' => 'Porfi',
-            'handicap' => 10,
-            'sexo' => 'H',
-            'url_foto' => 'foto.jpg',
-            'email' => 'porfirioads@gmail.com',
-            'password' => sha1('holamundo')
+            'handicap' => 10
         ], [
             'nombre' => 'Margarito',
-            'apodo' => 'Marga',
-            'handicap' => 5,
-            'sexo' => 'H',
-            'url_foto' => 'foto.jpg',
-            'email' => 'margarito@gmail.com',
-            'password' => sha1('holamundo')
+            'handicap' => 5
         ], [
             'nombre' => 'Abraham',
-            'apodo' => 'sabru',
-            'handicap' => 8,
-            'sexo' => 'H',
-            'url_foto' => 'foto.jpg',
-            'email' => 'abraham@gmail.com',
-            'password' => sha1('holamundo')
+            'handicap' => 8
         ]));
     }
 }

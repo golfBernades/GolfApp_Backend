@@ -116,36 +116,6 @@ class JugadorController extends Controller
     }
 
     /**
-     * Actualiza la contraseña del jugador con los datos enviados en la
-     * request.
-     * @param Request $request Contiene los datos del jugador a actualizar,
-     * estos parámetros son:
-     * jugadorId: El id del jugador a modificar.
-     * oldPassword: La contraseña actual del jugador.
-     * newPassword: La nueva contraseña.
-     * @return JsonResponse
-     */
-    public function cambiarPassword(Request $request)
-    {
-        if (!$request['jugadorId'] || !$request['oldPassword']
-            || !$request['newPassword']
-        )
-            return HttpResponses::parametrosIncompletosReponse();
-        $jugador = Jugador::find($request['jugadorId']);
-        if (!$jugador)
-            return HttpResponses::noEncontradoResponse('jugador');
-        if ($jugador->password != sha1($request['oldPassword']))
-            return HttpResponses::passwordIncorrectaResponse();
-        $jugador->password = sha1($request['newPassword']);
-        try {
-            $jugador->save();
-            return HttpResponses::actualizadoOkResponse('jugador');
-        } catch (\Exception $e) {
-            return HttpResponses::actualizadoErrorResponse('jugador');
-        }
-    }
-
-    /**
      * Crea una instancia de Jugador para un nuevo jugador o un jugador
      * existente a partir de los parámetros de la request.
      *
@@ -163,20 +133,11 @@ class JugadorController extends Controller
             }
         } else {
             $jugador = new Jugador();
-            $jugador->password = sha1($request['password']);
         }
         if ($request['nombre'])
             $jugador->nombre = $request['nombre'];
-        if ($request['apodo'])
-            $jugador->apodo = $request['apodo'];
         if ($request['handicap'])
             $jugador->handicap = $request['handicap'];
-        if ($request['sexo'])
-            $jugador->sexo = $request['sexo'];
-        if ($request['url_foto'])
-            $jugador->url_foto = $request['url_foto'];
-        if ($request['email'])
-            $jugador->email = $request['email'];
         return $jugador;
     }
 
@@ -193,23 +154,12 @@ class JugadorController extends Controller
     private function isJugadorCompleto(Request $request)
     {
         $nombre = $request['nombre'];
-        $apodo = $request['apodo'];
         $handicap = $request['handicap'];
-        $sexo = $request['sexo'];
-        $url_foto = $request['url_foto'];
-        $password = $request['password'];
-        $email = $request['email'];
         // Si es para una actualización, se verifica que al menos un
         // parámetro del usuario venga en la request.
-        if ($request['id']) {
-            return $nombre || $apodo || $handicap || $sexo || $url_foto ||
-                $email;
-        }
+        if ($request['id']) return $nombre || $handicap;
         // Si es para un usuario nuevo, deben venir en la request todos sus
         // parámetros.
-        else {
-            return $nombre && $apodo && $handicap && $sexo && $url_foto &&
-                $password && $email;
-        }
+        else return $nombre && $handicap;
     }
 }

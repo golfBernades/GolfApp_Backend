@@ -9,6 +9,8 @@ return array(
     'ApuestaPartidoTableSeeder' => $baseDir . '/database/seeds/ApuestaPartidoTableSeeder.php',
     'ApuestaTableSeeder' => $baseDir . '/database/seeds/ApuestaTableSeeder.php',
     'CampoTableSeeder' => $baseDir . '/database/seeds/CampoTableSeeder.php',
+    'ClaveConsultaPartidoTableSeeder' => $baseDir . '/database/seeds/ClaveConsultaPartidoTableSeeder.php',
+    'ClaveEdicionPartidoTableSeeder' => $baseDir . '/database/seeds/ClaveEdicionPartidoTableSeeder.php',
     'ClavePartidoTableSeeder' => $baseDir . '/database/seeds/ClavePartidoTableSeeder.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/src/Iterator.php',
@@ -527,6 +529,5 @@ return array(
     'SebastianBergmann\\Version' => $vendorDir . '/sebastian/version/src/Version.php',
     'SessionHandlerInterface' => $vendorDir . '/symfony/http-foundation/Resources/stubs/SessionHandlerInterface.php',
     'TestCase' => $baseDir . '/tests/TestCase.php',
-    'TestJuego1Seeder' => $baseDir . '/database/seeds/TestJuego1Seeder.php',
     'Text_Template' => $vendorDir . '/phpunit/php-text-template/src/Template.php',
 );

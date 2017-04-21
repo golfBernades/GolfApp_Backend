@@ -11,6 +11,7 @@ use App\Models\Partido;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class PartidoController extends Controller
 {
@@ -34,6 +35,8 @@ class PartidoController extends Controller
     public function store(Request $request)
     {
         $partido = $this->crearPartido($request);
+        Log::info('porfiriolog');
+        Log::info($partido);
         if ($partido instanceof Partido) {
             try {
                 $partido->save();
@@ -132,23 +135,23 @@ class PartidoController extends Controller
             return HttpResponses::parametrosIncompletosReponse();
         if ($request['id']) {
             $partido = Partido::find($request['id']);
-            if (!$partido) {
+            if (!$partido)
                 return HttpResponses::noEncontradoResponse('partido');
-            }
         } else {
             $partido = new Partido();
+            $claveController = new ClavePartidoController();
+            $partido->clave_consulta = $claveController->obtenerClaveConsulta();
+            $partido->clave_edicion = $claveController->obtenerClaveEdicion();
+            Log::info('porfiriolog');
+            Log::info('clave_consulta');
+            Log::info($partido->clave_consulta);
+            Log::info('clave_edicion');
+            Log::info($partido->clave_edicion);
         }
-        if ($request['clave'])
-            $partido->clave = $request['clave'];
         if ($request['inicio'])
             $partido->inicio = $request['inicio'];
         if ($request['fin'])
             $partido->fin = $request['fin'];
-        if ($request['jugador_id'])
-            $partido->jugador_id = $request['jugador_id'];
-        $jugador = Jugador::find($partido->jugador_id);
-        if (!$jugador)
-            return HttpResponses::noEncontradoResponse('jugador');
         if ($request['campo_id'])
             $partido->campo_id = $request['campo_id'];
         $campo = Campo::find($partido->campo_id);
@@ -166,14 +169,12 @@ class PartidoController extends Controller
      */
     private function isPartidoCompleto(Request $request)
     {
-        $clave = $request['clave'];
         $inicio = $request['inicio'];
-        $jugadorId = $request['jugador_id'];
         $campoId = $request['campo_id'];
         if ($request['id'])
-            return $clave || $inicio || $jugadorId || $campoId;
+            return $inicio || $campoId;
         else
-            return $clave && $inicio && $jugadorId && $campoId;
+            return $inicio && $campoId;
     }
 
     /**

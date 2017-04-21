@@ -133,6 +133,7 @@ class CampoController extends Controller
         } else
             $campo = new Campo();
         if ($request['nombre']) $campo->nombre = $request['nombre'];
+        if ($request['ciudad']) $campo->ciudad = $request['ciudad'];
         if ($request['par_hoyo_1'])
             $campo->par_hoyo_1 = $request['par_hoyo_1'];
         if ($request['par_hoyo_2'])
@@ -218,6 +219,7 @@ class CampoController extends Controller
     private function isCampoCompleto(Request $request)
     {
         $nombre = $request['nombre'];
+        $ciudad = $request['ciudad'];
         $par_hoyo_1 = $request['par_hoyo_1'];
         $par_hoyo_2 = $request['par_hoyo_2'];
         $par_hoyo_3 = $request['par_hoyo_3'];
@@ -257,11 +259,11 @@ class CampoController extends Controller
         // Si es para una actualización, se verifica que al menos un
         // parámetro del usuario venga en la request.
         if ($request['id'])
-            return $nombre || $par_hoyo_1 || $par_hoyo_2 || $par_hoyo_3
-                || $par_hoyo_4 || $par_hoyo_5 || $par_hoyo_6 || $par_hoyo_7
-                || $par_hoyo_8 || $par_hoyo_9 || $par_hoyo_10 || $par_hoyo_11
-                || $par_hoyo_12 || $par_hoyo_13 || $par_hoyo_14 || $par_hoyo_15
-                || $par_hoyo_16 || $par_hoyo_17 || $par_hoyo_18
+            return $nombre || $ciudad || $par_hoyo_1 || $par_hoyo_2
+                || $par_hoyo_3 || $par_hoyo_4 || $par_hoyo_5 || $par_hoyo_6
+                || $par_hoyo_7 || $par_hoyo_8 || $par_hoyo_9 || $par_hoyo_10
+                || $par_hoyo_11 || $par_hoyo_12 || $par_hoyo_13 || $par_hoyo_14
+                || $par_hoyo_15 || $par_hoyo_16 || $par_hoyo_17 || $par_hoyo_18
                 || $ventaja_hoyo_1 || $ventaja_hoyo_2 || $ventaja_hoyo_3
                 || $ventaja_hoyo_4 || $ventaja_hoyo_5 || $ventaja_hoyo_6
                 || $ventaja_hoyo_7 || $ventaja_hoyo_8 || $ventaja_hoyo_9
@@ -271,11 +273,11 @@ class CampoController extends Controller
         // Si es para un usuario nuevo, deben venir en la request todos sus
         // parámetros.
         else
-            return $nombre && $par_hoyo_1 && $par_hoyo_2 && $par_hoyo_3
-                && $par_hoyo_4 && $par_hoyo_5 && $par_hoyo_6 && $par_hoyo_7
-                && $par_hoyo_8 && $par_hoyo_9 && $par_hoyo_10 && $par_hoyo_11
-                && $par_hoyo_12 && $par_hoyo_13 && $par_hoyo_14 && $par_hoyo_15
-                && $par_hoyo_16 && $par_hoyo_17 && $par_hoyo_18
+            return $nombre && $ciudad && $par_hoyo_1 && $par_hoyo_2
+                && $par_hoyo_3 && $par_hoyo_4 && $par_hoyo_5 && $par_hoyo_6
+                && $par_hoyo_7 && $par_hoyo_8 && $par_hoyo_9 && $par_hoyo_10
+                && $par_hoyo_11 && $par_hoyo_12 && $par_hoyo_13 && $par_hoyo_14
+                && $par_hoyo_15 && $par_hoyo_16 && $par_hoyo_17 && $par_hoyo_18
                 && $ventaja_hoyo_1 && $ventaja_hoyo_2 && $ventaja_hoyo_3
                 && $ventaja_hoyo_4 && $ventaja_hoyo_5 && $ventaja_hoyo_6
                 && $ventaja_hoyo_7 && $ventaja_hoyo_8 && $ventaja_hoyo_9
