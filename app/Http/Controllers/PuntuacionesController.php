@@ -28,8 +28,7 @@ class PuntuacionesController extends Controller
                 $join->on('pa.id', '=', 'pu.partido_id');
             })
             ->select(['pu.id as puntuaciones_id', 'hoyo', 'golpes', 'unidades',
-                'pu.jugador_id', 'ju.nombre as nombre_jugador',
-                'pa.clave as clave_partido'])
+                'pu.jugador_id', 'ju.nombre as nombre_jugador'])
             ->get();
         return response()->json($allPuntuaciones);
     }

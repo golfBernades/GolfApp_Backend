@@ -27,8 +27,7 @@ class JugadorPartidoController extends Controller
                 $join->on('pa.id', '=', 'jp.partido_id');
             })
             ->select(['jp.jugador_id', 'ju.nombre as nombre_jugador',
-                'ju.apodo as apodo_jugador',
-                'partido_id', 'pa.clave as clave_partido'])
+                'partido_id'])
             ->get();
         return response()->json($jugadoresPartidos);
     }
@@ -98,8 +97,7 @@ class JugadorPartidoController extends Controller
             ->join('jugador_partido as jp', function ($join) {
                 $join->on('ju.id', '=', 'jp.jugador_id');
             })
-            ->select(['ju.id', 'nombre', 'apodo', 'handicap', 'sexo',
-                'url_foto', 'password', 'email'])
+            ->select(['ju.id', 'nombre', 'handicap'])
             ->where('partido_id', '=', $partidoId)
             ->get();
         return response()->json($jugadoresEnPartido);
@@ -120,8 +118,7 @@ class JugadorPartidoController extends Controller
             ->join('jugador_partido as jp', function ($join) {
                 $join->on('pa.id', '=', 'jp.partido_id');
             })
-            ->select(['pa.id', 'clave', 'inicio', 'fin', 'pa.jugador_id',
-                'campo_id'])
+            ->select(['pa.id', 'inicio', 'fin', 'campo_id'])
             ->where('jp.jugador_id', '=', $jugadorId)
             ->get();
         return response()->json($partidosDelJugador);

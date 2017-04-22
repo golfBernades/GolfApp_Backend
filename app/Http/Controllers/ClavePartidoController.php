@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\ClaveConsultaPartido;
 use App\Models\ClaveEdicionPartido;
-use App\Models\ClavePartido;
 use Illuminate\Support\Facades\DB;
 
 class ClavePartidoController extends Controller
@@ -65,5 +64,4 @@ class ClavePartidoController extends Controller
     {
         return $this->insertarClave('clave_edicion_partido');
     }
-
 }

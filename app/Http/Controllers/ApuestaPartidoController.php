@@ -25,7 +25,7 @@ class ApuestaPartidoController extends Controller
                 $join->on('par.id', '=', 'ap.partido_id');
             })
             ->select(['apu.id as apuesta_id', 'apu.nombre as nombre_apuesta',
-                'par.id as partido_id', 'par.clave as clave_partido'])
+                'par.id as partido_id'])
             ->get();
         return response()->json($apuestasPartidos);
     }
@@ -118,8 +118,7 @@ class ApuestaPartidoController extends Controller
             ->join('apuesta_partido as ap', function ($join) {
                 $join->on('pa.id', '=', 'ap.partido_id');
             })
-            ->select(['pa.id', 'clave', 'inicio', 'fin', 'jugador_id',
-                'campo_id'])
+            ->select(['pa.id', 'inicio', 'fin', 'campo_id'])
             ->where('apuesta_id', '=', $apuestaId)
             ->get();
         return response()->json($partidosConApuesta);
