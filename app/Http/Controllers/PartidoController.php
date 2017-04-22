@@ -35,12 +35,11 @@ class PartidoController extends Controller
     public function store(Request $request)
     {
         $partido = $this->crearPartido($request);
-        Log::info('porfiriolog');
-        Log::info($partido);
         if ($partido instanceof Partido) {
             try {
                 $partido->save();
-                return HttpResponses::insertadoOkResponse('partido');
+                return HttpResponses::partidoInsertadoOkResponse(
+                    $partido->clave_consulta, $partido->clave_edicion);
             } catch (\Exception $e) {
                 return HttpResponses::insertadoErrorResponse('partido');
             }
@@ -142,11 +141,6 @@ class PartidoController extends Controller
             $claveController = new ClavePartidoController();
             $partido->clave_consulta = $claveController->obtenerClaveConsulta();
             $partido->clave_edicion = $claveController->obtenerClaveEdicion();
-            Log::info('porfiriolog');
-            Log::info('clave_consulta');
-            Log::info($partido->clave_consulta);
-            Log::info('clave_edicion');
-            Log::info($partido->clave_edicion);
         }
         if ($request['inicio'])
             $partido->inicio = $request['inicio'];

@@ -38,6 +38,16 @@ class HttpResponses
     ----------------------------------------------------------------------------
     */
 
+    public static function partidoInsertadoOkResponse($claveConsulta,
+                                                   $claveEdicion)
+    {
+        return response()->json(['code' => 200,
+            'message' => 'El partido fue creado correctamente',
+            'clave_consulta' => $claveConsulta,
+            'clave_edicion' => $claveEdicion
+        ]);
+    }
+
     public static function noEncontradoResponse($entidad)
     {
         return self::createResponse(400, 'Registro de ' . $entidad

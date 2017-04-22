@@ -3,11 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="16df6c25-8ea6-4bb9-9c3c-df6e63c1bf54" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ApuestaPartidoController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ApuestaPartidoController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ClavePartidoController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ClavePartidoController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/JugadorPartidoController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/JugadorPartidoController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/PuntuacionesController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/PuntuacionesController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/PartidoController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/PartidoController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Utils/HttpResponses.php" afterPath="$PROJECT_DIR$/app/Http/Utils/HttpResponses.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -58,21 +55,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Partido.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Models/Partido.php">
+      <file leaf-file-name="PartidoController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PartidoController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="6" column="6" lean-forward="false" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-              <folding />
+            <state relative-caret-position="485">
+              <caret line="40" column="65" lean-forward="false" selection-start-line="40" selection-start-column="65" selection-end-line="40" selection-end-column="65" />
+              <folding>
+                <element signature="e#40#78#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PartidoController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PartidoController.php">
+      <file leaf-file-name="HttpResponses.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Utils/HttpResponses.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="28" />
+            <state relative-caret-position="336">
+              <caret line="40" column="17" lean-forward="false" selection-start-line="40" selection-start-column="17" selection-end-line="40" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -120,12 +119,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="routes.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="701">
-              <caret line="98" column="52" lean-forward="false" selection-start-line="98" selection-start-column="52" selection-end-line="98" selection-end-column="52" />
-              <folding />
+            <state relative-caret-position="2744">
+              <caret line="98" column="52" lean-forward="true" selection-start-line="98" selection-start-column="52" selection-end-line="98" selection-end-column="52" />
+              <folding>
+                <element signature="e#7#392#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -177,7 +178,6 @@
         <option value="$PROJECT_DIR$/app/Http/Middleware/CreadorPartidoMiddleware.php" />
         <option value="$PROJECT_DIR$/app/Http/Middleware/MiembroPartidoMiddleware.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/CreadorPartidoController.php" />
-        <option value="$PROJECT_DIR$/app/Http/Utils/HttpResponses.php" />
         <option value="$PROJECT_DIR$/app/Http/Kernel.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/MiembroPartidoController.php" />
         <option value="$PROJECT_DIR$/readme.md" />
@@ -195,13 +195,14 @@
         <option value="$PROJECT_DIR$/database/seeds/ClaveConsultaPartidoTableSeeder.php" />
         <option value="$PROJECT_DIR$/database/seeds/ClaveEdicionPartidoTableSeeder.php" />
         <option value="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/PartidoController.php" />
         <option value="$PROJECT_DIR$/database/seeds/PartidoTableSeeder.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ClavePartidoController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ApuestaPartidoController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/JugadorPartidoController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/PuntuacionesController.php" />
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
+        <option value="$PROJECT_DIR$/app/Http/Utils/HttpResponses.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/PartidoController.php" />
       </list>
     </option>
   </component>
@@ -527,14 +528,7 @@
       <workItem from="1492707607607" duration="3656000" />
       <workItem from="1492732535817" duration="3793000" />
       <workItem from="1492791199416" duration="4128000" />
-      <workItem from="1492814619760" duration="2318000" />
-    </task>
-    <task id="LOCAL-00008" summary="Se comenzó a versionar el script de creación de la BD">
-      <created>1491092127554</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1491092127554</updated>
+      <workItem from="1492814619760" duration="2921000" />
     </task>
     <task id="LOCAL-00009" summary="Creación del modelo Campo y del controlador CampoController">
       <created>1491092397777</created>
@@ -872,18 +866,25 @@
       <option name="project" value="LOCAL" />
       <updated>1492793244574</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="Se hicieron los cambios en los controllers para la implementación de claves de edición y acceso a los partidos">
+      <created>1492819824781</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1492819824782</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="147591000" />
+    <option name="totallyTimeSpent" value="148194000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1050" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24869657" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24869657" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -934,7 +935,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Se creó el esqueleto no implementado aún del JugadorPartidoController" />
     <MESSAGE value="Se implementó el método addJugador del JugadorPartidoController" />
     <MESSAGE value="Se implementó el método removeJugador del JugadorPartidoController" />
     <MESSAGE value="Se implementó el método getJugadoresEnPartido del JugadorPartidoController" />
@@ -959,7 +959,8 @@
     <MESSAGE value="Se modificó la base de datos porque ya no habrá cuentas de usuario" />
     <MESSAGE value="Se tienen corregidos la DB y los seeders" />
     <MESSAGE value="Se agregaron unos archivos de seeders y modelos que olvidé en el commit anterior" />
-    <option name="LAST_COMMIT_MESSAGE" value="Se agregaron unos archivos de seeders y modelos que olvidé en el commit anterior" />
+    <MESSAGE value="Se hicieron los cambios en los controllers para la implementación de claves de edición y acceso a los partidos" />
+    <option name="LAST_COMMIT_MESSAGE" value="Se hicieron los cambios en los controllers para la implementación de claves de edición y acceso a los partidos" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1042,13 +1043,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2185">
           <caret line="83" column="67" lean-forward="false" selection-start-line="83" selection-start-column="67" selection-end-line="83" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Utils/HttpResponses.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="477">
-          <caret line="114" column="54" lean-forward="false" selection-start-line="114" selection-start-column="27" selection-end-line="114" selection-end-column="54" />
         </state>
       </provider>
     </entry>
@@ -1268,14 +1262,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PartidoController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/seeds/ClaveEdicionPartidoTableSeeder.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="532">
@@ -1339,9 +1325,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="701">
-          <caret line="98" column="52" lean-forward="false" selection-start-line="98" selection-start-column="52" selection-end-line="98" selection-end-column="52" />
+        <state relative-caret-position="2744">
+          <caret line="98" column="52" lean-forward="true" selection-start-line="98" selection-start-column="52" selection-end-line="98" selection-end-column="52" />
+          <folding>
+            <element signature="e#7#392#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Utils/HttpResponses.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="40" column="17" lean-forward="false" selection-start-line="40" selection-start-column="17" selection-end-line="40" selection-end-column="17" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PartidoController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="485">
+          <caret line="40" column="65" lean-forward="false" selection-start-line="40" selection-start-column="65" selection-end-line="40" selection-end-column="65" />
+          <folding>
+            <element signature="e#40#78#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
