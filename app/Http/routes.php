@@ -17,7 +17,11 @@ Rutas de los jugadores
 --------------------------------------------------------------------------------
 */
 
-Route::resource('jugador', 'JugadorController', ['except' => ['create', 'edit']]);
+Route::get('jugador', 'JugadorController@index');
+Route::get('jugador/{id}', 'JugadorController@show');
+Route::post('jugador/', 'JugadorController@store');
+Route::put('jugador/{id}', 'JugadorController@update');
+Route::delete('jugador/{id}', 'JugadorController@destroy');
 
 /*
 --------------------------------------------------------------------------------
@@ -25,7 +29,11 @@ Rutas de los campos
 --------------------------------------------------------------------------------
 */
 
-Route::resource('campo', 'CampoController', ['except' => ['create', 'edit']]);
+Route::get('campo', 'CampoController@index');
+Route::get('campo/{id}', 'CampoController@show');
+Route::post('campo/', 'CampoController@store');
+Route::put('campo/{id}', 'CampoController@update');
+Route::delete('campo/{id}', 'CampoController@destroy');
 
 /*
 --------------------------------------------------------------------------------
@@ -33,8 +41,11 @@ Rutas de las apuestas
 --------------------------------------------------------------------------------
 */
 
-Route::resource('apuesta', 'ApuestaController', ['except' => ['create',
-    'edit']]);
+Route::get('apuesta', 'ApuestaController@index');
+Route::get('apuesta/{id}', 'ApuestaController@show');
+Route::post('apuesta/', 'ApuestaController@store');
+Route::put('apuesta/{id}', 'ApuestaController@update');
+Route::delete('apuesta/{id}', 'ApuestaController@destroy');
 
 /*
 --------------------------------------------------------------------------------
@@ -42,8 +53,12 @@ Rutas de los partidos
 --------------------------------------------------------------------------------
 */
 
-Route::resource('partido', 'PartidoController', ['except' => ['create',
-    'edit']]);
+Route::get('partido', 'PartidoController@index');
+Route::get('partido/{id}', 'PartidoController@show');
+Route::post('partido/', 'PartidoController@store');
+Route::put('partido/{id}', 'PartidoController@update');
+Route::delete('partido/{id}', 'PartidoController@destroy');
+
 Route::get('vaciar_partidos_finalizados',
     'PartidoController@vaciarPartidosFinalizados');
 

@@ -130,8 +130,6 @@ class PartidoController extends Controller
      */
     private function crearPartido(Request $request)
     {
-        if (!$this->isPartidoCompleto($request))
-            return HttpResponses::parametrosIncompletosReponse();
         if ($request['id']) {
             $partido = Partido::find($request['id']);
             if (!$partido)
@@ -146,29 +144,13 @@ class PartidoController extends Controller
             $partido->inicio = $request['inicio'];
         if ($request['fin'])
             $partido->fin = $request['fin'];
-        if ($request['campo_id'])
+        if ($request['campo_id']) {
             $partido->campo_id = $request['campo_id'];
-        $campo = Campo::find($partido->campo_id);
-        if (!$campo)
-            return HttpResponses::noEncontradoResponse('campo');
+            $campo = Campo::find($partido->campo_id);
+            if (!$campo)
+                return HttpResponses::noEncontradoResponse('campo');
+        }
         return $partido;
-    }
-
-    /**
-     * Determina si los parámetros obligatorios de un partido enviados en la
-     * request están completos.
-     *
-     * @param Request $request
-     * @return bool
-     */
-    private function isPartidoCompleto(Request $request)
-    {
-        $inicio = $request['inicio'];
-        $campoId = $request['campo_id'];
-        if ($request['id'])
-            return $inicio || $campoId;
-        else
-            return $inicio && $campoId;
     }
 
     /**
