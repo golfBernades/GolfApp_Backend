@@ -13,18 +13,6 @@
 
 /*
 --------------------------------------------------------------------------------
-Rutas de los jugadores
---------------------------------------------------------------------------------
-*/
-
-Route::get('jugador', 'JugadorController@index');
-Route::get('jugador/{id}', 'JugadorController@show');
-Route::post('jugador/', 'JugadorController@store');
-Route::put('jugador/{id}', 'JugadorController@update');
-Route::delete('jugador/{id}', 'JugadorController@destroy');
-
-/*
---------------------------------------------------------------------------------
 Rutas de los campos
 --------------------------------------------------------------------------------
 */
@@ -129,4 +117,16 @@ Grupo de rutas que requieren permisos para editar datos sobre un partido.
 */
 Route::group(['middleware' => ['edicion_partido']], function () {
     Route::post('test_edicion_partido', 'PuntuacionesController@testEdicion');
+
+    /*
+    ----------------------------------------------------------------------------
+    Rutas de los jugadores
+    ----------------------------------------------------------------------------
+    */
+
+    Route::post('jugador_all', 'JugadorController@index');
+    Route::post('jugador/{id}', 'JugadorController@show');
+    Route::post('jugador', 'JugadorController@store');
+    Route::put('jugador/{id}', 'JugadorController@update');
+    Route::delete('jugador/{id}', 'JugadorController@destroy');
 });

@@ -14,6 +14,11 @@ class ClaveConsultaPartidoTableSeeder extends Seeder
     public function run()
     {
         DB::table('clave_consulta_partido')->truncate();
+
+        DB::table('clave_consulta_partido')->insert(array([
+            'clave' => 'abcdefgh'
+        ]));
+
         $controller = new ClavePartidoController();
         for ($i = 0; $i < 3; $i++)
             $controller->insertarClaveConsulta();
