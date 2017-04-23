@@ -171,19 +171,19 @@ DROP TABLE IF EXISTS `partido`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `partido` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `inicio` datetime NOT NULL,
+  `inicio` datetime DEFAULT NULL,
   `fin` datetime DEFAULT NULL,
-  `campo_id` int(11) NOT NULL,
+  `campo_id` int(11) DEFAULT NULL,
   `clave_consulta` char(8) NOT NULL,
   `clave_edicion` char(8) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `partido_clave_consulta_uindex` (`clave_consulta`),
   UNIQUE KEY `partido_clave_edicion_uindex` (`clave_edicion`),
   KEY `partido_campo_id_fk` (`campo_id`),
-  CONSTRAINT `partido_clave_edicion_partido_clave_fk` FOREIGN KEY (`clave_edicion`) REFERENCES `clave_edicion_partido` (`clave`),
   CONSTRAINT `partido_campo_id_fk` FOREIGN KEY (`campo_id`) REFERENCES `campo` (`id`),
-  CONSTRAINT `partido_clave_consulta_partido_clave_fk` FOREIGN KEY (`clave_consulta`) REFERENCES `clave_consulta_partido` (`clave`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+  CONSTRAINT `partido_clave_consulta_partido_clave_fk` FOREIGN KEY (`clave_consulta`) REFERENCES `clave_consulta_partido` (`clave`),
+  CONSTRAINT `partido_clave_edicion_partido_clave_fk` FOREIGN KEY (`clave_edicion`) REFERENCES `clave_edicion_partido` (`clave`)
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -206,7 +206,7 @@ CREATE TABLE `puntuaciones` (
   KEY `puntuaciones_partido_id_fk` (`partido_id`),
   CONSTRAINT `puntuaciones_jugador_id_fk` FOREIGN KEY (`jugador_id`) REFERENCES `jugador` (`id`),
   CONSTRAINT `puntuaciones_partido_id_fk` FOREIGN KEY (`partido_id`) REFERENCES `partido` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -218,4 +218,4 @@ CREATE TABLE `puntuaciones` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-04-21 11:44:30
+-- Dump completed on 2017-04-23 17:03:53

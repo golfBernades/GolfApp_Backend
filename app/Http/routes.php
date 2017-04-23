@@ -98,11 +98,20 @@ Route::get('puntuaciones_jugador_partido_hoyo/{jugador_id}/{partido_id}/{hoyo}',
 Route::post('registrar_puntuaciones',
     'PuntuacionesController@registrarPuntuaciones');
 
-
+/*
+--------------------------------------------------------------------------------
+Grupo de rutas que requieren permisos para consultar datos sobre un partido.
+--------------------------------------------------------------------------------
+*/
 Route::group(['middleware' => ['consulta_partido']], function () {
     Route::post('test_consulta_partido', 'PuntuacionesController@testConsulta');
 });
 
+/*
+--------------------------------------------------------------------------------
+Grupo de rutas que requieren permisos para editar datos sobre un partido.
+--------------------------------------------------------------------------------
+*/
 Route::group(['middleware' => ['edicion_partido']], function () {
     Route::post('test_edicion_partido', 'PuntuacionesController@testEdicion');
 });
