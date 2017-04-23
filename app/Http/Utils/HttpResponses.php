@@ -39,7 +39,7 @@ class HttpResponses
     */
 
     public static function partidoInsertadoOkResponse($claveConsulta,
-                                                   $claveEdicion)
+                                                      $claveEdicion)
     {
         return response()->json(['code' => 200,
             'message' => 'El partido fue creado correctamente',
@@ -96,36 +96,28 @@ class HttpResponses
     ----------------------------------------------------------------------------
     */
 
-    public static function passwordIncorrectaResponse()
-    {
-        return self::createResponse(400, 'Contraseña incorrecta');
-    }
-
-    public static function passwordActualizadaResponse()
-    {
-        return self::createResponse(200, 'Contraseña actualizada');
-    }
-
-    public static function emailExistente()
-    {
-        return self::createResponse(400, 'El email ya está en uso');
-    }
-
-    public static function parametrosLoginIncompletosResponse()
+    public static function claveConsultaErrorResponse()
     {
         return self::createResponse(400,
-            'Parámetros de autenticación incompletos');
+            'La clave de consulta del partido es incorrecta');
     }
 
-    public static function falloAutenticacionResponse()
-    {
-        return self::createResponse(400, 'Falló la autenticación del usuario');
-    }
-
-    public static function permisosPartidoErrorReponse()
+    public static function claveEdicionErrorResponse()
     {
         return self::createResponse(400,
-            'El usuario no tiene permisos para acceder al partido');
+            'La clave de edición del partido es incorrecta');
+    }
+
+    public static function claveConsultaOkResponse()
+    {
+        return self::createResponse(200,
+            'La clave de consulta del partido es correcta');
+    }
+
+    public static function claveEdicionEOkResponse()
+    {
+        return self::createResponse(200,
+            'La clave de edición del partido es correcta');
     }
 
     /*

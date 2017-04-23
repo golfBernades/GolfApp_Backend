@@ -167,4 +167,14 @@ class PuntuacionesController extends Controller
         }
     }
 
+    public function testConsulta(Request $request)
+    {
+        return 'consulta';
+    }
+
+    public function testEdicion(Request $request)
+    {
+        return 'edición';
+    }
+
 }
