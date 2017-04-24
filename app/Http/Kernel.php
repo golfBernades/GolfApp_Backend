@@ -35,5 +35,6 @@ class Kernel extends HttpKernel
         ::class,
         'edicion_partido' => \App\Http\Middleware\EdicionPartidoMiddleware
         ::class,
+        'administrador' => \App\Http\Middleware\AdministradorMiddleware::class,
     ];
 }
