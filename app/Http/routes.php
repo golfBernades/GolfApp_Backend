@@ -58,7 +58,6 @@ Route::group(['middleware' => ['edicion_partido']], function () {
     Route::group(['middleware' => ['jugador_partido']], function () {
         Route::post('jugador/{id}', 'JugadorController@show');
         Route::put('jugador/{id}', 'JugadorController@update');
-//        Route::delete('jugador/{id}', 'JugadorController@destroy');
     });
 
     // TODO ¿Cómo se manejarán los campos?

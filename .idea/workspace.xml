@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="16df6c25-8ea6-4bb9-9c3c-df6e63c1bf54" name="Default" comment="Se comenzó ha validar mejor los permisos que requieren cada una de las rutas">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Http/Middleware/JugadorPartidoMiddleware.php" />
+    <list default="true" id="16df6c25-8ea6-4bb9-9c3c-df6e63c1bf54" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Http/GolfApp_REST.postman_collection.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/JugadorController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/JugadorController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/JugadorPartidoController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/JugadorPartidoController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Kernel.php" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Utils/HttpResponses.php" afterPath="$PROJECT_DIR$/app/Http/Utils/HttpResponses.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -26,18 +22,8 @@
       <file leaf-file-name="Kernel.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Kernel.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="673">
+            <state relative-caret-position="1036">
               <caret line="38" column="24" lean-forward="false" selection-start-line="38" selection-start-column="9" selection-end-line="38" selection-end-column="24" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ClaveEdicionPartidoTableSeeder.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/seeds/ClaveEdicionPartidoTableSeeder.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
-              <caret line="7" column="1" lean-forward="false" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -46,7 +32,7 @@
       <file leaf-file-name="EdicionPartidoMiddleware.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Middleware/EdicionPartidoMiddleware.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="533">
+            <state relative-caret-position="504">
               <caret line="20" column="55" lean-forward="false" selection-start-line="20" selection-start-column="55" selection-end-line="20" selection-end-column="55" />
               <folding>
                 <element signature="e#39#95#0#PHP" expanded="true" />
@@ -68,8 +54,8 @@
       <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="533">
-              <caret line="61" column="7" lean-forward="true" selection-start-line="61" selection-start-column="7" selection-end-line="61" selection-end-column="7" />
+            <state relative-caret-position="701">
+              <caret line="58" column="14" lean-forward="true" selection-start-line="58" selection-start-column="14" selection-end-line="58" selection-end-column="14" />
               <folding>
                 <element signature="e#7#392#0#PHP" expanded="true" />
               </folding>
@@ -77,10 +63,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JugadorController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GolfApp_REST.postman_collection.json" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Http/GolfApp_REST.postman_collection.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JugadorController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/JugadorController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="850">
+            <state relative-caret-position="2380">
               <caret line="89" column="5" lean-forward="false" selection-start-line="89" selection-start-column="5" selection-end-line="89" selection-end-column="5" />
               <folding />
             </state>
@@ -90,8 +86,8 @@
       <file leaf-file-name="JugadorPartidoMiddleware.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Middleware/JugadorPartidoMiddleware.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="533">
-              <caret line="20" column="52" lean-forward="true" selection-start-line="20" selection-start-column="52" selection-end-line="20" selection-end-column="52" />
+            <state relative-caret-position="504">
+              <caret line="20" column="52" lean-forward="false" selection-start-line="20" selection-start-column="52" selection-end-line="20" selection-end-column="52" />
               <folding>
                 <element signature="e#39#89#0#PHP" expanded="true" />
               </folding>
@@ -102,7 +98,7 @@
       <file leaf-file-name="JugadorPartidoController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/JugadorPartidoController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="485">
+            <state relative-caret-position="2044">
               <caret line="79" column="31" lean-forward="false" selection-start-line="79" selection-start-column="31" selection-end-line="79" selection-end-column="31" />
               <folding>
                 <element signature="e#40#68#0#PHP" expanded="true" />
@@ -114,7 +110,7 @@
       <file leaf-file-name="HttpResponses.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Utils/HttpResponses.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="561">
+            <state relative-caret-position="3668">
               <caret line="131" column="55" lean-forward="false" selection-start-line="131" selection-start-column="55" selection-end-line="131" selection-end-column="55" />
               <folding />
             </state>
@@ -124,8 +120,8 @@
       <file leaf-file-name="AccesoPartidoMiddleware.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Middleware/AccesoPartidoMiddleware.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="617">
-              <caret line="23" column="25" lean-forward="true" selection-start-line="19" selection-start-column="8" selection-end-line="23" selection-end-column="25" />
+            <state relative-caret-position="588">
+              <caret line="23" column="25" lean-forward="false" selection-start-line="19" selection-start-column="8" selection-end-line="23" selection-end-column="25" />
               <folding>
                 <element signature="e#39#95#0#PHP" expanded="true" />
               </folding>
@@ -154,7 +150,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/app/Http/Middleware/Login.php" />
         <option value="$PROJECT_DIR$/database/seeds/ApuestaTableSeeder.php" />
         <option value="$PROJECT_DIR$/app/Exceptions/Handler.php" />
@@ -202,9 +197,10 @@
         <option value="$PROJECT_DIR$/app/Http/Utils/HttpResponses.php" />
         <option value="$PROJECT_DIR$/app/Http/Kernel.php" />
         <option value="$PROJECT_DIR$/app/Http/Middleware/JugadorPartidoMiddleware.php" />
-        <option value="$PROJECT_DIR$/app/Http/routes.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/JugadorPartidoController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/JugadorController.php" />
+        <option value="$PROJECT_DIR$/app/Http/routes.php" />
+        <option value="$PROJECT_DIR$/app/Http/GolfApp_REST.postman_collection.json" />
       </list>
     </option>
   </component>
@@ -240,6 +236,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -366,76 +364,8 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GolfApp_Backend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GolfApp_Backend" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Http" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Utils" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GolfApp_Backend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GolfApp_Backend" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Http" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Middleware" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GolfApp_Backend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GolfApp_Backend" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Http" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Controllers" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -555,14 +485,8 @@
       <workItem from="1492791199416" duration="4128000" />
       <workItem from="1492814619760" duration="13638000" />
       <workItem from="1493072942705" duration="4235000" />
-      <workItem from="1493087062310" duration="2762000" />
-    </task>
-    <task id="LOCAL-00015" summary="El script de la base de datos se hace con un dump en DataGrip">
-      <created>1491504914304</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1491504914304</updated>
+      <workItem from="1493087062310" duration="2978000" />
+      <workItem from="1493136469369" duration="412000" />
     </task>
     <task id="LOCAL-00016" summary="Solo se hace dump de la creación de las tablas">
       <created>1491512707376</created>
@@ -900,11 +824,18 @@
       <option name="project" value="LOCAL" />
       <updated>1493077193610</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="Se hicieron las autenticaciones de claves de edición para los jugadores">
+      <created>1493089854899</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1493089854900</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="165908000" />
+    <option name="totallyTimeSpent" value="166536000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="1922" height="1050" extended-state="6" />
@@ -962,7 +893,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Se creó el ApuestaPartidoTableSeeder" />
     <MESSAGE value="Se separó el EntityByIdController para obtener y validar entidades por medio de su id" />
     <MESSAGE value="Se implementaron los métodos del ApuestaPartidoController" />
     <MESSAGE value="Se implementaron y documentaron los métodos del ApuestaPartidoController" />
@@ -987,7 +917,8 @@
     <MESSAGE value="Se separaron las rutas resource para poder administrar cada una individualmente" />
     <MESSAGE value="Las rutas de los jugadores necesitan autenticación de edición de partido" />
     <MESSAGE value="Se comenzó ha validar mejor los permisos que requieren cada una de las rutas" />
-    <option name="LAST_COMMIT_MESSAGE" value="Se comenzó ha validar mejor los permisos que requieren cada una de las rutas" />
+    <MESSAGE value="Se hicieron las autenticaciones de claves de edición para los jugadores" />
+    <option name="LAST_COMMIT_MESSAGE" value="Se hicieron las autenticaciones de claves de edición para los jugadores" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -996,13 +927,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Http/Utils/FieldValidator.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="28">
-          <caret line="15" column="23" lean-forward="false" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/EntityByIdController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="318">
@@ -1244,7 +1168,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
           <caret line="17" column="9" lean-forward="false" selection-start-line="15" selection-start-column="8" selection-end-line="17" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1252,7 +1175,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
           <caret line="17" column="8" lean-forward="false" selection-start-line="17" selection-start-column="8" selection-end-line="19" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1264,23 +1186,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Middleware/AccesoPartidoMiddleware.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Middleware/EdicionPartidoMiddleware.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="617">
-          <caret line="23" column="25" lean-forward="true" selection-start-line="19" selection-start-column="8" selection-end-line="23" selection-end-column="25" />
+        <state relative-caret-position="504">
+          <caret line="20" column="55" lean-forward="false" selection-start-line="20" selection-start-column="55" selection-end-line="20" selection-end-column="55" />
           <folding>
             <element signature="e#39#95#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Middleware/EdicionPartidoMiddleware.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Kernel.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="533">
-          <caret line="20" column="55" lean-forward="false" selection-start-line="20" selection-start-column="55" selection-end-line="20" selection-end-column="55" />
-          <folding>
-            <element signature="e#39#95#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="1036">
+          <caret line="38" column="24" lean-forward="false" selection-start-line="38" selection-start-column="9" selection-end-line="38" selection-end-column="24" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1292,36 +1212,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Utils/HttpResponses.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="131" column="55" lean-forward="false" selection-start-line="131" selection-start-column="55" selection-end-line="131" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Kernel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="673">
-          <caret line="38" column="24" lean-forward="false" selection-start-line="38" selection-start-column="9" selection-end-line="38" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="533">
-          <caret line="61" column="7" lean-forward="true" selection-start-line="61" selection-start-column="7" selection-end-line="61" selection-end-column="7" />
+        <state relative-caret-position="701">
+          <caret line="58" column="14" lean-forward="true" selection-start-line="58" selection-start-column="14" selection-end-line="58" selection-end-column="14" />
           <folding>
             <element signature="e#7#392#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/JugadorController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2380">
+          <caret line="89" column="5" lean-forward="false" selection-start-line="89" selection-start-column="5" selection-end-line="89" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Middleware/JugadorPartidoMiddleware.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="533">
-          <caret line="20" column="52" lean-forward="true" selection-start-line="20" selection-start-column="52" selection-end-line="20" selection-end-column="52" />
+        <state relative-caret-position="504">
+          <caret line="20" column="52" lean-forward="false" selection-start-line="20" selection-start-column="52" selection-end-line="20" selection-end-column="52" />
           <folding>
             <element signature="e#39#89#0#PHP" expanded="true" />
           </folding>
@@ -1330,7 +1242,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/JugadorPartidoController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="485">
+        <state relative-caret-position="2044">
           <caret line="79" column="31" lean-forward="false" selection-start-line="79" selection-start-column="31" selection-end-line="79" selection-end-column="31" />
           <folding>
             <element signature="e#40#68#0#PHP" expanded="true" />
@@ -1338,10 +1250,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/JugadorController.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Utils/HttpResponses.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="850">
-          <caret line="89" column="5" lean-forward="false" selection-start-line="89" selection-start-column="5" selection-end-line="89" selection-end-column="5" />
+        <state relative-caret-position="3668">
+          <caret line="131" column="55" lean-forward="false" selection-start-line="131" selection-start-column="55" selection-end-line="131" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Middleware/AccesoPartidoMiddleware.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="588">
+          <caret line="23" column="25" lean-forward="false" selection-start-line="19" selection-start-column="8" selection-end-line="23" selection-end-column="25" />
+          <folding>
+            <element signature="e#39#95#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/GolfApp_REST.postman_collection.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
