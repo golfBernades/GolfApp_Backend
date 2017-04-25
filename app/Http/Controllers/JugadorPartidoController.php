@@ -85,27 +85,6 @@ class JugadorPartidoController extends Controller
     }
 
     /**
-     * Obtiene los jugadores que están jugando en el partido con el id
-     * especificado.
-     *
-     * @param $partidoId
-     * @return Jugador|JsonResponse
-     */
-    public function getJugadoresEnPartido($partidoId)
-    {
-        $partido = EntityByIdController::getPartidoById($partidoId);
-        if ($partido instanceof JsonResponse) return $partido;
-        $jugadoresEnPartido = DB::table('jugador as ju')
-            ->join('jugador_partido as jp', function ($join) {
-                $join->on('ju.id', '=', 'jp.jugador_id');
-            })
-            ->select(['ju.id', 'nombre', 'handicap'])
-            ->where('partido_id', '=', $partidoId)
-            ->get();
-        return response()->json($jugadoresEnPartido);
-    }
-
-    /**
      * Obtiene los partidos en los que está jugando el jugador con el id
      * especificado.
      *
@@ -174,6 +153,10 @@ class JugadorPartidoController extends Controller
             ->get();
         if ($jugadorPartido) return HttpResponses::jugadorEnPartidoOk();
         return HttpResponses::jugadorNoEnPartido();
+    }
+
+    public function getJugadorEnPartido($jugadorId, $partidoId) {
+
     }
 
 }

@@ -47,21 +47,20 @@ Grupo de rutas que requieren permisos para editar datos sobre un partido.
 --------------------------------------------------------------------------------
 */
 Route::group(['middleware' => ['edicion_partido']], function () {
-    Route::post('jugador', 'JugadorController@store');
-
-    /*
-    ----------------------------------------------------------------------------
-    Grupo de rutas que requieren que el jugador esté incluido en el partido
-    al cual se tiene permiso de edición.
-    ----------------------------------------------------------------------------
-    */
-    Route::group(['middleware' => ['jugador_partido']], function () {
-        Route::post('jugador/{id}', 'JugadorController@show');
-        Route::put('jugador/{id}', 'JugadorController@update');
-    });
+//    Route::post('jugador', 'JugadorController@store');
+//
+//    /*
+//    ----------------------------------------------------------------------------
+//    Grupo de rutas que requieren que el jugador esté incluido en el partido
+//    al cual se tiene permiso de edición.
+//    ----------------------------------------------------------------------------
+//    */
+//    Route::group(['middleware' => ['jugador_partido']], function () {
+//        Route::post('jugador/{id}', 'JugadorController@show');
+//        Route::put('jugador/{id}', 'JugadorController@update');
+//    });
 
     // TODO ¿Cómo se manejarán los campos?
-    Route::get('campo', 'CampoController@index');
     Route::post('campo', 'CampoController@store');
     Route::get('campo/{id}', 'CampoController@show');
     Route::put('campo/{id}', 'CampoController@update');
@@ -100,7 +99,8 @@ Route::group(['middleware' => ['edicion_partido']], function () {
 Rutas de prueba
 --------------------------------------------------------------------------------
 */
-Route::get('jugador', 'JugadorController@index');
+//Route::get('jugador', 'JugadorController@index');
+Route::get('campo', 'CampoController@index');
 Route::get('partido', 'PartidoController@index');
 Route::get('partido/{id}', 'PartidoController@show');
 Route::get('all_jugador_all_partido',
@@ -113,3 +113,39 @@ Route::get('partidos_con_apuesta/{apuesta_id}',
     'ApuestaPartidoController@getPartidosConApuesta');
 Route::get('puntuaciones_all_jugador_all_partido',
     'PuntuacionesController@getPuntuacionesAllJugadorAllPartido');
+
+/**
+ * Grupo de rutas donde se requere contar el permiso de edición en un partido.
+ * Parámetros: partido_id*, clave_edicion*.
+ */
+Route::group(['middleware' => ['edicion_partido']], function () {
+//    /**
+//     * Grupo de rutas en las que se necesita que el jugador sobre el que se
+//     * desea realizar una acción se encuentre asignado al partido.
+//     */
+//    Route::group(['middleware' => ['jugador_partido']], function () {
+    /**
+     * Devuelve todos los jugadores.
+     */
+    Route::post('jugador_all', 'JugadorController@getAllJugador');
+
+    /**
+     * Devuelve el jugador por medio de su id.
+     * Parámetros: jugador_id*.
+     */
+    Route::post('jugador_by_id', 'JugadorController@getJugadorById');
+
+    /**
+     * Inserta un jugador con los datos pasados como parámetro.
+     * Parámetros: nombre*, handicap*
+     */
+    Route::post('jugador', 'JugadorController@store');
+
+    /**
+     * Actualiza el jugador por medio de su id y los datos
+     * pasados como parámetro.
+     * Parámetros: jugador_id*, nombre, handicap
+     */
+    Route::put('jugador', 'JugadorController@update');
+//    });
+});

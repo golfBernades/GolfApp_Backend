@@ -17,7 +17,6 @@ class JugadorPartidoMiddleware
      */
     public function handle($request, Closure $next)
     {
-        $request['jugador_id'] = $request->route()->parameters()['id'];
         $jugadorPartidoController = new JugadorPartidoController();
         $response = $jugadorPartidoController->jugadorEnPartido($request);
         $data = JsonResponseParser::parse($response);

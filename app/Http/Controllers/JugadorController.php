@@ -2,23 +2,56 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Utils\FieldValidator;
 use App\Http\Utils\HttpResponses;
 use App\Models\Jugador;
+use App\Models\JugadorPartido;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class JugadorController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Obtiene los jugadores que están participando en el partido al que se
+     * tiene acceso.
      *
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
      */
-    public function index()
+    public function getAllJugador(Request $request)
     {
-        $jugadores = Jugador::all();
-        return response()->json($jugadores);
+        $partidoId = $request['partido_id'];
+        if (!$partidoId)
+            return HttpResponses::parametrosIncompletosReponse();
+        $partido = EntityByIdController::getPartidoById($partidoId);
+        if ($partido instanceof JsonResponse) return $partido;
+        $jugadoresEnPartido = DB::table('jugador as ju')
+            ->join('jugador_partido as jp', function ($join) {
+                $join->on('ju.id', '=', 'jp.jugador_id');
+            })
+            ->select(['ju.id', 'nombre', 'handicap'])
+            ->where('partido_id', '=', $partidoId)
+            ->get();
+        return response()->json($jugadoresEnPartido);
+    }
+
+    /**
+     * Obtiene el jugador con el id especificado, siempre y cuando esté
+     * participando en el partido al que se tiene acceso.
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function getJugadorById(Request $request)
+    {
+        $jugadorId = $request['jugador_id'];
+        $partidoId = $request['partido_id'];
+        if (!$jugadorId || !$partidoId)
+            return HttpResponses::parametrosIncompletosReponse();
+        $jugadorPartido = JugadorPartido::where('jugador_id', '=', $jugadorId)
+            ->where('partido_id', '=', $partidoId)->first();
+        if (!$jugadorPartido) return HttpResponses::noEncontradoResponse('jugador');
+        return Jugador::find($jugadorId);
     }
 
     /**
@@ -38,43 +71,17 @@ class JugadorController extends Controller
                 return HttpResponses::insertadoErrorResponse('jugador');
             }
         }
-        $errorResponse = $jugador;
-        return $errorResponse;
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $validation = FieldValidator::validateIntegerParameterURL($id);
-        if ($validation instanceof JsonResponse) {
-            return $validation;
-        } else {
-            $jugador = Jugador::find($id);
-            if (!$jugador)
-                return HttpResponses::noEncontradoResponse('jugador');
-            return response()->json($jugador);
-        }
+        return $jugador;
     }
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int $id
-     * @return \Illuminate\Http\Response
+     * @return Jugador|JsonResponse|null
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $validation = FieldValidator::validateIntegerParameterURL($id);
-        if ($validation instanceof JsonResponse) {
-            return $validation;
-        } else {
-            $request['id'] = $id;
+        $jugador = $this->getJugadorById($request);
+        if ($jugador instanceof Jugador) {
             $jugador = $this->crearJugador($request);
             if ($jugador instanceof Jugador) {
                 try {
@@ -84,9 +91,8 @@ class JugadorController extends Controller
                     return HttpResponses::actualizadoErrorResponse('jugador');
                 }
             }
-            $errorResponse = $jugador;
-            return $errorResponse;
         }
+        return $jugador;
     }
 
     /**
@@ -100,14 +106,12 @@ class JugadorController extends Controller
     {
         if (!$this->isJugadorCompleto($request))
             return HttpResponses::parametrosIncompletosReponse();
-        if ($request['id']) {
-            $jugador = Jugador::find($request['id']);
-            if (!$jugador) {
+        if ($request['jugador_id']) {
+            $jugador = Jugador::find($request['jugador_id']);
+            if (!$jugador)
                 return HttpResponses::noEncontradoResponse('jugador');
-            }
-        } else {
+        } else
             $jugador = new Jugador();
-        }
         if ($request['nombre'])
             $jugador->nombre = $request['nombre'];
         if ($request['handicap'])
@@ -129,11 +133,7 @@ class JugadorController extends Controller
     {
         $nombre = $request['nombre'];
         $handicap = $request['handicap'];
-        // Si es para una actualización, se verifica que al menos un
-        // parámetro del usuario venga en la request.
         if ($request['id']) return $nombre || $handicap;
-        // Si es para un usuario nuevo, deben venir en la request todos sus
-        // parámetros.
         else return $nombre && $handicap;
     }
 }
