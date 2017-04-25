@@ -90,32 +90,6 @@ class JugadorController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        $validation = FieldValidator::validateIntegerParameterURL($id);
-        if ($validation instanceof JsonResponse) {
-            return $validation;
-        } else {
-            $jugador = Jugador::find($id);
-            if ($jugador) {
-                try {
-                    $jugador->delete();
-                    return HttpResponses::eliminadoOkResponse('jugador');
-                } catch (\Exception $e) {
-                    return HttpResponses::eliminadoErrorResponse('jugador');
-                }
-            } else {
-                return HttpResponses::noEncontradoResponse('jugador');
-            }
-        }
-    }
-
-    /**
      * Crea una instancia de Jugador para un nuevo jugador o un jugador
      * existente a partir de los parámetros de la request.
      *

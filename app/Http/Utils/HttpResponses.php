@@ -126,6 +126,12 @@ class HttpResponses
     ----------------------------------------------------------------------------
     */
 
+    public static function jugadorEnPartidoOk()
+    {
+        return self::createResponse(200,
+            'El jugador está participando en el partido');
+    }
+
     public static function jugadorNoEnPartido()
     {
         return self::createResponse(400,

@@ -25,13 +25,12 @@ Grupo de rutas que requieren permisos de administración de la aplicación
 --------------------------------------------------------------------------------
 */
 Route::group(['middleware' => ['administrador']], function () {
-    Route::post('apuesta/', 'ApuestaController@store');
+    Route::post('apuesta', 'ApuestaController@store');
     Route::put('apuesta/{id}', 'ApuestaController@update');
     Route::delete('apuesta/{id}', 'ApuestaController@destroy');
-    Route::get('vaciar_partidos_finalizados',
+    Route::post('vaciar_partidos_finalizados',
         'PartidoController@vaciarPartidosFinalizados');
 });
-
 
 /*
 --------------------------------------------------------------------------------
@@ -48,14 +47,19 @@ Grupo de rutas que requieren permisos para editar datos sobre un partido.
 --------------------------------------------------------------------------------
 */
 Route::group(['middleware' => ['edicion_partido']], function () {
-    Route::post('test_edicion_partido', 'PuntuacionesController@testEdicion');
-
     Route::post('jugador', 'JugadorController@store');
 
-    // TODO Middleware para validar jugador en partido
-    Route::post('jugador/{id}', 'JugadorController@show');
-    Route::put('jugador/{id}', 'JugadorController@update');
-    Route::delete('jugador/{id}', 'JugadorController@destroy');
+    /*
+    ----------------------------------------------------------------------------
+    Grupo de rutas que requieren que el jugador esté incluido en el partido
+    al cual se tiene permiso de edición.
+    ----------------------------------------------------------------------------
+    */
+    Route::group(['middleware' => ['jugador_partido']], function () {
+        Route::post('jugador/{id}', 'JugadorController@show');
+        Route::put('jugador/{id}', 'JugadorController@update');
+//        Route::delete('jugador/{id}', 'JugadorController@destroy');
+    });
 
     // TODO ¿Cómo se manejarán los campos?
     Route::get('campo', 'CampoController@index');
@@ -97,7 +101,7 @@ Route::group(['middleware' => ['edicion_partido']], function () {
 Rutas de prueba
 --------------------------------------------------------------------------------
 */
-Route::get('jugador_all', 'JugadorController@index');
+Route::get('jugador', 'JugadorController@index');
 Route::get('partido', 'PartidoController@index');
 Route::get('partido/{id}', 'PartidoController@show');
 Route::get('all_jugador_all_partido',

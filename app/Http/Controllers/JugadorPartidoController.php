@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Http\Utils\HttpResponses;
 use App\Models\Jugador;
 use App\Models\JugadorPartido;
@@ -76,6 +77,7 @@ class JugadorPartidoController extends Controller
         if (!$jugadorPartido) return HttpResponses::jugadorNoEnPartido();
         try {
             $jugadorPartido->delete();
+            $jugador->delete();
             return HttpResponses::eliminadoOkResponse('jugador_partido');
         } catch (\Exception $e) {
             return HttpResponses::eliminadoErrorResponse('jugador_partido');
@@ -144,6 +146,34 @@ class JugadorPartidoController extends Controller
         } catch (\Exception $e) {
             return HttpResponses::partidoVaciadoError();
         }
+    }
+
+    /**
+     * Verifica si un jugador está incluido a un partido, tanto el id del
+     * jugador como el id del partido son pasados en la request.
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function jugadorEnPartido(Request $request)
+    {
+        $jugadorId = $request['jugador_id'];
+        $partidoId = $request['partido_id'];
+        if (!$jugadorId || !$partidoId)
+            return HttpResponses::parametrosIncompletosReponse();
+        $jugador = EntityByIdController::getJugadorById($jugadorId);
+        if ($jugador instanceof JsonResponse)
+            return $jugador;
+        $partido = EntityByIdController::getPartidoById($partidoId);
+        if ($partido instanceof JsonResponse)
+            return $partido;
+        $jugadorPartido = DB::table('jugador_partido')
+            ->select(['jugador_id', 'partido_id'])
+            ->where('jugador_id', '=', $jugadorId)
+            ->where('partido_id', '=', $partidoId)
+            ->get();
+        if ($jugadorPartido) return HttpResponses::jugadorEnPartidoOk();
+        return HttpResponses::jugadorNoEnPartido();
     }
 
 }
