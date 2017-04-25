@@ -11,13 +11,6 @@ use Illuminate\Support\Facades\DB;
 
 class JugadorController extends Controller
 {
-    /**
-     * Obtiene los jugadores que están participando en el partido al que se
-     * tiene acceso.
-     *
-     * @param Request $request
-     * @return \Illuminate\Database\Eloquent\Collection|static[]
-     */
     public function getAllJugador(Request $request)
     {
         $partidoId = $request['partido_id'];
@@ -35,13 +28,6 @@ class JugadorController extends Controller
         return response()->json($jugadoresEnPartido);
     }
 
-    /**
-     * Obtiene el jugador con el id especificado, siempre y cuando esté
-     * participando en el partido al que se tiene acceso.
-     *
-     * @param Request $request
-     * @return JsonResponse
-     */
     public function getJugadorById(Request $request)
     {
         $jugadorId = $request['jugador_id'];
@@ -54,12 +40,6 @@ class JugadorController extends Controller
         return Jugador::find($jugadorId);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $jugador = $this->crearJugador($request);
@@ -74,10 +54,6 @@ class JugadorController extends Controller
         return $jugador;
     }
 
-    /**
-     * Update the specified resource in storage.
-     * @return Jugador|JsonResponse|null
-     */
     public function update(Request $request)
     {
         $jugador = $this->getJugadorById($request);
@@ -95,13 +71,6 @@ class JugadorController extends Controller
         return $jugador;
     }
 
-    /**
-     * Crea una instancia de Jugador para un nuevo jugador o un jugador
-     * existente a partir de los parámetros de la request.
-     *
-     * @param Request $request
-     * @return Jugador|\Illuminate\Http\JsonResponse|null
-     */
     private function crearJugador(Request $request)
     {
         if (!$this->isJugadorCompleto($request))
@@ -119,16 +88,6 @@ class JugadorController extends Controller
         return $jugador;
     }
 
-    /**
-     * Determina si los parámetros obligatorios de un jugador enviados en la
-     * request están completos. Nota: Cuando se están verificando los
-     * parámetros del usuario para una actualización, la contraseña no es
-     * tomada en cuenta, para modificar la contraseña se usa el método
-     * cambiarContraseña.
-     *
-     * @param Request $request
-     * @return bool
-     */
     private function isJugadorCompleto(Request $request)
     {
         $nombre = $request['nombre'];

@@ -145,27 +145,27 @@ class PuntuacionesController extends Controller
         return $puntuaciones;
     }
 
-    /**
-     * Vacía todos los registros del partido con el id especificado.
-     *
-     * @param $partidoId
-     * @return JsonResponse|int
-     */
-    public function vaciarPartido($partidoId)
-    {
-        $partido = EntityByIdController::getPartidoById($partidoId);
-        if ($partido instanceof JsonResponse) return $partido;
-        $puntuacionesPartido = Puntuaciones::where('partido_id', '=',
-            $partidoId);
-        if ($puntuacionesPartido->get()->count() == 0)
-            return HttpResponses::noRegistrosDePartido();
-        try {
-            $puntuacionesPartido->delete();
-            return HttpResponses::partidoVaciadoOK();
-        } catch (\Exception $e) {
-            return HttpResponses::partidoVaciadoError();
-        }
-    }
+//    /**
+//     * Vacía todos los registros del partido con el id especificado.
+//     *
+//     * @param $partidoId
+//     * @return JsonResponse|int
+//     */
+//    public function vaciarPartido($partidoId)
+//    {
+//        $partido = EntityByIdController::getPartidoById($partidoId);
+//        if ($partido instanceof JsonResponse) return $partido;
+//        $puntuacionesPartido = Puntuaciones::where('partido_id', '=',
+//            $partidoId);
+//        if ($puntuacionesPartido->get()->count() == 0)
+//            return HttpResponses::noRegistrosDePartido();
+//        try {
+//            $puntuacionesPartido->delete();
+//            return HttpResponses::partidoVaciadoOK();
+//        } catch (\Exception $e) {
+//            return HttpResponses::partidoVaciadoError();
+//        }
+//    }
 
     public function testConsulta(Request $request)
     {

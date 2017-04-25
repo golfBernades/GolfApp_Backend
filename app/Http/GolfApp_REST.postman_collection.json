@@ -86,7 +86,7 @@
 				{
 					"name": "Insert jugador",
 					"request": {
-						"url": "http://localhost:8000/jugador",
+						"url": "http://localhost:8000/jugador_insert",
 						"method": "POST",
 						"header": [
 							{
@@ -131,7 +131,7 @@
 				{
 					"name": "Update jugador",
 					"request": {
-						"url": "http://localhost:8000/jugador",
+						"url": "http://localhost:8000/jugador_update",
 						"method": "PUT",
 						"header": [
 							{
@@ -169,7 +169,7 @@
 								},
 								{
 									"key": "jugador_id",
-									"value": "3",
+									"value": "1",
 									"type": "text",
 									"enabled": true
 								}
@@ -988,13 +988,10 @@
 				{
 					"name": "Get all partido",
 					"request": {
-						"url": "http://localhost:8000/partido",
+						"url": "http://localhost:8000/partido_all",
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
+						"body": {},
 						"description": ""
 					},
 					"response": []
@@ -1002,12 +999,31 @@
 				{
 					"name": "Get partido by id",
 					"request": {
-						"url": "http://localhost:8000/partido/3",
-						"method": "GET",
-						"header": [],
+						"url": "http://localhost:8000/partido_by_id",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
 						"body": {
-							"mode": "raw",
-							"raw": ""
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "partido_id",
+									"value": "1",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "clave_edicion",
+									"value": "abcdefgh",
+									"type": "text",
+									"enabled": true
+								}
+							]
 						},
 						"description": ""
 					},
@@ -1016,7 +1032,7 @@
 				{
 					"name": "Insert partido",
 					"request": {
-						"url": "http://localhost:8000/partido",
+						"url": "http://localhost:8000/partido_insert",
 						"method": "POST",
 						"header": [
 							{
@@ -1032,13 +1048,13 @@
 									"key": "inicio",
 									"value": "2017-04-10 00:00:00",
 									"type": "text",
-									"enabled": false
+									"enabled": true
 								},
 								{
 									"key": "campo_id",
 									"value": "2",
 									"type": "text",
-									"enabled": false
+									"enabled": true
 								}
 							]
 						},
@@ -1049,7 +1065,7 @@
 				{
 					"name": "Update partido",
 					"request": {
-						"url": "http://localhost:8000/partido/1",
+						"url": "http://localhost:8000/partido_update",
 						"method": "PUT",
 						"header": [
 							{
@@ -1065,11 +1081,29 @@
 									"key": "inicio",
 									"value": "2017-04-10 00:00:00",
 									"type": "text",
-									"enabled": false
+									"enabled": true
+								},
+								{
+									"key": "fin",
+									"value": "2017-04-10 12:00:00",
+									"type": "text",
+									"enabled": true
 								},
 								{
 									"key": "campo_id",
-									"value": "2",
+									"value": "1",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "clave_edicion",
+									"value": "abcdefgh",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "partido_id",
+									"value": "1",
 									"type": "text",
 									"enabled": true
 								}
@@ -1082,12 +1116,31 @@
 				{
 					"name": "Delete partido",
 					"request": {
-						"url": "http://localhost:8000/partido/6",
+						"url": "http://localhost:8000/partido_delete",
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
 						"body": {
-							"mode": "raw",
-							"raw": ""
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "clave_edicion",
+									"value": "abcdefgh",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "partido_id",
+									"value": "1",
+									"type": "text",
+									"enabled": true
+								}
+							]
 						},
 						"description": ""
 					},

@@ -24,6 +24,12 @@ class PartidoTableSeeder extends Seeder
     {
         DB::table('partido')->truncate();
 
+        DB::table('partido')->insert(array([
+            'clave_consulta' => 'abcdefgh',
+            'clave_edicion' => 'abcdefgh'
+        ]));
+
+
         $this->insertPartido('2017-04-10 00:00:00', null, 2);
         $this->insertPartido('2017-03-11 00:00:00', null, 1);
         $this->insertPartido('2017-02-12 00:00:00', null, 2);

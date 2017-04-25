@@ -138,10 +138,11 @@ class HttpResponses
             'El jugador no está participando en el partido');
     }
 
-    public static function partidosFinalizadosVaciadosOk()
+    public static function partidosFinalizadosVaciados($countExito, $countFallo)
     {
         return self::createResponse(200,
-            'Se vaciaron los registros asociados a los partidos finalizados');
+            'Partidos finalizados vaciados. Éxito: ' . $countExito
+            . ', fallo: ' . $countFallo);
     }
 
     public static function partidoVaciadoOk()

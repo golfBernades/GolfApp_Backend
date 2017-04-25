@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use App\Http\Utils\DateTimeOperations;
 use App\Http\Utils\FieldValidator;
 use App\Http\Utils\HttpResponses;
+use App\Models\ApuestaPartido;
 use App\Models\Campo;
 use App\Models\Jugador;
+use App\Models\JugadorPartido;
 use App\Models\Partido;
+use App\Models\Puntuaciones;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -15,23 +18,12 @@ use Illuminate\Support\Facades\Log;
 
 class PartidoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $partidos = Partido::all();
         return response()->json($partidos);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $partido = $this->crearPartido($request);
@@ -44,43 +36,18 @@ class PartidoController extends Controller
                 return HttpResponses::insertadoErrorResponse('partido');
             }
         }
-        $errorResponse = $partido;
-        return $errorResponse;
+        return $partido;
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function getPartidoById(Request $request)
     {
-        $validation = FieldValidator::validateIntegerParameterURL($id);
-        if ($validation instanceof JsonResponse) {
-            return $validation;
-        } else {
-            $partido = Partido::find($id);
-            if (!$partido)
-                return HttpResponses::noEncontradoResponse('partido');
-            return response()->json($partido);
-        }
+        return EntityByIdController::getPartidoById($request['partido_id']);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $validation = FieldValidator::validateIntegerParameterURL($id);
-        if ($validation instanceof JsonResponse) {
-            return $validation;
-        } else {
-            $request['id'] = $id;
+        $partido = $this->getPartidoById($request);
+        if ($partido instanceof Partido) {
             $partido = $this->crearPartido($request);
             if ($partido instanceof Partido) {
                 try {
@@ -90,48 +57,40 @@ class PartidoController extends Controller
                     return HttpResponses::actualizadoErrorResponse('partido');
                 }
             }
-            $errorResponse = $partido;
-            return $errorResponse;
         }
+        return $partido;
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        $validation = FieldValidator::validateIntegerParameterURL($id);
-        if ($validation instanceof JsonResponse) {
-            return $validation;
-        } else {
-            $partido = Partido::find($id);
-            if ($partido) {
-                try {
-                    $partido->delete();
-                    return HttpResponses::eliminadoOkResponse('partido');
-                } catch (\Exception $e) {
-                    return HttpResponses::eliminadoErrorResponse('partido');
-                }
-            } else {
-                return HttpResponses::noEncontradoResponse('partido');
+        $partido = $this->getPartidoById($request);
+        if ($partido instanceof Partido) {
+            $puntuacionesPartido = Puntuaciones::where('partido_id', '=',
+                $request['partido_id']);
+            $jugadoresPartido = JugadorPartido::where('partido_id', '=',
+                $request['partido_id']);
+            $apuestasPartido = ApuestaPartido::where('partido_id', '=',
+                $request['partido_id']);
+            DB::beginTransaction();
+            try {
+                $puntuacionesPartido->delete();
+                $jugadoresPartido->delete();
+                $apuestasPartido->delete();
+                $partido->delete();
+                DB::commit();
+                return HttpResponses::partidoVaciadoOK();
+            } catch (\Exception $e) {
+                DB::rollBack();
+                return HttpResponses::partidoVaciadoError();
             }
         }
+        return $partido;
     }
 
-    /**
-     * Crea una instancia de Partido para un nuevo partido o un partido
-     * existente a partir de los parámetros de la request.
-     *
-     * @param Request $request
-     * @return Partido|\Illuminate\Http\JsonResponse|null
-     */
     private function crearPartido(Request $request)
     {
-        if ($request['id']) {
-            $partido = Partido::find($request['id']);
+        if ($request['partido_id']) {
+            $partido = Partido::find($request['partido_id']);
             if (!$partido)
                 return HttpResponses::noEncontradoResponse('partido');
         } else {
@@ -161,6 +120,9 @@ class PartidoController extends Controller
      */
     public function vaciarPartidosFinalizados()
     {
+        $request = new Request();
+        $contExito = 0;
+        $contFallo = 0;
         $partidos = Partido::all();
         for ($i = 0; $i < count($partidos); $i++) {
             $now = date_create();
@@ -168,29 +130,15 @@ class PartidoController extends Controller
             $diferencia = DateTimeOperations::getDifferenceInHours($now,
                 $inicio);
             if ($diferencia > 24) {
-                $apuestaPartidoController = new ApuestaPartidoController();
-                $jugadorPartidoController = new JugadorPartidoController();
-                $puntuacionesController = new PuntuacionesController();
-                $partidoId = $partidos[$i]->id;
-                DB::beginTransaction();
-                $response = $jugadorPartidoController->vaciarPartido($partidoId);
-                if ($response == HttpResponses::partidoVaciadoError()) {
-                    DB::rollBack();
-                    return $response;
-                }
-                $response = $apuestaPartidoController->vaciarPartido($partidoId);
-                if ($response == HttpResponses::partidoVaciadoError()) {
-                    DB::rollBack();
-                    return $response;
-                }
-                $response = $puntuacionesController->vaciarPartido($partidoId);
-                if ($response == HttpResponses::partidoVaciadoError()) {
-                    DB::rollBack();
-                    return $response;
-                }
-                DB::commit();
+                $request['partido_id'] = $partidos[$i]->id;
+                $response = $this->destroy($request);
+                if ($response == HttpResponses::partidoVaciadoOK())
+                    $contExito++;
+                else
+                    $contFallo++;
             }
         }
-        return HttpResponses::partidosFinalizadosVaciadosOk();
+        return HttpResponses::partidosFinalizadosVaciados($contExito,
+            $contFallo);
     }
 }

@@ -47,19 +47,6 @@ Grupo de rutas que requieren permisos para editar datos sobre un partido.
 --------------------------------------------------------------------------------
 */
 Route::group(['middleware' => ['edicion_partido']], function () {
-//    Route::post('jugador', 'JugadorController@store');
-//
-//    /*
-//    ----------------------------------------------------------------------------
-//    Grupo de rutas que requieren que el jugador esté incluido en el partido
-//    al cual se tiene permiso de edición.
-//    ----------------------------------------------------------------------------
-//    */
-//    Route::group(['middleware' => ['jugador_partido']], function () {
-//        Route::post('jugador/{id}', 'JugadorController@show');
-//        Route::put('jugador/{id}', 'JugadorController@update');
-//    });
-
     // TODO ¿Cómo se manejarán los campos?
     Route::post('campo', 'CampoController@store');
     Route::get('campo/{id}', 'CampoController@show');
@@ -67,8 +54,8 @@ Route::group(['middleware' => ['edicion_partido']], function () {
     Route::delete('campo/{id}', 'CampoController@destroy');
 
     // TODO Middleware para validar permisos en dicho partido
-    Route::put('partido/{id}', 'PartidoController@update');
-    Route::delete('partido/{id}', 'PartidoController@destroy');
+//    Route::put('partido/{id}', 'PartidoController@update');
+//    Route::delete('partido/{id}', 'PartidoController@destroy');
 
     // TODO Middleware para validar permisos en dicho partido
     Route::get('add_jugador_to_partido/{jugador_id}/{partido_id}',
@@ -101,8 +88,8 @@ Rutas de prueba
 */
 //Route::get('jugador', 'JugadorController@index');
 Route::get('campo', 'CampoController@index');
-Route::get('partido', 'PartidoController@index');
-Route::get('partido/{id}', 'PartidoController@show');
+//Route::get('partido', 'PartidoController@index');
+//Route::get('partido/{id}', 'PartidoController@show');
 Route::get('all_jugador_all_partido',
     'JugadorPartidoController@allJugadorAllPartido');
 Route::get('all_apuesta_all_partido',
@@ -115,37 +102,76 @@ Route::get('puntuaciones_all_jugador_all_partido',
     'PuntuacionesController@getPuntuacionesAllJugadorAllPartido');
 
 /**
- * Grupo de rutas donde se requere contar el permiso de edición en un partido.
- * Parámetros: partido_id*, clave_edicion*.
+ * -----------------------------------------------------------------------------
+ * Rutas donde se requere contar el permiso de edición en un partido.
+ * -----------------------------------------------------------------------------
  */
+
 Route::group(['middleware' => ['edicion_partido']], function () {
-//    /**
-//     * Grupo de rutas en las que se necesita que el jugador sobre el que se
-//     * desea realizar una acción se encuentre asignado al partido.
-//     */
-//    Route::group(['middleware' => ['jugador_partido']], function () {
     /**
      * Devuelve todos los jugadores.
+     * Parámetros: partido_id*, clave_edicion*
      */
     Route::post('jugador_all', 'JugadorController@getAllJugador');
 
     /**
      * Devuelve el jugador por medio de su id.
-     * Parámetros: jugador_id*.
+     * Parámetros: partido_id*, clave_edicion*, jugador_id*
      */
     Route::post('jugador_by_id', 'JugadorController@getJugadorById');
 
     /**
      * Inserta un jugador con los datos pasados como parámetro.
-     * Parámetros: nombre*, handicap*
+     * Parámetros: partido_id*, clave_edicion*, nombre*, handicap*
      */
-    Route::post('jugador', 'JugadorController@store');
+    Route::post('jugador_insert', 'JugadorController@store');
 
     /**
      * Actualiza el jugador por medio de su id y los datos
      * pasados como parámetro.
-     * Parámetros: jugador_id*, nombre, handicap
+     * Parámetros: partido_id*, clave_edicion*, jugador_id*, nombre, handicap
      */
-    Route::put('jugador', 'JugadorController@update');
-//    });
+    Route::put('jugador_update', 'JugadorController@update');
+
+    /**
+     * Devuelve el partido por medio de su id.
+     * Parámetros: partido_id*, clave_edicion*
+     */
+    Route::post('partido_by_id', 'PartidoController@getPartidoById');
+
+    /**
+     * Actualiza el partido por medio de su id y los datos
+     * pasados como parámetro.
+     * Parámetros: partido_id*, clave_edicion*
+     */
+    Route::put('partido_update', 'PartidoController@update');
+
+    /**
+     * Elimina el partido por medio de su id así como sus puntuaciones
+     * asociadas.
+     * Parámetros: partido_id*, clave_edicion*
+     */
+    Route::delete('partido_delete', 'PartidoController@destroy');
 });
+
+/**
+ * -----------------------------------------------------------------------------
+ * Rutas que no requieren el uso de ningún middleware.
+ * -----------------------------------------------------------------------------
+ */
+
+/**
+ * Inserta un partido con los datos pasados como parámetro.
+ * Parámetros: inicio, fin, campo_id
+ */
+Route::post('partido_insert', 'PartidoController@store');
+
+/**
+ * -----------------------------------------------------------------------------
+ * Rutas implementadas con fines de testing.
+ * -----------------------------------------------------------------------------
+ */
+
+Route::get('partido_all', 'PartidoController@index');
+Route::get('partido_vaciar_finalizados',
+    'PartidoController@vaciarPartidosFinalizados');
