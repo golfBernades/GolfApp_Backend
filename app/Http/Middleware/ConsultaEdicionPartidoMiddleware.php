@@ -10,11 +10,9 @@ use Closure;
 class ConsultaEdicionPartidoMiddleware
 {
     /**
-     * Handle an incoming request.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \Closure $next
-     * @return mixed
+     * @param $request
+     * @param Closure $next
+     * @return \Illuminate\Http\JsonResponse|mixed
      */
     public function handle($request, Closure $next)
     {
