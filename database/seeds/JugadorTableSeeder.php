@@ -22,6 +22,15 @@ class JugadorTableSeeder extends Seeder
         ], [
             'nombre' => 'Abraham',
             'handicap' => 8
+        ], [
+            'nombre' => 'Santiago',
+            'handicap' => 2
+        ], [
+            'nombre' => 'Adrián',
+            'handicap' => 1
+        ], [
+            'nombre' => 'Haydé',
+            'handicap' => 10
         ]));
     }
 }

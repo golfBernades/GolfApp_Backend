@@ -188,13 +188,10 @@
 				{
 					"name": "Get all apuesta",
 					"request": {
-						"url": "http://localhost:8000/apuesta",
+						"url": "http://localhost:8000/apuesta_all",
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
+						"body": {},
 						"description": ""
 					},
 					"response": []
@@ -910,28 +907,39 @@
 			"description": "",
 			"item": [
 				{
-					"name": "Get all jugador all partido",
-					"request": {
-						"url": "http://localhost:8000/all_jugador_all_partido",
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
 					"name": "Add jugador to partido",
 					"request": {
-						"url": "http://localhost:8000/add_jugador_to_partido/3/4",
-						"method": "GET",
-						"header": [],
+						"url": "http://localhost:8000/add_jugador_to_partido",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
 						"body": {
-							"mode": "raw",
-							"raw": ""
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "clave_edicion",
+									"value": "abcdefgh",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "partido_id",
+									"value": "1",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "jugador_id",
+									"value": "1",
+									"type": "text",
+									"enabled": true
+								}
+							]
 						},
 						"description": ""
 					},
@@ -940,26 +948,37 @@
 				{
 					"name": "Remove jugador from partido",
 					"request": {
-						"url": "http://localhost:8000/remove_jugador_from_partido/1/2",
-						"method": "GET",
-						"header": [],
+						"url": "http://localhost:8000/remove_jugador_from_partido",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
 						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Get partidos del jugador",
-					"request": {
-						"url": "http://localhost:8000/partidos_de_jugador/1",
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "clave_edicion",
+									"value": "abcdefgh",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "partido_id",
+									"value": "1",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "jugador_id",
+									"value": "1",
+									"type": "text",
+									"enabled": true
+								}
+							]
 						},
 						"description": ""
 					},
@@ -968,12 +987,37 @@
 				{
 					"name": "Get jugadores en partido",
 					"request": {
-						"url": "http://localhost:8000/jugadores_en_partido/4",
-						"method": "GET",
-						"header": [],
+						"url": "http://localhost:8000/jugadores_en_partido",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
 						"body": {
-							"mode": "raw",
-							"raw": ""
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "partido_id",
+									"value": "1",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "clave_edicion",
+									"value": "abcdefgh",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "clave_consulta",
+									"value": "abcdefgh",
+									"type": "text",
+									"enabled": false
+								}
+							]
 						},
 						"description": ""
 					},
@@ -1149,13 +1193,10 @@
 				{
 					"name": "Vaciar partidos finalizados",
 					"request": {
-						"url": "http://localhost:8000/vaciar_partidos_finalizados",
+						"url": "http://localhost:8000/partido_vaciar_finalizados",
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
+						"body": {},
 						"description": ""
 					},
 					"response": []

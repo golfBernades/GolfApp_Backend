@@ -36,7 +36,7 @@ class Kernel extends HttpKernel
         'edicion_partido' => \App\Http\Middleware\EdicionPartidoMiddleware
         ::class,
         'administrador' => \App\Http\Middleware\AdministradorMiddleware::class,
-        'jugador_partido' => \App\Http\Middleware\JugadorPartidoMiddleware
-        ::class,
+        'consulta_edicion' =>
+            \App\Http\Middleware\ConsultaEdicionPartidoMiddleware::class,
     ];
 }

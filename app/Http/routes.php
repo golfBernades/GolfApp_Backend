@@ -13,27 +13,6 @@
 
 /*
 --------------------------------------------------------------------------------
-Rutas accesibles para cualquiera
---------------------------------------------------------------------------------
-*/
-Route::get('apuesta', 'ApuestaController@index');
-Route::get('apuesta/{id}', 'ApuestaController@show');
-
-/*
---------------------------------------------------------------------------------
-Grupo de rutas que requieren permisos de administración de la aplicación
---------------------------------------------------------------------------------
-*/
-Route::group(['middleware' => ['administrador']], function () {
-    Route::post('apuesta', 'ApuestaController@store');
-    Route::put('apuesta/{id}', 'ApuestaController@update');
-    Route::delete('apuesta/{id}', 'ApuestaController@destroy');
-    Route::post('vaciar_partidos_finalizados',
-        'PartidoController@vaciarPartidosFinalizados');
-});
-
-/*
---------------------------------------------------------------------------------
 Grupo de rutas que requieren permisos para consultar datos sobre un partido.
 --------------------------------------------------------------------------------
 */
@@ -54,18 +33,6 @@ Route::group(['middleware' => ['edicion_partido']], function () {
     Route::delete('campo/{id}', 'CampoController@destroy');
 
     // TODO Middleware para validar permisos en dicho partido
-//    Route::put('partido/{id}', 'PartidoController@update');
-//    Route::delete('partido/{id}', 'PartidoController@destroy');
-
-    // TODO Middleware para validar permisos en dicho partido
-    Route::get('add_jugador_to_partido/{jugador_id}/{partido_id}',
-        'JugadorPartidoController@addJugador');
-    Route::get('remove_jugador_from_partido/{jugador_id}/{partido_id}',
-        'JugadorPartidoController@removeJugador');
-    Route::get('jugadores_en_partido/{partido_id}',
-        'JugadorPartidoController@getJugadoresEnPartido');
-
-    // TODO Middleware para validar permisos en dicho partido
     Route::get('add_apuesta_to_partido/{apuesta_id}/{partido_id}',
         'ApuestaPartidoController@addApuesta');
     Route::get('remove_apuesta_from_partido/{apuesta_id}/{partido_id}',
@@ -81,25 +48,23 @@ Route::group(['middleware' => ['edicion_partido']], function () {
         'PuntuacionesController@registrarPuntuaciones');
 });
 
-/*
---------------------------------------------------------------------------------
-Rutas de prueba
---------------------------------------------------------------------------------
-*/
-//Route::get('jugador', 'JugadorController@index');
-Route::get('campo', 'CampoController@index');
-//Route::get('partido', 'PartidoController@index');
-//Route::get('partido/{id}', 'PartidoController@show');
-Route::get('all_jugador_all_partido',
-    'JugadorPartidoController@allJugadorAllPartido');
-Route::get('all_apuesta_all_partido',
-    'ApuestaPartidoController@allApuestaAllPartido');
-Route::get('partidos_de_jugador/{jugador_id}',
-    'JugadorPartidoController@getPartidosDelJugador');
-Route::get('partidos_con_apuesta/{apuesta_id}',
-    'ApuestaPartidoController@getPartidosConApuesta');
-Route::get('puntuaciones_all_jugador_all_partido',
-    'PuntuacionesController@getPuntuacionesAllJugadorAllPartido');
+///*
+//--------------------------------------------------------------------------------
+//Rutas de prueba
+//--------------------------------------------------------------------------------
+//*/
+//
+//Route::get('campo', 'CampoController@index');
+//Route::get('all_jugador_all_partido',
+//    'JugadorPartidoController@allJugadorAllPartido');
+//Route::get('all_apuesta_all_partido',
+//    'ApuestaPartidoController@allApuestaAllPartido');
+//Route::get('partidos_de_jugador/{jugador_id}',
+//    'JugadorPartidoController@getPartidosDelJugador');
+//Route::get('partidos_con_apuesta/{apuesta_id}',
+//    'ApuestaPartidoController@getPartidosConApuesta');
+//Route::get('puntuaciones_all_jugador_all_partido',
+//    'PuntuacionesController@getPuntuacionesAllJugadorAllPartido');
 
 /**
  * -----------------------------------------------------------------------------
@@ -152,7 +117,46 @@ Route::group(['middleware' => ['edicion_partido']], function () {
      * Parámetros: partido_id*, clave_edicion*
      */
     Route::delete('partido_delete', 'PartidoController@destroy');
+
+    /**
+     * Agrega un jugador a un partido por medio de sus ids.
+     * Parámetros: partido_id*, clave_edicion*, jugador_id*
+     */
+    Route::post('add_jugador_to_partido', 'JugadorPartidoController@addJugador');
+
+    /**
+     * Elimina un jugador de un partido por medio de sus ids.
+     * Parámetros: partido_id*, clave_edicion*, jugador_id*
+     */
+    Route::post('remove_jugador_from_partido', 'JugadorPartidoController@removeJugador');
 });
+
+/**
+ * -----------------------------------------------------------------------------
+ * Rutas que requieren permisos ya sea de consulta o de edición
+ * -----------------------------------------------------------------------------
+ */
+Route::group(['middleware' => ['consulta_edicion']], function () {
+    /**
+     * Devuelve los jugadores que participan en un partido.
+     * Parámetros: partido_id*, clave_consulta, clave_edicion. [alguna de las
+     * dos claves es obligatoria]
+     */
+    Route::post('jugadores_en_partido',
+        'JugadorPartidoController@getJugadoresEnPartido');
+});
+
+/**
+ * -----------------------------------------------------------------------------
+ * Rutas que requieren permisos de administración de la aplicación
+ * -----------------------------------------------------------------------------
+ */
+Route::group(['middleware' => ['administrador']], function () {
+    Route::post('apuesta', 'ApuestaController@store');
+    Route::put('apuesta/{id}', 'ApuestaController@update');
+    Route::delete('apuesta/{id}', 'ApuestaController@destroy');
+});
+
 
 /**
  * -----------------------------------------------------------------------------
@@ -165,6 +169,8 @@ Route::group(['middleware' => ['edicion_partido']], function () {
  * Parámetros: inicio, fin, campo_id
  */
 Route::post('partido_insert', 'PartidoController@store');
+Route::get('apuesta_all', 'ApuestaController@index');
+Route::get('apuesta/{id}', 'ApuestaController@show');
 
 /**
  * -----------------------------------------------------------------------------

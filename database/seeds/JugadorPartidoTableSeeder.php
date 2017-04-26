@@ -17,16 +17,16 @@ class JugadorPartidoTableSeeder extends Seeder
             'jugador_id' => 1,
             'partido_id' => 1
         ], [
-            'jugador_id' => 1,
+            'jugador_id' => 2,
             'partido_id' => 2
         ], [
-            'jugador_id' => 1,
+            'jugador_id' => 3,
             'partido_id' => 3
         ], [
-            'jugador_id' => 2,
+            'jugador_id' => 4,
             'partido_id' => 1
         ], [
-            'jugador_id' => 2,
+            'jugador_id' => 5,
             'partido_id' => 2
         ]));
     }
