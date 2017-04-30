@@ -164,7 +164,17 @@ Route::group(['middleware' => ['consulta_edicion']], function () {
  * Parámetros: inicio, fin, campo_id
  */
 Route::post('partido_insert', 'PartidoController@store');
+
+/**
+ * Obtiene un listado con las apuestas existentes.
+ * Parámetros: Ninguno
+ */
 Route::get('apuesta', 'ApuestaController@index');
+
+/**
+ * Obtiene los detalles de la apuesta por medio de su id.
+ * Parámetros: id* (en la URL).
+ */
 Route::get('apuesta/{id}', 'ApuestaController@show');
 
 /**
@@ -173,6 +183,15 @@ Route::get('apuesta/{id}', 'ApuestaController@show');
  * -----------------------------------------------------------------------------
  */
 
+/**
+ * Obtiene un listado con los partidos que se están llevando a cabo.
+ * Parámetros: Ninguno.
+ */
 Route::get('partido_all', 'PartidoController@index');
+
+/**
+ * Vacía los partidos que tienen más de 24 horas que finalizaron.
+ * Parámetros: Ninguno.
+ */
 Route::get('partido_vaciar_finalizados',
     'PartidoController@vaciarPartidosFinalizados');

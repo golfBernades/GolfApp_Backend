@@ -112,12 +112,6 @@ class PartidoController extends Controller
         return $partido;
     }
 
-    /**
-     * Vacía los registros asociados a los partidos que tienen más de 24
-     * horas de que finalizaron.
-     *
-     * @return JsonResponse|int
-     */
     public function vaciarPartidosFinalizados()
     {
         $request = new Request();

@@ -10,23 +10,12 @@ use Illuminate\Http\Request;
 
 class CampoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $campos = Campo::all();
         return response()->json($campos);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $campo = $this->crearCampo($request);
@@ -42,12 +31,6 @@ class CampoController extends Controller
         return $errorResponse;
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         $validation = FieldValidator::validateIntegerParameterURL($id);
@@ -61,13 +44,6 @@ class CampoController extends Controller
         }
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $validation = FieldValidator::validateIntegerParameterURL($id);
@@ -89,12 +65,6 @@ class CampoController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $validation = FieldValidator::validateIntegerParameterURL($id);
@@ -115,13 +85,6 @@ class CampoController extends Controller
         }
     }
 
-    /**
-     * Crea una instancia de Campo para un nuevo campo o un campo
-     * existente a partir de los parámetros de la request.
-     *
-     * @param Request $request
-     * @return Campo|\Illuminate\Http\JsonResponse|null
-     */
     private function crearCampo(Request $request)
     {
         if (!$this->isCampoCompleto($request))
@@ -209,13 +172,6 @@ class CampoController extends Controller
         return $campo;
     }
 
-    /**
-     * Determina si los parámetros obligatorios de un campo enviados en la
-     * request están completos.
-     *
-     * @param Request $request
-     * @return bool
-     */
     private function isCampoCompleto(Request $request)
     {
         $nombre = $request['nombre'];
