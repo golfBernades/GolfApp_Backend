@@ -206,7 +206,7 @@
 							"mode": "formdata",
 							"formdata": [
 								{
-									"key": "id",
+									"key": "apuesta_id",
 									"value": "1",
 									"type": "text",
 									"enabled": true
@@ -1448,6 +1448,150 @@
 								{
 									"key": "clave_edicion",
 									"value": "abcdefgh",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "usuario",
+			"description": "",
+			"item": [
+				{
+					"name": "Usuario exists",
+					"request": {
+						"url": "http://localhost:8000/usuario_exists",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "porfiriss@gmail.com",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Insert usuario",
+					"request": {
+						"url": "http://localhost:8000/usuario_insert",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "porfirss@gmail.com",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "password",
+									"value": "adiosmundo",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update usuario",
+					"request": {
+						"url": "http://localhost:8000/usuario_update",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "otrossss@gmail.com",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "password",
+									"value": "adiosmundo",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "usuario_id",
+									"value": "2",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "new_password",
+									"value": "adiosmundo",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Usuario delete",
+					"request": {
+						"url": "http://localhost:8000/usuario_delete",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "victorre@gmail.com",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "password",
+									"value": "holamundo",
 									"type": "text",
 									"enabled": true
 								}

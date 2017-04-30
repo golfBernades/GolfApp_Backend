@@ -201,9 +201,33 @@ Route::get('apuesta_all', 'ApuestaController@index');
 
 /**
  * Obtiene los detalles de la apuesta por medio de su id.
- * Parámetros: id*.
+ * Parámetros: apuesta_id*.
  */
 Route::post('apuesta_by_id', 'ApuestaController@getApuestaById');
+
+/**
+ * Obtiene un usuario por medio de su email.
+ * Parámetros: email*.
+ */
+Route::post('usuario_exists', 'UsuarioController@usuarioExists');
+
+/**
+ * Inserta un usuario con los datos pasados como parámetro.
+ * Parámetros: email*, password*.
+ */
+Route::post('usuario_insert', 'UsuarioController@store');
+
+/**
+ * Actualiza un usuario por medio de su id y los datos pasados como parámetro.
+ * Parámetros: usuario_id*, email*, password*, new_password.
+ */
+Route::put('usuario_update', 'UsuarioController@update');
+
+/**
+ * Elimina un usuario por medio de sus datos de loguin.
+ * Parámetros: email*, password*.
+ */
+Route::delete('usuario_delete', 'UsuarioController@destroy');
 
 /**
  * -----------------------------------------------------------------------------

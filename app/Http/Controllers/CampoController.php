@@ -61,15 +61,12 @@ class CampoController extends Controller
         if (!$id) return HttpResponses::parametrosIncompletosReponse();
         $campo = EntityByIdController::getCampoById($id);
         if ($campo instanceof JsonResponse) return $campo;
-        $campo = Campo::find($id);
-        if ($campo) {
-            try {
-                $campo->delete();
-                return HttpResponses::eliminadoOkResponse('campo');
-            } catch (\Exception $e) {
-                return HttpResponses::eliminadoErrorResponse('campo');
-            }
-        } else return HttpResponses::noEncontradoResponse('campo');
+        try {
+            $campo->delete();
+            return HttpResponses::eliminadoOkResponse('campo');
+        } catch (\Exception $e) {
+            return HttpResponses::eliminadoErrorResponse('campo');
+        }
     }
 
     private function crearCampo(Request $request)

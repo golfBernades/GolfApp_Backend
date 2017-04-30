@@ -23,7 +23,12 @@ class HttpResponses
 
     public static function rutaInexistenteResponse()
     {
-        return self::createResponse(400, 'Ruta no existente');
+        return self::createResponse(400, 'Ruta inexistente');
+    }
+
+    public static function parametroTipoInvalido()
+    {
+        return self::createResponse(400, 'El parámetro es de un tipo inválido');
     }
 
     public static function okResponse()
@@ -74,7 +79,7 @@ class HttpResponses
 
     public static function actualizadoErrorResponse($entidad)
     {
-        return self::createResponse(400, 'Error al actualizar  el registro de ' .
+        return self::createResponse(400, 'Error al actualizar el registro de ' .
             $entidad);
     }
 
@@ -132,6 +137,11 @@ class HttpResponses
             'Los datos de loguin son incorrectos');
     }
 
+    public static function emailEnUso()
+    {
+        return self::createResponse(400, 'El email ya se está usando');
+    }
+
     public static function propietarioCampoErrorResponse()
     {
         return self::createResponse(400,
@@ -142,6 +152,12 @@ class HttpResponses
     {
         return self::createResponse(200,
             'El usuario está logueado y es el propietario del campo');
+    }
+
+    public static function emailInexistente()
+    {
+        return self::createResponse(400,
+            'No hay usuarios con el email especificado');
     }
 
     /*

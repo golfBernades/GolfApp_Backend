@@ -18,7 +18,7 @@ class ApuestaController extends Controller
 
     public function getApuestaById(Request $request)
     {
-        $id = $request['id'];
+        $id = $request['apuesta_id'];
         if (!$id) return HttpResponses::parametrosIncompletosReponse();
         return EntityByIdController::getApuestaById($id);
     }

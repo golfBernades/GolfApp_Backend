@@ -8,6 +8,7 @@ use App\Models\Apuesta;
 use App\Models\Campo;
 use App\Models\Jugador;
 use App\Models\Partido;
+use App\Models\Usuario;
 use Illuminate\Http\JsonResponse;
 
 /**
@@ -56,5 +57,14 @@ class EntityByIdController extends Controller
         $campo = Campo::find($campoId);
         if (!$campo) return HttpResponses::noEncontradoResponse('campo');
         return $campo;
+    }
+
+    public static function getUsuarioById($usuarioId)
+    {
+        $validation = FieldValidator::validateIntegerParameterURL($usuarioId);
+        if ($validation instanceof JsonResponse) return $validation;
+        $usuario = Usuario::find($usuarioId);
+        if (!$usuario) return HttpResponses::noEncontradoResponse('usuario');
+        return $usuario;
     }
 }

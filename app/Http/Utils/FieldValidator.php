@@ -25,7 +25,7 @@ class FieldValidator
         if (RegexValidator::isIntegerNumber($parameter)) {
             return 1;
         } else {
-            return HttpResponses::rutaInexistenteResponse();
+            return HttpResponses::parametroTipoInvalido();
         }
     }
 }
