@@ -188,7 +188,7 @@
 				{
 					"name": "Get all apuesta",
 					"request": {
-						"url": "http://localhost:8000/apuesta_all",
+						"url": "http://localhost:8000/apuesta",
 						"method": "GET",
 						"header": [],
 						"body": {},
@@ -201,74 +201,6 @@
 					"request": {
 						"url": "http://localhost:8000/apuesta/2",
 						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Insert apuesta",
-					"request": {
-						"url": "http://localhost:8000/apuesta",
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/x-www-form-urlencoded",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "nombre",
-									"value": "Foursome",
-									"type": "text",
-									"enabled": true
-								}
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Update apuesta",
-					"request": {
-						"url": "http://localhost:8000/apuesta/1",
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/x-www-form-urlencoded",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "nombre",
-									"value": "OtraApuesta",
-									"type": "text",
-									"enabled": true
-								}
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Delete apuesta",
-					"request": {
-						"url": "http://localhost:8000/apuesta/3",
-						"method": "DELETE",
 						"header": [],
 						"body": {
 							"mode": "raw",
@@ -313,7 +245,7 @@
 								},
 								{
 									"key": "apuesta_id",
-									"value": "1",
+									"value": "3",
 									"type": "text",
 									"enabled": true
 								}
@@ -1255,42 +1187,96 @@
 			"description": "",
 			"item": [
 				{
-					"name": "Get puntuaciones all jugador all partido",
+					"name": "Get all puntuaciones jugador",
 					"request": {
-						"url": "http://localhost:8000/puntuaciones_all_jugador_all_partido",
-						"method": "GET",
-						"header": [],
+						"url": "http://localhost:8000/get_all_puntuaciones_jugador",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
 						"body": {
-							"mode": "raw",
-							"raw": ""
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "jugador_id",
+									"value": "1",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "partido_id",
+									"value": "1",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "clave_edicion",
+									"value": "abcdefgh",
+									"type": "text",
+									"enabled": false
+								},
+								{
+									"key": "clave_consulta",
+									"value": "abcdefgh",
+									"type": "text",
+									"enabled": true
+								}
+							]
 						},
 						"description": ""
 					},
 					"response": []
 				},
 				{
-					"name": "Get puntuaciones jugador partido",
+					"name": "Get hoyo puntuaciones jugador",
 					"request": {
-						"url": "http://localhost:8000/puntuaciones_jugador_partido/1/1",
-						"method": "GET",
-						"header": [],
+						"url": "http://localhost:8000/get_hoyo_puntuaciones_jugador",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
 						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Get puntuaciones jugador partido hoyo",
-					"request": {
-						"url": "http://localhost:8000/puntuaciones_jugador_partido_hoyo/1/1/1",
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "jugador_id",
+									"value": "1",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "partido_id",
+									"value": "1",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "clave_edicion",
+									"value": "abcdefgh",
+									"type": "text",
+									"enabled": false
+								},
+								{
+									"key": "clave_consulta",
+									"value": "abcdefgh",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "hoyo",
+									"value": "1",
+									"type": "text",
+									"enabled": true
+								}
+							]
 						},
 						"description": ""
 					},
@@ -1325,7 +1311,7 @@
 								},
 								{
 									"key": "hoyo",
-									"value": "17",
+									"value": "18",
 									"type": "text",
 									"enabled": true
 								},
@@ -1340,58 +1326,10 @@
 									"value": "1",
 									"type": "text",
 									"enabled": true
-								}
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Test consulta partido",
-					"request": {
-						"url": "http://localhost:8000/test_consulta_partido",
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "clave_consulta",
-									"value": "4LBjVJ0K",
-									"type": "text",
-									"enabled": true
 								},
-								{
-									"key": "partido_id",
-									"value": "1",
-									"type": "text",
-									"enabled": true
-								}
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Test edición partido",
-					"request": {
-						"url": "http://localhost:8000/test_edicion_partido",
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
 								{
 									"key": "clave_edicion",
-									"value": "irs30iDe",
-									"type": "text",
-									"enabled": true
-								},
-								{
-									"key": "partido_id",
-									"value": "1",
+									"value": "abcdefgh",
 									"type": "text",
 									"enabled": true
 								}

@@ -13,15 +13,6 @@
 
 /*
 --------------------------------------------------------------------------------
-Grupo de rutas que requieren permisos para consultar datos sobre un partido.
---------------------------------------------------------------------------------
-*/
-Route::group(['middleware' => ['consulta_partido']], function () {
-    Route::post('test_consulta_partido', 'PuntuacionesController@testConsulta');
-});
-
-/*
---------------------------------------------------------------------------------
 Grupo de rutas que requieren permisos para editar datos sobre un partido.
 --------------------------------------------------------------------------------
 */
@@ -31,13 +22,6 @@ Route::group(['middleware' => ['edicion_partido']], function () {
     Route::get('campo/{id}', 'CampoController@show');
     Route::put('campo/{id}', 'CampoController@update');
     Route::delete('campo/{id}', 'CampoController@destroy');
-
-    Route::get('puntuaciones_jugador_partido/{jugador_id}/{partido_id}',
-        'PuntuacionesController@getPuntuacionesJugadorPartido');
-    Route::get('puntuaciones_jugador_partido_hoyo/{jugador_id}/{partido_id}/{hoyo}',
-        'PuntuacionesController@getPuntuacionesJugadorPartidoHoyo');
-    Route::post('registrar_puntuaciones',
-        'PuntuacionesController@registrarPuntuaciones');
 });
 
 /**
@@ -120,6 +104,12 @@ Route::group(['middleware' => ['edicion_partido']], function () {
     Route::post('remove_apuesta_from_partido',
         'ApuestaPartidoController@removeApuesta');
 
+    /**
+     * Registra la puntuación para cierto hoyo de un jugador en un partido.
+     * Parámetros: partido_id*, jugador_id*, clave_edicion*, hoyo*, golpes*.
+     */
+    Route::post('registrar_puntuaciones',
+        'PuntuacionesController@registrarPuntuaciones');
 });
 
 /**
@@ -143,19 +133,25 @@ Route::group(['middleware' => ['consulta_edicion']], function () {
      */
     Route::post('apuestas_en_partido',
         'ApuestaPartidoController@getApuestasEnPartido');
-});
 
-/**
- * -----------------------------------------------------------------------------
- * Rutas que requieren permisos de administración de la aplicación
- * -----------------------------------------------------------------------------
- */
-Route::group(['middleware' => ['administrador']], function () {
-    Route::post('apuesta', 'ApuestaController@store');
-    Route::put('apuesta/{id}', 'ApuestaController@update');
-    Route::delete('apuesta/{id}', 'ApuestaController@destroy');
-});
+    /**
+     * Devuelve las puntuaciones en todos los hoyos del jugador en el partido
+     * identificados por medio de sus id's.
+     * Parámetros: partido_id*, jugador_id*, clave_consulta, clave_edicion.
+     * [alguna de las dos claves es obligatoria]
+     */
+    Route::post('get_all_puntuaciones_jugador',
+        'PuntuacionesController@getAllPuntuacionesJugador');
 
+    /**
+     * Devuelve las puntuaciones en el hoyo especificado del jugador en el
+     * partido identificados por medio de sus id's.
+     * Parámetros: partido_id*, jugador_id*, hoyo*, clave_consulta,
+     * clave_edicion. [alguna de las dos claves es obligatoria]
+     */
+    Route::post('get_hoyo_puntuaciones_jugador',
+        'PuntuacionesController@getHoyoPuntuacionesJugador');
+});
 
 /**
  * -----------------------------------------------------------------------------
@@ -168,7 +164,7 @@ Route::group(['middleware' => ['administrador']], function () {
  * Parámetros: inicio, fin, campo_id
  */
 Route::post('partido_insert', 'PartidoController@store');
-Route::get('apuesta_all', 'ApuestaController@index');
+Route::get('apuesta', 'ApuestaController@index');
 Route::get('apuesta/{id}', 'ApuestaController@show');
 
 /**

@@ -12,37 +12,12 @@ use Illuminate\Support\Facades\DB;
 
 class PuntuacionesController extends Controller
 {
-    /**
-     * Obtiene un Join con las puntuaciones de todos los jugadores en todos
-     * los partidos.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function getPuntuacionesAllJugadorAllPartido()
+    public function getAllPuntuacionesJugador(Request $request)
     {
-        $allPuntuaciones = DB::table('puntuaciones as pu')
-            ->join('jugador as ju', function ($join) {
-                $join->on('ju.id', '=', 'pu.jugador_id');
-            })
-            ->join('partido as pa', function ($join) {
-                $join->on('pa.id', '=', 'pu.partido_id');
-            })
-            ->select(['pu.id as puntuaciones_id', 'hoyo', 'golpes', 'unidades',
-                'pu.jugador_id', 'ju.nombre as nombre_jugador'])
-            ->get();
-        return response()->json($allPuntuaciones);
-    }
-
-    /**
-     * Devuelve una lista con los puntos que ha realizado el jugador en el
-     * partido cuyos id's se pasaron como parámetro.
-     *
-     * @param $jugadorId
-     * @param $partidoId
-     * @return JsonResponse
-     */
-    public function getPuntuacionesJugadorPartido($jugadorId, $partidoId)
-    {
+        $jugadorId = $request['jugador_id'];
+        $partidoId = $request['partido_id'];
+        if (!$jugadorId || !$partidoId)
+            return HttpResponses::parametrosIncompletosReponse();
         $jugador = EntityByIdController::getJugadorById($jugadorId);
         if ($jugador instanceof JsonResponse) return $jugador;
         $partido = EntityByIdController::getPartidoById($partidoId);
@@ -54,19 +29,13 @@ class PuntuacionesController extends Controller
         return response()->json($puntosJugadorPartido);
     }
 
-    /**
-     * Obtiene el registro de la tabla puntuaciones para el jugador en el
-     * partido dentro de determinado hoyo, siendo pasados estos tres aspectos
-     * como parámetros.
-     *
-     * @param $jugadorId
-     * @param $partidoId
-     * @param $hoyo
-     * @return JsonResponse
-     */
-    public function getPuntuacionesJugadorPartidoHoyo($jugadorId, $partidoId,
-                                                      $hoyo)
+    public function getHoyoPuntuacionesJugador(Request $request)
     {
+        $jugadorId = $request['jugador_id'];
+        $partidoId = $request['partido_id'];
+        $hoyo = $request['hoyo'];
+        if (!$jugadorId || !$partidoId || !$hoyo)
+            return HttpResponses::parametrosIncompletosReponse();
         $jugador = EntityByIdController::getJugadorById($jugadorId);
         if ($jugador instanceof JsonResponse) return $jugador;
         $partido = EntityByIdController::getPartidoById($partidoId);
@@ -84,10 +53,6 @@ class PuntuacionesController extends Controller
         return response()->json($puntosJugadorPartidoHoyo);
     }
 
-    /**
-     * @param Request $request
-     * @return Puntuaciones|JsonResponse|int
-     */
     public function registrarPuntuaciones(Request $request)
     {
         $puntuaciones = $this->crearPuntuaciones($request);
@@ -108,10 +73,6 @@ class PuntuacionesController extends Controller
         }
     }
 
-    /**
-     * @param Request $request
-     * @return Puntuaciones|\Illuminate\Http\JsonResponse|int
-     */
     private function crearPuntuaciones(Request $request)
     {
         $jugadorId = $request['jugador_id'];
@@ -128,8 +89,7 @@ class PuntuacionesController extends Controller
         if ($hoyo < 1 || $hoyo > 18) return HttpResponses::hoyoRangoInvalido();
         if ($golpes < 0) return HttpResponses::golpesValorInvalido();
         if ($unidades < 0) return HttpResponses::unidadesValorInvalido();
-        $puntuaciones = $this->getPuntuacionesJugadorPartidoHoyo(
-            $jugadorId, $partidoId, $hoyo);
+        $puntuaciones = $this->getHoyoPuntuacionesJugador($request);
         $puntuacionesDecoded = JsonResponseParser::parse($puntuaciones);
         if (isset($puntuacionesDecoded->code) && $puntuacionesDecoded->code
             == 400
@@ -144,37 +104,4 @@ class PuntuacionesController extends Controller
         $puntuaciones->unidades = $unidades;
         return $puntuaciones;
     }
-
-//    /**
-//     * Vacía todos los registros del partido con el id especificado.
-//     *
-//     * @param $partidoId
-//     * @return JsonResponse|int
-//     */
-//    public function vaciarPartido($partidoId)
-//    {
-//        $partido = EntityByIdController::getPartidoById($partidoId);
-//        if ($partido instanceof JsonResponse) return $partido;
-//        $puntuacionesPartido = Puntuaciones::where('partido_id', '=',
-//            $partidoId);
-//        if ($puntuacionesPartido->get()->count() == 0)
-//            return HttpResponses::noRegistrosDePartido();
-//        try {
-//            $puntuacionesPartido->delete();
-//            return HttpResponses::partidoVaciadoOK();
-//        } catch (\Exception $e) {
-//            return HttpResponses::partidoVaciadoError();
-//        }
-//    }
-
-    public function testConsulta(Request $request)
-    {
-        return 'consulta';
-    }
-
-    public function testEdicion(Request $request)
-    {
-        return 'edición';
-    }
-
 }

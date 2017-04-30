@@ -30,7 +30,6 @@ class Kernel extends HttpKernel
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
-        'consulta_partido' => \App\Http\Middleware\AccesoPartidoMiddleware::class,
         'edicion_partido' => \App\Http\Middleware\EdicionPartidoMiddleware::class,
         'administrador' => \App\Http\Middleware\AdministradorMiddleware::class,
         'consulta_edicion' => \App\Http\Middleware\ConsultaEdicionPartidoMiddleware::class,
