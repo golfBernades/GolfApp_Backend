@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Utils\FieldValidator;
 use App\Http\Utils\HttpResponses;
 use App\Models\Apuesta;
+use App\Models\Campo;
 use App\Models\Jugador;
 use App\Models\Partido;
 use Illuminate\Http\JsonResponse;
@@ -46,5 +47,14 @@ class EntityByIdController extends Controller
         $apuesta = Apuesta::find($apuestaId);
         if (!$apuesta) return HttpResponses::noEncontradoResponse('apuesta');
         return $apuesta;
+    }
+
+    public static function getCampoById($campoId)
+    {
+        $validation = FieldValidator::validateIntegerParameterURL($campoId);
+        if ($validation instanceof JsonResponse) return $validation;
+        $campo = Campo::find($campoId);
+        if (!$campo) return HttpResponses::noEncontradoResponse('campo');
+        return $campo;
     }
 }

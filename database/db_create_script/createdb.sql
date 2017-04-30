@@ -46,7 +46,7 @@ CREATE TABLE `apuesta_partido` (
   KEY `apuesta_partido_apuesta_id_fk` (`apuesta_id`),
   CONSTRAINT `apuesta_partido_apuesta_id_fk` FOREIGN KEY (`apuesta_id`) REFERENCES `apuesta` (`id`),
   CONSTRAINT `apuesta_partido_partido_id_fk` FOREIGN KEY (`partido_id`) REFERENCES `partido` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -60,44 +60,47 @@ CREATE TABLE `campo` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(100) NOT NULL,
   `ciudad` char(100) NOT NULL,
-  `par_hoyo_1` int(11) DEFAULT NULL,
-  `par_hoyo_2` int(11) DEFAULT NULL,
-  `par_hoyo_3` int(11) DEFAULT NULL,
-  `par_hoyo_4` int(11) DEFAULT NULL,
-  `par_hoyo_5` int(11) DEFAULT NULL,
-  `par_hoyo_6` int(11) DEFAULT NULL,
-  `par_hoyo_7` int(11) DEFAULT NULL,
-  `par_hoyo_8` int(11) DEFAULT NULL,
-  `par_hoyo_9` int(11) DEFAULT NULL,
-  `par_hoyo_10` int(11) DEFAULT NULL,
-  `par_hoyo_11` int(11) DEFAULT NULL,
-  `par_hoyo_12` int(11) DEFAULT NULL,
-  `par_hoyo_13` int(11) DEFAULT NULL,
-  `par_hoyo_14` int(11) DEFAULT NULL,
-  `par_hoyo_15` int(11) DEFAULT NULL,
-  `par_hoyo_16` int(11) DEFAULT NULL,
-  `par_hoyo_17` int(11) DEFAULT NULL,
-  `par_hoyo_18` int(11) DEFAULT NULL,
-  `ventaja_hoyo_1` int(11) DEFAULT NULL,
-  `ventaja_hoyo_2` int(11) DEFAULT NULL,
-  `ventaja_hoyo_3` int(11) DEFAULT NULL,
-  `ventaja_hoyo_4` int(11) DEFAULT NULL,
-  `ventaja_hoyo_5` int(11) DEFAULT NULL,
-  `ventaja_hoyo_6` int(11) DEFAULT NULL,
-  `ventaja_hoyo_7` int(11) DEFAULT NULL,
-  `ventaja_hoyo_8` int(11) DEFAULT NULL,
-  `ventaja_hoyo_9` int(11) DEFAULT NULL,
-  `ventaja_hoyo_10` int(11) DEFAULT NULL,
-  `ventaja_hoyo_11` int(11) DEFAULT NULL,
-  `ventaja_hoyo_12` int(11) DEFAULT NULL,
-  `ventaja_hoyo_13` int(11) DEFAULT NULL,
-  `ventaja_hoyo_14` int(11) DEFAULT NULL,
-  `ventaja_hoyo_15` int(11) DEFAULT NULL,
-  `ventaja_hoyo_16` int(11) DEFAULT NULL,
-  `ventaja_hoyo_17` int(11) DEFAULT NULL,
-  `ventaja_hoyo_18` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+  `par_hoyo_1` int(11) NOT NULL,
+  `par_hoyo_2` int(11) NOT NULL,
+  `par_hoyo_3` int(11) NOT NULL,
+  `par_hoyo_4` int(11) NOT NULL,
+  `par_hoyo_5` int(11) NOT NULL,
+  `par_hoyo_6` int(11) NOT NULL,
+  `par_hoyo_7` int(11) NOT NULL,
+  `par_hoyo_8` int(11) NOT NULL,
+  `par_hoyo_9` int(11) NOT NULL,
+  `par_hoyo_10` int(11) NOT NULL,
+  `par_hoyo_11` int(11) NOT NULL,
+  `par_hoyo_12` int(11) NOT NULL,
+  `par_hoyo_13` int(11) NOT NULL,
+  `par_hoyo_14` int(11) NOT NULL,
+  `par_hoyo_15` int(11) NOT NULL,
+  `par_hoyo_16` int(11) NOT NULL,
+  `par_hoyo_17` int(11) NOT NULL,
+  `par_hoyo_18` int(11) NOT NULL,
+  `ventaja_hoyo_1` int(11) NOT NULL,
+  `ventaja_hoyo_2` int(11) NOT NULL,
+  `ventaja_hoyo_3` int(11) NOT NULL,
+  `ventaja_hoyo_4` int(11) NOT NULL,
+  `ventaja_hoyo_5` int(11) NOT NULL,
+  `ventaja_hoyo_6` int(11) NOT NULL,
+  `ventaja_hoyo_7` int(11) NOT NULL,
+  `ventaja_hoyo_8` int(11) NOT NULL,
+  `ventaja_hoyo_9` int(11) NOT NULL,
+  `ventaja_hoyo_10` int(11) NOT NULL,
+  `ventaja_hoyo_11` int(11) NOT NULL,
+  `ventaja_hoyo_12` int(11) NOT NULL,
+  `ventaja_hoyo_13` int(11) NOT NULL,
+  `ventaja_hoyo_14` int(11) NOT NULL,
+  `ventaja_hoyo_15` int(11) NOT NULL,
+  `ventaja_hoyo_16` int(11) NOT NULL,
+  `ventaja_hoyo_17` int(11) NOT NULL,
+  `ventaja_hoyo_18` int(11) NOT NULL,
+  `owner_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `campo_usuario_id_fk` (`owner_id`),
+  CONSTRAINT `campo_usuario_id_fk` FOREIGN KEY (`owner_id`) REFERENCES `usuario` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -208,6 +211,22 @@ CREATE TABLE `puntuaciones` (
   CONSTRAINT `puntuaciones_partido_id_fk` FOREIGN KEY (`partido_id`) REFERENCES `partido` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `usuario`
+--
+
+DROP TABLE IF EXISTS `usuario`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `usuario` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `usuario_email_uindex` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -218,4 +237,4 @@ CREATE TABLE `puntuaciones` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-04-25 22:42:52
+-- Dump completed on 2017-04-30 13:42:04

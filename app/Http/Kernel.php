@@ -32,5 +32,7 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'edicion_partido' => \App\Http\Middleware\EdicionPartidoMiddleware::class,
         'consulta_edicion' => \App\Http\Middleware\ConsultaEdicionPartidoMiddleware::class,
+        'propietario_campo' =>
+            \App\Http\Middleware\PropietarioCampoMiddleware::class,
     ];
 }

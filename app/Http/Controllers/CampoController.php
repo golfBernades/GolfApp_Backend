@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Utils\FieldValidator;
 use App\Http\Utils\HttpResponses;
 use App\Models\Campo;
 use Illuminate\Http\JsonResponse;
@@ -27,94 +26,77 @@ class CampoController extends Controller
                 return HttpResponses::insertadoErrorResponse('campo');
             }
         }
-        $errorResponse = $campo;
-        return $errorResponse;
+        return $campo;
     }
 
-    public function show($id)
+    public function show(Request $request)
     {
-        $validation = FieldValidator::validateIntegerParameterURL($id);
-        if ($validation instanceof JsonResponse) {
-            return $validation;
-        } else {
-            $campo = Campo::find($id);
-            if (!$campo)
-                return HttpResponses::noEncontradoResponse('campo');
-            return response()->json($campo);
-        }
+        $id = $request['campo_id'];
+        if (!$id) return HttpResponses::parametrosIncompletosReponse();
+        return EntityByIdController::getCampoById($id);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $validation = FieldValidator::validateIntegerParameterURL($id);
-        if ($validation instanceof JsonResponse) {
-            return $validation;
-        } else {
-            $request['id'] = $id;
-            $campo = $this->crearCampo($request);
-            if ($campo instanceof Campo) {
-                try {
-                    $campo->save();
-                    return HttpResponses::actualizadoOkResponse('campo');
-                } catch (\Exception $e) {
-                    return HttpResponses::actualizadoErrorResponse('campo');
-                }
-            }
-            $errorResponse = $campo;
-            return $errorResponse;
-        }
-    }
-
-    public function destroy($id)
-    {
-        $validation = FieldValidator::validateIntegerParameterURL($id);
-        if ($validation instanceof JsonResponse) {
-            return $validation;
-        } else {
-            $campo = Campo::find($id);
-            if ($campo) {
-                try {
-                    $campo->delete();
-                    return HttpResponses::eliminadoOkResponse('campo');
-                } catch (\Exception $e) {
-                    return HttpResponses::eliminadoErrorResponse('campo');
-                }
-            } else {
-                return HttpResponses::noEncontradoResponse('campo');
+        $id = $request['campo_id'];
+        if (!$id) return HttpResponses::parametrosIncompletosReponse();
+        $campo = EntityByIdController::getCampoById($id);
+        if ($campo instanceof JsonResponse) return $campo;
+        $request['campo_id'] = $id;
+        $campo = $this->crearCampo($request);
+        if ($campo instanceof Campo) {
+            try {
+                $campo->save();
+                return HttpResponses::actualizadoOkResponse('campo');
+            } catch (\Exception $e) {
+                return HttpResponses::actualizadoErrorResponse('campo');
             }
         }
+        return $campo;
+    }
+
+    public function destroy(Request $request)
+    {
+        $id = $request['campo_id'];
+        if (!$id) return HttpResponses::parametrosIncompletosReponse();
+        $campo = EntityByIdController::getCampoById($id);
+        if ($campo instanceof JsonResponse) return $campo;
+        $campo = Campo::find($id);
+        if ($campo) {
+            try {
+                $campo->delete();
+                return HttpResponses::eliminadoOkResponse('campo');
+            } catch (\Exception $e) {
+                return HttpResponses::eliminadoErrorResponse('campo');
+            }
+        } else return HttpResponses::noEncontradoResponse('campo');
     }
 
     private function crearCampo(Request $request)
     {
         if (!$this->isCampoCompleto($request))
             return HttpResponses::parametrosIncompletosReponse();
-        if ($request['id']) {
-            $campo = Campo::find($request['id']);
-            if (!$campo)
-                return HttpResponses::noEncontradoResponse('campo');
+        if ($request['campo_id']) {
+            $campo = Campo::find($request['campo_id']);
+            if (!$campo) return HttpResponses::noEncontradoResponse('campo');
         } else
             $campo = new Campo();
         if ($request['nombre']) $campo->nombre = $request['nombre'];
         if ($request['ciudad']) $campo->ciudad = $request['ciudad'];
-        if ($request['par_hoyo_1'])
-            $campo->par_hoyo_1 = $request['par_hoyo_1'];
-        if ($request['par_hoyo_2'])
-            $campo->par_hoyo_2 = $request['par_hoyo_2'];
-        if ($request['par_hoyo_3'])
-            $campo->par_hoyo_3 = $request['par_hoyo_3'];
-        if ($request['par_hoyo_4'])
-            $campo->par_hoyo_4 = $request['par_hoyo_4'];
-        if ($request['par_hoyo_5'])
-            $campo->par_hoyo_5 = $request['par_hoyo_5'];
-        if ($request['par_hoyo_6'])
-            $campo->par_hoyo_6 = $request['par_hoyo_6'];
-        if ($request['par_hoyo_7'])
-            $campo->par_hoyo_7 = $request['par_hoyo_7'];
-        if ($request['par_hoyo_8'])
-            $campo->par_hoyo_8 = $request['par_hoyo_8'];
-        if ($request['par_hoyo_9'])
-            $campo->par_hoyo_9 = $request['par_hoyo_9'];
+        if ($request['owner_id']) {
+            $campo->owner_id = $request['owner_id'];
+            $owner = EntityByIdController::getJugadorById($request['owner_id']);
+            if ($owner instanceof JsonResponse) return $owner;
+        }
+        if ($request['par_hoyo_1']) $campo->par_hoyo_1 = $request['par_hoyo_1'];
+        if ($request['par_hoyo_2']) $campo->par_hoyo_2 = $request['par_hoyo_2'];
+        if ($request['par_hoyo_3']) $campo->par_hoyo_3 = $request['par_hoyo_3'];
+        if ($request['par_hoyo_4']) $campo->par_hoyo_4 = $request['par_hoyo_4'];
+        if ($request['par_hoyo_5']) $campo->par_hoyo_5 = $request['par_hoyo_5'];
+        if ($request['par_hoyo_6']) $campo->par_hoyo_6 = $request['par_hoyo_6'];
+        if ($request['par_hoyo_7']) $campo->par_hoyo_7 = $request['par_hoyo_7'];
+        if ($request['par_hoyo_8']) $campo->par_hoyo_8 = $request['par_hoyo_8'];
+        if ($request['par_hoyo_9']) $campo->par_hoyo_9 = $request['par_hoyo_9'];
         if ($request['par_hoyo_10'])
             $campo->par_hoyo_10 = $request['par_hoyo_10'];
         if ($request['par_hoyo_11'])
@@ -176,6 +158,7 @@ class CampoController extends Controller
     {
         $nombre = $request['nombre'];
         $ciudad = $request['ciudad'];
+        $ownerId = $request['owner_id'];
         $par_hoyo_1 = $request['par_hoyo_1'];
         $par_hoyo_2 = $request['par_hoyo_2'];
         $par_hoyo_3 = $request['par_hoyo_3'];
@@ -214,8 +197,8 @@ class CampoController extends Controller
         $ventaja_hoyo_18 = $request['ventaja_hoyo_18'];
         // Si es para una actualización, se verifica que al menos un
         // parámetro del usuario venga en la request.
-        if ($request['id'])
-            return $nombre || $ciudad || $par_hoyo_1 || $par_hoyo_2
+        if ($request['campo_id'])
+            return $nombre || $ciudad || $ownerId || $par_hoyo_1 || $par_hoyo_2
                 || $par_hoyo_3 || $par_hoyo_4 || $par_hoyo_5 || $par_hoyo_6
                 || $par_hoyo_7 || $par_hoyo_8 || $par_hoyo_9 || $par_hoyo_10
                 || $par_hoyo_11 || $par_hoyo_12 || $par_hoyo_13 || $par_hoyo_14
@@ -229,7 +212,7 @@ class CampoController extends Controller
         // Si es para un usuario nuevo, deben venir en la request todos sus
         // parámetros.
         else
-            return $nombre && $ciudad && $par_hoyo_1 && $par_hoyo_2
+            return $nombre && $ciudad && $ownerId && $par_hoyo_1 && $par_hoyo_2
                 && $par_hoyo_3 && $par_hoyo_4 && $par_hoyo_5 && $par_hoyo_6
                 && $par_hoyo_7 && $par_hoyo_8 && $par_hoyo_9 && $par_hoyo_10
                 && $par_hoyo_11 && $par_hoyo_12 && $par_hoyo_13 && $par_hoyo_14

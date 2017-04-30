@@ -11,7 +11,6 @@ return array(
     'CampoTableSeeder' => $baseDir . '/database/seeds/CampoTableSeeder.php',
     'ClaveConsultaPartidoTableSeeder' => $baseDir . '/database/seeds/ClaveConsultaPartidoTableSeeder.php',
     'ClaveEdicionPartidoTableSeeder' => $baseDir . '/database/seeds/ClaveEdicionPartidoTableSeeder.php',
-    'ClavePartidoTableSeeder' => $baseDir . '/database/seeds/ClavePartidoTableSeeder.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/src/Iterator.php',
     'File_Iterator_Facade' => $vendorDir . '/phpunit/php-file-iterator/src/Facade.php',
@@ -530,4 +529,5 @@ return array(
     'SessionHandlerInterface' => $vendorDir . '/symfony/http-foundation/Resources/stubs/SessionHandlerInterface.php',
     'TestCase' => $baseDir . '/tests/TestCase.php',
     'Text_Template' => $vendorDir . '/phpunit/php-text-template/src/Template.php',
+    'UsuarioTableSeeder' => $baseDir . '/database/seeds/UsuarioTableSeeder.php',
 );

@@ -120,6 +120,30 @@ class HttpResponses
             'La clave de edición del partido es correcta');
     }
 
+    public static function loginOkResponse()
+    {
+        return self::createResponse(200,
+            'El usuario se logueó correctamente');
+    }
+
+    public static function loginErrorResponse()
+    {
+        return self::createResponse(400,
+            'Los datos de loguin son incorrectos');
+    }
+
+    public static function propietarioCampoErrorResponse()
+    {
+        return self::createResponse(400,
+            'El usuario dado no es el propietario del campo');
+    }
+
+    public static function propietarioCampoOkResponse()
+    {
+        return self::createResponse(200,
+            'El usuario está logueado y es el propietario del campo');
+    }
+
     /*
     ----------------------------------------------------------------------------
     Responses de la gestión de los jugadores y apuestas de los partidos

@@ -188,7 +188,7 @@
 				{
 					"name": "Get all apuesta",
 					"request": {
-						"url": "http://localhost:8000/apuesta",
+						"url": "http://localhost:8000/apuesta_all",
 						"method": "GET",
 						"header": [],
 						"body": {},
@@ -199,12 +199,19 @@
 				{
 					"name": "Get apuesta by id",
 					"request": {
-						"url": "http://localhost:8000/apuesta/2",
-						"method": "GET",
+						"url": "http://localhost:8000/apuesta_by_id",
+						"method": "POST",
 						"header": [],
 						"body": {
-							"mode": "raw",
-							"raw": ""
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "1",
+									"type": "text",
+									"enabled": true
+								}
+							]
 						},
 						"description": ""
 					},
@@ -342,12 +349,25 @@
 				{
 					"name": "Get all campo",
 					"request": {
-						"url": "http://localhost:8000/campo",
-						"method": "GET",
+						"url": "http://localhost:8000/campo_all",
+						"method": "POST",
 						"header": [],
 						"body": {
-							"mode": "raw",
-							"raw": ""
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "partido_id",
+									"value": "1",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "clave_edicion",
+									"value": "abcdefgh",
+									"type": "text",
+									"enabled": true
+								}
+							]
 						},
 						"description": ""
 					},
@@ -356,12 +376,43 @@
 				{
 					"name": "Get campo by id",
 					"request": {
-						"url": "http://localhost:8000/campo/1",
-						"method": "GET",
-						"header": [],
+						"url": "http://localhost:8000/campo_by_id",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
 						"body": {
-							"mode": "raw",
-							"raw": ""
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "campo_id",
+									"value": "1",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "partido_id",
+									"value": "1",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "clave_edicion",
+									"value": "abcdefgh",
+									"type": "text",
+									"enabled": false
+								},
+								{
+									"key": "clave_consulta",
+									"value": "abcdefgh",
+									"type": "text",
+									"enabled": true
+								}
+							]
 						},
 						"description": ""
 					},
@@ -370,7 +421,7 @@
 				{
 					"name": "Insert campo",
 					"request": {
-						"url": "http://localhost:8000/campo",
+						"url": "http://localhost:8000/campo_insert",
 						"method": "POST",
 						"header": [
 							{
@@ -609,6 +660,24 @@
 									"value": "1",
 									"type": "text",
 									"enabled": true
+								},
+								{
+									"key": "owner_id",
+									"value": "1",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "email",
+									"value": "porfirioads@gmail.com",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "password",
+									"value": "holamundo",
+									"type": "text",
+									"enabled": true
 								}
 							]
 						},
@@ -619,7 +688,7 @@
 				{
 					"name": "Update campo",
 					"request": {
-						"url": "http://localhost:8000/campo/1",
+						"url": "http://localhost:8000/campo_update",
 						"method": "PUT",
 						"header": [
 							{
@@ -640,6 +709,12 @@
 								{
 									"key": "ciudad",
 									"value": "Aguascalientes",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "campo_id",
+									"value": "2",
 									"type": "text",
 									"enabled": true
 								},
@@ -858,6 +933,24 @@
 									"value": "1",
 									"type": "text",
 									"enabled": true
+								},
+								{
+									"key": "owner_id",
+									"value": "1",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "email",
+									"value": "porfirioads@gmail.com",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "password",
+									"value": "holamundo",
+									"type": "text",
+									"enabled": true
 								}
 							]
 						},
@@ -868,12 +961,37 @@
 				{
 					"name": "Delete campo",
 					"request": {
-						"url": "http://localhost:8000/campo/11",
+						"url": "http://localhost:8000/campo_delete",
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
 						"body": {
-							"mode": "raw",
-							"raw": ""
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "campo_id",
+									"value": "2",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "email",
+									"value": "porfirioads@gmail.com",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "password",
+									"value": "holamundo",
+									"type": "text",
+									"enabled": true
+								}
+							]
 						},
 						"description": ""
 					},

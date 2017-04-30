@@ -11,19 +11,6 @@
 |
 */
 
-/*
---------------------------------------------------------------------------------
-Grupo de rutas que requieren permisos para editar datos sobre un partido.
---------------------------------------------------------------------------------
-*/
-Route::group(['middleware' => ['edicion_partido']], function () {
-    // TODO ¿Cómo se manejarán los campos?
-    Route::post('campo', 'CampoController@store');
-    Route::get('campo/{id}', 'CampoController@show');
-    Route::put('campo/{id}', 'CampoController@update');
-    Route::delete('campo/{id}', 'CampoController@destroy');
-});
-
 /**
  * -----------------------------------------------------------------------------
  * Rutas donde se requere contar el permiso de edición en un partido.
@@ -110,6 +97,12 @@ Route::group(['middleware' => ['edicion_partido']], function () {
      */
     Route::post('registrar_puntuaciones',
         'PuntuacionesController@registrarPuntuaciones');
+
+    /**
+     * Devuelve un listado con los campos disponibles.
+     * Parámetros: partido_id*, clave_edicion*
+     */
+    Route::post('campo_all', 'CampoController@index');
 });
 
 /**
@@ -151,7 +144,42 @@ Route::group(['middleware' => ['consulta_edicion']], function () {
      */
     Route::post('get_hoyo_puntuaciones_jugador',
         'PuntuacionesController@getHoyoPuntuacionesJugador');
+
+    /**
+     * Devuelve el campo por medio de su id.
+     * Parámetros: partido_id*, campo_id*, clave_consulta, clave_edicion.
+     * [alguna de las dos claves es obligatoria]
+     */
+    Route::post('campo_by_id', 'CampoController@show');
 });
+
+/**
+ * -----------------------------------------------------------------------------
+ * Rutas donde se requiere estar logueado y ser el propietario del campo.
+ * -----------------------------------------------------------------------------
+ */
+Route::group(['middleware' => ['propietario_campo']], function () {
+    /**
+     * Inserta un nuevo campo.
+     * Parámetros: email*, password*, nombre*, ciudad*,
+     * par_hoyo_1*...par_hoyo_18*, ventaja_hoyo_1*...ventaja_hoyo_18*
+     */
+    Route::post('campo_insert', 'CampoController@store');
+
+    /**
+     * Actualiza un campo existente.
+     * Parámetros: email*, password*, campo_id*, nombre, ciudad,
+     * par_hoyo_1...par_hoyo_18, ventaja_hoyo_1...ventaja_hoyo_18
+     */
+    Route::put('campo_update', 'CampoController@update');
+
+    /**
+     * Elimina un campo por medio de su id.
+     * Parámetros: email*, password*, campo_id*.
+     */
+    Route::delete('campo_delete', 'CampoController@destroy');
+});
+
 
 /**
  * -----------------------------------------------------------------------------
@@ -169,13 +197,13 @@ Route::post('partido_insert', 'PartidoController@store');
  * Obtiene un listado con las apuestas existentes.
  * Parámetros: Ninguno
  */
-Route::get('apuesta', 'ApuestaController@index');
+Route::get('apuesta_all', 'ApuestaController@index');
 
 /**
  * Obtiene los detalles de la apuesta por medio de su id.
- * Parámetros: id* (en la URL).
+ * Parámetros: id*.
  */
-Route::get('apuesta/{id}', 'ApuestaController@show');
+Route::post('apuesta_by_id', 'ApuestaController@getApuestaById');
 
 /**
  * -----------------------------------------------------------------------------

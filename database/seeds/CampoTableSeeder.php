@@ -52,6 +52,7 @@ class CampoTableSeeder extends Seeder
             'ventaja_hoyo_16' => 2,
             'ventaja_hoyo_17' => 14,
             'ventaja_hoyo_18' => 18,
+            'owner_id' => 1
         ], [
             'nombre' => 'AguasCampo',
             'ciudad' => 'Aguascalientes',
@@ -91,6 +92,7 @@ class CampoTableSeeder extends Seeder
             'ventaja_hoyo_16' => 2,
             'ventaja_hoyo_17' => 14,
             'ventaja_hoyo_18' => 18,
+            'owner_id' => 1
         ]));
     }
 }

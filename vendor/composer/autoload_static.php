@@ -281,7 +281,6 @@ class ComposerStaticInit7e1d338a817a09ac84b2656416c67399
         'CampoTableSeeder' => __DIR__ . '/../..' . '/database/seeds/CampoTableSeeder.php',
         'ClaveConsultaPartidoTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ClaveConsultaPartidoTableSeeder.php',
         'ClaveEdicionPartidoTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ClaveEdicionPartidoTableSeeder.php',
-        'ClavePartidoTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ClavePartidoTableSeeder.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
         'File_Iterator' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Iterator.php',
         'File_Iterator_Facade' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Facade.php',
@@ -800,6 +799,7 @@ class ComposerStaticInit7e1d338a817a09ac84b2656416c67399
         'SessionHandlerInterface' => __DIR__ . '/..' . '/symfony/http-foundation/Resources/stubs/SessionHandlerInterface.php',
         'TestCase' => __DIR__ . '/../..' . '/tests/TestCase.php',
         'Text_Template' => __DIR__ . '/..' . '/phpunit/php-text-template/src/Template.php',
+        'UsuarioTableSeeder' => __DIR__ . '/../..' . '/database/seeds/UsuarioTableSeeder.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

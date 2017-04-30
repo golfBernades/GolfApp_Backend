@@ -16,16 +16,10 @@ class ApuestaController extends Controller
         return response()->json($apuestas);
     }
 
-    public function show($id)
+    public function getApuestaById(Request $request)
     {
-        $validation = FieldValidator::validateIntegerParameterURL($id);
-        if ($validation instanceof JsonResponse) {
-            return $validation;
-        } else {
-            $apuesta = Apuesta::find($id);
-            if (!$apuesta)
-                return HttpResponses::noEncontradoResponse('apuesta');
-            return response()->json($apuesta);
-        }
+        $id = $request['id'];
+        if (!$id) return HttpResponses::parametrosIncompletosReponse();
+        return EntityByIdController::getApuestaById($id);
     }
 }
