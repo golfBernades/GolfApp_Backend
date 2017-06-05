@@ -29,14 +29,12 @@
 								{
 									"key": "clave_edicion",
 									"value": "abcdefgh",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "partido_id",
 									"value": "1",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								}
 							]
 						},
@@ -62,20 +60,17 @@
 								{
 									"key": "clave_edicion",
 									"value": "abcdefgh",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "partido_id",
 									"value": "1",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "jugador_id",
 									"value": "1",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								}
 							]
 						},
@@ -101,26 +96,22 @@
 								{
 									"key": "nombre",
 									"value": "Porfirio",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "handicap",
 									"value": "10",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "partido_id",
 									"value": "1",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "clave_edicion",
 									"value": "abcdefgh",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								}
 							]
 						},
@@ -146,32 +137,27 @@
 								{
 									"key": "nombre",
 									"value": "Jimena Sofía",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "handicap",
 									"value": "10",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "clave_edicion",
 									"value": "abcdefgh",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "partido_id",
 									"value": "1",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "jugador_id",
 									"value": "1",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								}
 							]
 						},
@@ -208,8 +194,7 @@
 								{
 									"key": "apuesta_id",
 									"value": "1",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								}
 							]
 						},
@@ -241,20 +226,17 @@
 								{
 									"key": "clave_edicion",
 									"value": "abcdefgh",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "partido_id",
 									"value": "1",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "apuesta_id",
 									"value": "3",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								}
 							]
 						},
@@ -280,20 +262,17 @@
 								{
 									"key": "clave_edicion",
 									"value": "abcdefgh",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "partido_id",
 									"value": "1",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "apuesta_id",
 									"value": "1",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								}
 							]
 						},
@@ -319,20 +298,17 @@
 								{
 									"key": "partido_id",
 									"value": "1",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "clave_consulta",
 									"value": "abcdefgh",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "clave_edicion",
 									"value": "abcdefgh",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								}
 							]
 						},
@@ -358,14 +334,12 @@
 								{
 									"key": "partido_id",
 									"value": "1",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "clave_edicion",
 									"value": "abcdefgh",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								}
 							]
 						},
@@ -391,26 +365,23 @@
 								{
 									"key": "campo_id",
 									"value": "1",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "partido_id",
 									"value": "1",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "clave_edicion",
 									"value": "abcdefgh",
 									"type": "text",
-									"enabled": false
+									"disabled": true
 								},
 								{
 									"key": "clave_consulta",
 									"value": "abcdefgh",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								}
 							]
 						},
@@ -436,248 +407,207 @@
 								{
 									"key": "nombre",
 									"value": "CampitoDeEjemplo",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "ciudad",
 									"value": "zacatecas",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "par_hoyo_1",
 									"value": "4",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "par_hoyo_2",
 									"value": "5",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "par_hoyo_3",
 									"value": "6",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "par_hoyo_4",
 									"value": "6",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "par_hoyo_5",
 									"value": "3",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "par_hoyo_6",
 									"value": "7",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "par_hoyo_7",
 									"value": "5",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "par_hoyo_8",
 									"value": "6",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "par_hoyo_9",
 									"value": "5",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "par_hoyo_10",
 									"value": "4",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "par_hoyo_11",
 									"value": "3",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "par_hoyo_12",
 									"value": "5",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "par_hoyo_13",
 									"value": "8",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "par_hoyo_14",
 									"value": "8",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "par_hoyo_15",
 									"value": "6",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "par_hoyo_16",
 									"value": "5",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "par_hoyo_17",
 									"value": "4",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "par_hoyo_18",
 									"value": "4",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "ventaja_hoyo_1",
 									"value": "18",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "ventaja_hoyo_2",
 									"value": "17",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "ventaja_hoyo_3",
 									"value": "16",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "ventaja_hoyo_4",
 									"value": "15",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "ventaja_hoyo_5",
 									"value": "14",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "ventaja_hoyo_6",
 									"value": "13",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "ventaja_hoyo_7",
 									"value": "12",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "ventaja_hoyo_8",
 									"value": "11",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "ventaja_hoyo_9",
 									"value": "10",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "ventaja_hoyo_10",
 									"value": "9",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "ventaja_hoyo_11",
 									"value": "8",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "ventaja_hoyo_12",
 									"value": "7",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "ventaja_hoyo_13",
 									"value": "6",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "ventaja_hoyo_14",
 									"value": "5",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "ventaja_hoyo_15",
 									"value": "4",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "ventaja_hoyo_16",
 									"value": "3",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "ventaja_hoyo_17",
 									"value": "2",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "ventaja_hoyo_18",
 									"value": "1",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "owner_id",
 									"value": "1",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "email",
 									"value": "porfirioads@gmail.com",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "password",
 									"value": "holamundo",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								}
 							]
 						},
@@ -703,254 +633,212 @@
 								{
 									"key": "nombre",
 									"value": "CampitoDeEjemplo",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "ciudad",
 									"value": "Aguascalientes",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "campo_id",
 									"value": "2",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "par_hoyo_1",
 									"value": "4",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "par_hoyo_2",
 									"value": "5",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "par_hoyo_3",
 									"value": "6",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "par_hoyo_4",
 									"value": "6",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "par_hoyo_5",
 									"value": "3",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "par_hoyo_6",
 									"value": "7",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "par_hoyo_7",
 									"value": "5",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "par_hoyo_8",
 									"value": "6",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "par_hoyo_9",
 									"value": "5",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "par_hoyo_10",
 									"value": "4",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "par_hoyo_11",
 									"value": "3",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "par_hoyo_12",
 									"value": "5",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "par_hoyo_13",
 									"value": "8",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "par_hoyo_14",
 									"value": "8",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "par_hoyo_15",
 									"value": "6",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "par_hoyo_16",
 									"value": "5",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "par_hoyo_17",
 									"value": "4",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "par_hoyo_18",
 									"value": "4",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "ventaja_hoyo_1",
 									"value": "18",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "ventaja_hoyo_2",
 									"value": "17",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "ventaja_hoyo_3",
 									"value": "16",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "ventaja_hoyo_4",
 									"value": "15",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "ventaja_hoyo_5",
 									"value": "14",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "ventaja_hoyo_6",
 									"value": "13",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "ventaja_hoyo_7",
 									"value": "12",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "ventaja_hoyo_8",
 									"value": "11",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "ventaja_hoyo_9",
 									"value": "10",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "ventaja_hoyo_10",
 									"value": "9",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "ventaja_hoyo_11",
 									"value": "8",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "ventaja_hoyo_12",
 									"value": "7",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "ventaja_hoyo_13",
 									"value": "6",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "ventaja_hoyo_14",
 									"value": "5",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "ventaja_hoyo_15",
 									"value": "4",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "ventaja_hoyo_16",
 									"value": "3",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "ventaja_hoyo_17",
 									"value": "2",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "ventaja_hoyo_18",
 									"value": "1",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "owner_id",
 									"value": "1",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "email",
 									"value": "porfirioads@gmail.com",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "password",
 									"value": "holamundo",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								}
 							]
 						},
@@ -976,20 +864,17 @@
 								{
 									"key": "campo_id",
 									"value": "2",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "email",
 									"value": "porfirioads@gmail.com",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "password",
 									"value": "holamundo",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								}
 							]
 						},
@@ -1021,20 +906,17 @@
 								{
 									"key": "clave_edicion",
 									"value": "abcdefgh",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "partido_id",
 									"value": "1",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "jugador_id",
 									"value": "1",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								}
 							]
 						},
@@ -1060,20 +942,17 @@
 								{
 									"key": "clave_edicion",
 									"value": "abcdefgh",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "partido_id",
 									"value": "1",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "jugador_id",
 									"value": "1",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								}
 							]
 						},
@@ -1099,20 +978,18 @@
 								{
 									"key": "partido_id",
 									"value": "1",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "clave_edicion",
 									"value": "abcdefgh",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "clave_consulta",
 									"value": "abcdefgh",
 									"type": "text",
-									"enabled": false
+									"disabled": true
 								}
 							]
 						},
@@ -1155,14 +1032,12 @@
 								{
 									"key": "partido_id",
 									"value": "1",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "clave_edicion",
 									"value": "abcdefgh",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								}
 							]
 						},
@@ -1188,14 +1063,12 @@
 								{
 									"key": "inicio",
 									"value": "2017-04-10 00:00:00",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "campo_id",
 									"value": "2",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								}
 							]
 						},
@@ -1221,32 +1094,27 @@
 								{
 									"key": "inicio",
 									"value": "2017-04-10 00:00:00",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "fin",
 									"value": "2017-04-10 12:00:00",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "campo_id",
 									"value": "1",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "clave_edicion",
 									"value": "abcdefgh",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "partido_id",
 									"value": "1",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								}
 							]
 						},
@@ -1272,14 +1140,12 @@
 								{
 									"key": "clave_edicion",
 									"value": "abcdefgh",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "partido_id",
 									"value": "1",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								}
 							]
 						},
@@ -1322,26 +1188,23 @@
 								{
 									"key": "jugador_id",
 									"value": "1",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "partido_id",
 									"value": "1",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "clave_edicion",
 									"value": "abcdefgh",
 									"type": "text",
-									"enabled": false
+									"disabled": true
 								},
 								{
 									"key": "clave_consulta",
 									"value": "abcdefgh",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								}
 							]
 						},
@@ -1367,32 +1230,28 @@
 								{
 									"key": "jugador_id",
 									"value": "1",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "partido_id",
 									"value": "1",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "clave_edicion",
 									"value": "abcdefgh",
 									"type": "text",
-									"enabled": false
+									"disabled": true
 								},
 								{
 									"key": "clave_consulta",
 									"value": "abcdefgh",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "hoyo",
 									"value": "1",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								}
 							]
 						},
@@ -1418,38 +1277,32 @@
 								{
 									"key": "jugador_id",
 									"value": "1",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "partido_id",
 									"value": "1",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "hoyo",
 									"value": "18",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "golpes",
 									"value": "6",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "unidades",
 									"value": "1",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "clave_edicion",
 									"value": "abcdefgh",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								}
 							]
 						},
@@ -1481,8 +1334,7 @@
 								{
 									"key": "email",
 									"value": "porfiriss@gmail.com",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								}
 							]
 						},
@@ -1508,14 +1360,12 @@
 								{
 									"key": "email",
 									"value": "porfirss@gmail.com",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "password",
 									"value": "adiosmundo",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								}
 							]
 						},
@@ -1541,26 +1391,22 @@
 								{
 									"key": "email",
 									"value": "otrossss@gmail.com",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "password",
 									"value": "adiosmundo",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "usuario_id",
 									"value": "2",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "new_password",
 									"value": "adiosmundo",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								}
 							]
 						},
@@ -1586,14 +1432,45 @@
 								{
 									"key": "email",
 									"value": "victorre@gmail.com",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "password",
 									"value": "holamundo",
-									"type": "text",
-									"enabled": true
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Login usuario",
+					"request": {
+						"url": "http://localhost:8000/usuario_login",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "porfirioads@gmail.com",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "holamundo",
+									"description": "",
+									"type": "text"
 								}
 							]
 						},

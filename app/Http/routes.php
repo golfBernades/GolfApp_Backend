@@ -206,6 +206,13 @@ Route::get('apuesta_all', 'ApuestaController@index');
 Route::post('apuesta_by_id', 'ApuestaController@getApuestaById');
 
 /**
+ * Realiza la autenticación del usuario por medio de su email y password.
+ * Parámetros: email*, password*.
+ */
+Route::post('usuario_login', 'UsuarioController@login');
+
+
+/**
  * Obtiene un usuario por medio de su email.
  * Parámetros: email*.
  */
