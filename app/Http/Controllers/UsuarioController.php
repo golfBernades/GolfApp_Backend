@@ -44,7 +44,8 @@ class UsuarioController extends Controller
         if (!$email || !$password)
             return HttpResponses::parametrosIncompletosReponse();
         $usuario = $this->getUsuarioByEmail($request);
-        if (!$usuario) return HttpResponses::noEncontradoResponse('usuario');
+        if ($usuario instanceof JsonResponse)
+            return $usuario;
         if ($usuario->password == sha1($password))
             return HttpResponses::loginOkResponse();
         else return HttpResponses::loginErrorResponse();

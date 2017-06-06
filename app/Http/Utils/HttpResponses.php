@@ -59,10 +59,10 @@ class HttpResponses
             . ' no encontrado');
     }
 
-    public static function insertadoOkResponse($entidad)
+    public static function insertadoOkResponse($entidad, $id)
     {
-        return self::createResponse(200, 'Registro de ' . $entidad
-            . ' insertado');
+        return response()->json(['code' => 200, 'message' => 'Registro de '
+            . $entidad . ' insertado correctamente', 'id' => $id]);
     }
 
     public static function insertadoErrorResponse($entidad)

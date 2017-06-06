@@ -97,12 +97,6 @@ Route::group(['middleware' => ['edicion_partido']], function () {
      */
     Route::post('registrar_puntuaciones',
         'PuntuacionesController@registrarPuntuaciones');
-
-    /**
-     * Devuelve un listado con los campos disponibles.
-     * Parámetros: partido_id*, clave_edicion*
-     */
-    Route::post('campo_all', 'CampoController@index');
 });
 
 /**
@@ -146,11 +140,12 @@ Route::group(['middleware' => ['consulta_edicion']], function () {
         'PuntuacionesController@getHoyoPuntuacionesJugador');
 
     /**
-     * Devuelve el campo por medio de su id.
-     * Parámetros: partido_id*, campo_id*, clave_consulta, clave_edicion.
-     * [alguna de las dos claves es obligatoria]
+     * Devuele el campo que se está llevando a cabo en el partido cuya clave
+     * de consulta o clave de edición están dadas.
+     * Parámetros: partido_id*, clave_consulta, clave_edicion. [alguna de las
+     * dos claves es obligatoria]
      */
-    Route::post('campo_by_id', 'CampoController@show');
+    Route::post('get_campo_by_clave', 'CampoController@getCampoByClave');
 });
 
 /**
@@ -161,14 +156,14 @@ Route::group(['middleware' => ['consulta_edicion']], function () {
 Route::group(['middleware' => ['propietario_campo']], function () {
     /**
      * Inserta un nuevo campo.
-     * Parámetros: email*, password*, nombre*, ciudad*,
+     * Parámetros: email*, password*, nombre},
      * par_hoyo_1*...par_hoyo_18*, ventaja_hoyo_1*...ventaja_hoyo_18*
      */
     Route::post('campo_insert', 'CampoController@store');
 
     /**
      * Actualiza un campo existente.
-     * Parámetros: email*, password*, campo_id*, nombre, ciudad,
+     * Parámetros: email*, password*, campo_id*, nombre,
      * par_hoyo_1...par_hoyo_18, ventaja_hoyo_1...ventaja_hoyo_18
      */
     Route::put('campo_update', 'CampoController@update');

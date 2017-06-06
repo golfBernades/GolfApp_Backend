@@ -6,13 +6,33 @@ use App\Http\Utils\HttpResponses;
 use App\Models\Campo;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CampoController extends Controller
 {
-    public function index()
+    public function getCampoByClave(Request $request)
     {
-        $campos = Campo::all();
-        return response()->json($campos);
+        $campo = DB::table('campo as ca')
+            ->join('partido as pa', function ($join) {
+                $join->on('ca.id', '=', 'pa.campo_id');
+            })
+            ->select(['ca.id', 'ca.nombre', 'ca.par_hoyo_1', 'ca.par_hoyo_2',
+                'ca.par_hoyo_3', 'ca.par_hoyo_4', 'ca.par_hoyo_5',
+                'ca.par_hoyo_6', 'ca.par_hoyo_7', 'ca.par_hoyo_8',
+                'ca.par_hoyo_9', 'ca.par_hoyo_10', 'ca.par_hoyo_11',
+                'ca.par_hoyo_12', 'ca.par_hoyo_13', 'ca.par_hoyo_14',
+                'ca.par_hoyo_15', 'ca.par_hoyo_16', 'ca.par_hoyo_17',
+                'ca.par_hoyo_18', 'ca.par_hoyo_9', 'ca.ventaja_hoyo_1',
+                'ca.ventaja_hoyo_2', 'ca.ventaja_hoyo_3', 'ca.ventaja_hoyo_4',
+                'ca.ventaja_hoyo_5', 'ca.ventaja_hoyo_6', 'ca.ventaja_hoyo_7',
+                'ca.ventaja_hoyo_8', 'ca.ventaja_hoyo_9', 'ca.ventaja_hoyo_10',
+                'ca.ventaja_hoyo_11', 'ca.ventaja_hoyo_12', 'ca.ventaja_hoyo_13',
+                'ca.ventaja_hoyo_14', 'ca.ventaja_hoyo_15', 'ca.ventaja_hoyo_16',
+                'ca.ventaja_hoyo_17', 'ca.ventaja_hoyo_18', 'ca.owner_id'])
+        ->where('pa.clave_consulta', '=', $request['clave_consulta'])
+        ->orWhere('pa.clave_edicion', '=', $request['clave_edicion'])
+        ->first();
+        return response()->json($campo);
     }
 
     public function store(Request $request)
@@ -21,19 +41,12 @@ class CampoController extends Controller
         if ($campo instanceof Campo) {
             try {
                 $campo->save();
-                return HttpResponses::insertadoOkResponse('campo');
+                return HttpResponses::insertadoOkResponse('campo', $campo->id);
             } catch (\Exception $e) {
                 return HttpResponses::insertadoErrorResponse('campo');
             }
         }
         return $campo;
-    }
-
-    public function show(Request $request)
-    {
-        $id = $request['campo_id'];
-        if (!$id) return HttpResponses::parametrosIncompletosReponse();
-        return EntityByIdController::getCampoById($id);
     }
 
     public function update(Request $request)
@@ -79,11 +92,11 @@ class CampoController extends Controller
         } else
             $campo = new Campo();
         if ($request['nombre']) $campo->nombre = $request['nombre'];
-        if ($request['ciudad']) $campo->ciudad = $request['ciudad'];
-        if ($request['owner_id']) {
-            $campo->owner_id = $request['owner_id'];
-            $owner = EntityByIdController::getJugadorById($request['owner_id']);
+        if ($request['email']) {
+            $usuarioController = new UsuarioController();
+            $owner = $usuarioController->getUsuarioByEmail($request);
             if ($owner instanceof JsonResponse) return $owner;
+            $campo->owner_id = $owner->id;
         }
         if ($request['par_hoyo_1']) $campo->par_hoyo_1 = $request['par_hoyo_1'];
         if ($request['par_hoyo_2']) $campo->par_hoyo_2 = $request['par_hoyo_2'];
@@ -154,8 +167,6 @@ class CampoController extends Controller
     private function isCampoCompleto(Request $request)
     {
         $nombre = $request['nombre'];
-        $ciudad = $request['ciudad'];
-        $ownerId = $request['owner_id'];
         $par_hoyo_1 = $request['par_hoyo_1'];
         $par_hoyo_2 = $request['par_hoyo_2'];
         $par_hoyo_3 = $request['par_hoyo_3'];
@@ -195,7 +206,7 @@ class CampoController extends Controller
         // Si es para una actualización, se verifica que al menos un
         // parámetro del usuario venga en la request.
         if ($request['campo_id'])
-            return $nombre || $ciudad || $ownerId || $par_hoyo_1 || $par_hoyo_2
+            return $nombre || $par_hoyo_1 || $par_hoyo_2
                 || $par_hoyo_3 || $par_hoyo_4 || $par_hoyo_5 || $par_hoyo_6
                 || $par_hoyo_7 || $par_hoyo_8 || $par_hoyo_9 || $par_hoyo_10
                 || $par_hoyo_11 || $par_hoyo_12 || $par_hoyo_13 || $par_hoyo_14
@@ -206,10 +217,10 @@ class CampoController extends Controller
                 || $ventaja_hoyo_10 || $ventaja_hoyo_11 || $ventaja_hoyo_12
                 || $ventaja_hoyo_13 || $ventaja_hoyo_14 || $ventaja_hoyo_15
                 || $ventaja_hoyo_16 || $ventaja_hoyo_17 || $ventaja_hoyo_18;
-        // Si es para un usuario nuevo, deben venir en la request todos sus
+        // Si es para un campo nuevo, deben venir en la request todos sus
         // parámetros.
         else
-            return $nombre && $ciudad && $ownerId && $par_hoyo_1 && $par_hoyo_2
+            return $nombre && $par_hoyo_1 && $par_hoyo_2
                 && $par_hoyo_3 && $par_hoyo_4 && $par_hoyo_5 && $par_hoyo_6
                 && $par_hoyo_7 && $par_hoyo_8 && $par_hoyo_9 && $par_hoyo_10
                 && $par_hoyo_11 && $par_hoyo_12 && $par_hoyo_13 && $par_hoyo_14
