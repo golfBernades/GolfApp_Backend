@@ -125,10 +125,10 @@ class HttpResponses
             'La clave de edición del partido es correcta');
     }
 
-    public static function loginOkResponse()
+    public static function loginOkResponse($id)
     {
-        return self::createResponse(200,
-            'El usuario se logueó correctamente');
+        return response()->json(['code' => 200,
+            'message' => 'El usuario se logueó correctamente', 'id' => $id]);
     }
 
     public static function loginErrorResponse()

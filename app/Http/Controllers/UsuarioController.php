@@ -47,7 +47,7 @@ class UsuarioController extends Controller
         if ($usuario instanceof JsonResponse)
             return $usuario;
         if ($usuario->password == sha1($password))
-            return HttpResponses::loginOkResponse();
+            return HttpResponses::loginOkResponse($usuario->id);
         else return HttpResponses::loginErrorResponse();
     }
 
@@ -64,7 +64,7 @@ class UsuarioController extends Controller
             $usuario->email = $email;
             $usuario->password = sha1($password);
             $usuario->save();
-            return HttpResponses::insertadoOkResponse('usuario');
+            return HttpResponses::insertadoOkResponse('usuario', $usuario->id);
         } catch (\Exception $e) {
             return HttpResponses::insertadoErrorResponse('usuario');
         }
