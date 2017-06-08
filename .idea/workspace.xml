@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="16df6c25-8ea6-4bb9-9c3c-df6e63c1bf54" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Http/Utils/JsonResponses.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/EntityByIdController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/EntityByIdController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/UsuarioController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/UsuarioController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Utils/FieldValidator.php" afterPath="$PROJECT_DIR$/app/Http/Utils/FieldValidator.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/GolfApp_REST.postman_collection.json" afterPath="$PROJECT_DIR$/app/Http/GolfApp_REST.postman_collection.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/db_create_script/createdb.sql" afterPath="$PROJECT_DIR$/database/db_create_script/createdb.sql" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/db_create_script/dumpdb.sh" afterPath="$PROJECT_DIR$/database/db_create_script/dumpdb.sh" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -63,7 +62,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UsuarioController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="UsuarioController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UsuarioController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-3835">
@@ -71,6 +70,26 @@
               <folding>
                 <element signature="e#40#73#0#PHP" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="createdb.sql" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/database/db_create_script/createdb.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-6248">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dumpdb.sh" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/database/db_create_script/dumpdb.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="28">
+              <caret line="1" column="66" lean-forward="false" selection-start-line="1" selection-start-column="66" selection-end-line="1" selection-end-column="66" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -123,7 +142,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/Http/Utils/JsonResponseParser.php" />
         <option value="$PROJECT_DIR$/app/Http/Utils/DateTimeOperations.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/LoginController.php" />
         <option value="$PROJECT_DIR$/app/Http/Middleware/CreadorPartidoMiddleware.php" />
@@ -174,6 +192,7 @@
         <option value="$PROJECT_DIR$/app/Http/Utils/FieldValidator.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/EntityByIdController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/UsuarioController.php" />
+        <option value="$PROJECT_DIR$/database/db_create_script/dumpdb.sh" />
       </list>
     </option>
   </component>
@@ -575,14 +594,7 @@
       <workItem from="1496786426460" duration="1391000" />
       <workItem from="1496810010675" duration="581000" />
       <workItem from="1496841850940" duration="16675000" />
-      <workItem from="1496875055048" duration="13248000" />
-    </task>
-    <task id="LOCAL-00030" summary="Se creó el PartidoTableSeeder">
-      <created>1491849144183</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1491849144183</updated>
+      <workItem from="1496875055048" duration="13984000" />
     </task>
     <task id="LOCAL-00031" summary="Se refactorizó el validador de parámetros numéricos de la url en los controllers">
       <created>1491851886082</created>
@@ -920,11 +932,18 @@
       <option name="project" value="LOCAL" />
       <updated>1496899352414</updated>
     </task>
-    <option name="localTasksCounter" value="79" />
+    <task id="LOCAL-00079" summary="Se pulieron las rutas del UsuarioController">
+      <created>1496943051120</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1496943051121</updated>
+    </task>
+    <option name="localTasksCounter" value="80" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="252302000" />
+    <option name="totallyTimeSpent" value="253038000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="1922" height="1050" extended-state="6" />
@@ -984,7 +1003,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Se modificó la base de datos porque ya no habrá cuentas de usuario" />
     <MESSAGE value="Se tienen corregidos la DB y los seeders" />
     <MESSAGE value="Se agregaron unos archivos de seeders y modelos que olvidé en el commit anterior" />
     <MESSAGE value="Se hicieron los cambios en los controllers para la implementación de claves de edición y acceso a los partidos" />
@@ -1009,7 +1027,8 @@
     <MESSAGE value="Se obtiene el id del usuario cuando se inserta y se obtiene el campo por medio de alguna de las claves del partido donde se está usando" />
     <MESSAGE value="Se ajustaron las rutas del UsuarioController" />
     <MESSAGE value="Implementación del login y del usuarioExists manejando correctamente las responses" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implementación del login y del usuarioExists manejando correctamente las responses" />
+    <MESSAGE value="Se pulieron las rutas del UsuarioController" />
+    <option name="LAST_COMMIT_MESSAGE" value="Se pulieron las rutas del UsuarioController" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1219,20 +1238,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/db_create_script/dumpdb.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/db_create_script/createdb.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7144">
-          <caret line="128" column="24" lean-forward="true" selection-start-line="128" selection-start-column="24" selection-end-line="128" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Models/Usuario.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="224">
@@ -1364,6 +1369,22 @@
           <folding>
             <element signature="e#40#73#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/db_create_script/dumpdb.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="28">
+          <caret line="1" column="66" lean-forward="false" selection-start-line="1" selection-start-column="66" selection-end-line="1" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/db_create_script/createdb.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-6248">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

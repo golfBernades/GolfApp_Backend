@@ -1228,7 +1228,7 @@
 							"urlencoded": [
 								{
 									"key": "email",
-									"value": "porfirioaffdfdds@gmail.com",
+									"value": "angelads@gmail.com",
 									"type": "text"
 								}
 							]
@@ -1254,7 +1254,7 @@
 							"urlencoded": [
 								{
 									"key": "email",
-									"value": "angeladsg@gmail.com",
+									"value": "angeladsgscs@gmail.com",
 									"type": "text"
 								},
 								{
@@ -1285,22 +1285,22 @@
 							"urlencoded": [
 								{
 									"key": "usuario_id",
-									"value": "11",
+									"value": "141",
 									"type": "text"
 								},
 								{
 									"key": "email",
-									"value": "angeladsaa@gmail.com",
+									"value": "angelads@gmail.com",
 									"type": "text"
 								},
 								{
 									"key": "password",
-									"value": "holamundo",
+									"value": "adiosmundo",
 									"type": "text"
 								},
 								{
 									"key": "new_password",
-									"value": "adiosmundo",
+									"value": "holamundo",
 									"type": "text"
 								}
 							]
@@ -1326,7 +1326,7 @@
 							"urlencoded": [
 								{
 									"key": "email",
-									"value": "angeladsg@gmail.com",
+									"value": "angelads@gmail.com",
 									"type": "text"
 								},
 								{
@@ -1357,7 +1357,7 @@
 							"urlencoded": [
 								{
 									"key": "email",
-									"value": "porfirioads@gmail.com",
+									"value": "angelads@gmail.com",
 									"description": "",
 									"type": "text"
 								},
