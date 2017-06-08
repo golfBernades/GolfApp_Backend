@@ -13,23 +13,11 @@
 
 /**
  * -----------------------------------------------------------------------------
- * Rutas donde se requere contar el permiso de edición en un partido.
+ * Rutas donde se requiere contar el permiso de edición en un partido.
  * -----------------------------------------------------------------------------
  */
 
 Route::group(['middleware' => ['edicion_partido']], function () {
-    /**
-     * Devuelve todos los jugadores.
-     * Parámetros: partido_id*, clave_edicion*
-     */
-    Route::post('jugador_all', 'JugadorController@getAllJugador');
-
-    /**
-     * Devuelve el jugador por medio de su id.
-     * Parámetros: partido_id*, clave_edicion*, jugador_id*
-     */
-    Route::post('jugador_by_id', 'JugadorController@getJugadorById');
-
     /**
      * Inserta un jugador con los datos pasados como parámetro.
      * Parámetros: partido_id*, clave_edicion*, nombre*, handicap*
@@ -44,17 +32,10 @@ Route::group(['middleware' => ['edicion_partido']], function () {
     Route::put('jugador_update', 'JugadorController@update');
 
     /**
-     * Devuelve el partido por medio de su id.
-     * Parámetros: partido_id*, clave_edicion*
+     * Actualiza el partido por medio de su id y su fecha de finalización.
+     * Parámetros: partido_id*, clave_edicion*, fin*
      */
-    Route::post('partido_by_id', 'PartidoController@getPartidoById');
-
-    /**
-     * Actualiza el partido por medio de su id y los datos
-     * pasados como parámetro.
-     * Parámetros: partido_id*, clave_edicion*
-     */
-    Route::put('partido_update', 'PartidoController@update');
+    Route::put('partido_finalizar', 'PartidoController@finalizarPartido');
 
     /**
      * Elimina el partido por medio de su id así como sus puntuaciones
@@ -150,29 +131,36 @@ Route::group(['middleware' => ['consulta_edicion']], function () {
 
 /**
  * -----------------------------------------------------------------------------
- * Rutas donde se requiere estar logueado y ser el propietario del campo.
+ * Rutas donde se requiere estar logueado
  * -----------------------------------------------------------------------------
  */
-Route::group(['middleware' => ['propietario_campo']], function () {
+Route::group(['middleware' => ['usuario_logueado']], function () {
     /**
      * Inserta un nuevo campo.
-     * Parámetros: email*, password*, nombre},
+     * Parámetros: id*, email*, password*, nombre,
      * par_hoyo_1*...par_hoyo_18*, ventaja_hoyo_1*...ventaja_hoyo_18*
      */
     Route::post('campo_insert', 'CampoController@store');
 
     /**
-     * Actualiza un campo existente.
-     * Parámetros: email*, password*, campo_id*, nombre,
-     * par_hoyo_1...par_hoyo_18, ventaja_hoyo_1...ventaja_hoyo_18
+     * -------------------------------------------------------------------------
+     * Rutas donde se requiere ser el propietario del campo
+     * -------------------------------------------------------------------------
      */
-    Route::put('campo_update', 'CampoController@update');
+    Route::group(['middleware' => ['propietario_campo']], function () {
+        /**
+         * Actualiza un campo existente.
+         * Parámetros: email*, password*, campo_id*, nombre,
+         * par_hoyo_1...par_hoyo_18, ventaja_hoyo_1...ventaja_hoyo_18
+         */
+        Route::put('campo_update', 'CampoController@update');
 
-    /**
-     * Elimina un campo por medio de su id.
-     * Parámetros: email*, password*, campo_id*.
-     */
-    Route::delete('campo_delete', 'CampoController@destroy');
+        /**
+         * Elimina un campo por medio de su id.
+         * Parámetros: email*, password*, campo_id*.
+         */
+        Route::delete('campo_delete', 'CampoController@destroy');
+    });
 });
 
 
@@ -206,7 +194,6 @@ Route::post('apuesta_by_id', 'ApuestaController@getApuestaById');
  */
 Route::post('usuario_login', 'UsuarioController@login');
 
-
 /**
  * Obtiene un usuario por medio de su email.
  * Parámetros: email*.
@@ -232,20 +219,8 @@ Route::put('usuario_update', 'UsuarioController@update');
 Route::delete('usuario_delete', 'UsuarioController@destroy');
 
 /**
- * -----------------------------------------------------------------------------
- * Rutas implementadas con fines de testing.
- * -----------------------------------------------------------------------------
+ * Devuelve el partido por medio de su clave de consulta o de edición.
+ * Parámetros: clave_consulta, clave_edicion. [alguna de las dos claves
+ * es obligatoria]
  */
-
-/**
- * Obtiene un listado con los partidos que se están llevando a cabo.
- * Parámetros: Ninguno.
- */
-Route::get('partido_all', 'PartidoController@index');
-
-/**
- * Vacía los partidos que tienen más de 24 horas que finalizaron.
- * Parámetros: Ninguno.
- */
-Route::get('partido_vaciar_finalizados',
-    'PartidoController@vaciarPartidosFinalizados');
+Route::post('partido_by_clave', 'PartidoController@getPartidoByClave');

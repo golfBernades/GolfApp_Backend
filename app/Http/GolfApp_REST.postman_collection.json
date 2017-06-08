@@ -323,73 +323,6 @@
 			"description": "",
 			"item": [
 				{
-					"name": "Get all campo",
-					"request": {
-						"url": "http://localhost:8000/campo_all",
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "partido_id",
-									"value": "1",
-									"type": "text"
-								},
-								{
-									"key": "clave_edicion",
-									"value": "abcdefgh",
-									"type": "text"
-								}
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Get campo by id",
-					"request": {
-						"url": "http://localhost:8000/campo_by_id",
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/x-www-form-urlencoded",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "campo_id",
-									"value": "1",
-									"type": "text"
-								},
-								{
-									"key": "partido_id",
-									"value": "1",
-									"type": "text"
-								},
-								{
-									"key": "clave_edicion",
-									"value": "abcdefgh",
-									"type": "text",
-									"disabled": true
-								},
-								{
-									"key": "clave_consulta",
-									"value": "abcdefgh",
-									"type": "text"
-								}
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
 					"name": "Insert campo",
 					"request": {
 						"url": "http://localhost:8000/campo_insert",
@@ -405,13 +338,14 @@
 							"mode": "urlencoded",
 							"urlencoded": [
 								{
-									"key": "nombre",
-									"value": "CampitoDeEjemplo",
+									"key": "campo_id",
+									"value": "1_1",
+									"description": "",
 									"type": "text"
 								},
 								{
-									"key": "ciudad",
-									"value": "zacatecas",
+									"key": "nombre",
+									"value": "CampitoDeEjemplo",
 									"type": "text"
 								},
 								{
@@ -591,11 +525,6 @@
 								},
 								{
 									"key": "ventaja_hoyo_18",
-									"value": "1",
-									"type": "text"
-								},
-								{
-									"key": "owner_id",
 									"value": "1",
 									"type": "text"
 								},
@@ -631,18 +560,14 @@
 							"mode": "urlencoded",
 							"urlencoded": [
 								{
-									"key": "nombre",
-									"value": "CampitoDeEjemplo",
-									"type": "text"
-								},
-								{
-									"key": "ciudad",
-									"value": "Aguascalientes",
-									"type": "text"
-								},
-								{
 									"key": "campo_id",
-									"value": "2",
+									"value": "1_1",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "nombre",
+									"value": "CampitoActualizado",
 									"type": "text"
 								},
 								{
@@ -822,11 +747,6 @@
 								},
 								{
 									"key": "ventaja_hoyo_18",
-									"value": "1",
-									"type": "text"
-								},
-								{
-									"key": "owner_id",
 									"value": "1",
 									"type": "text"
 								},
@@ -863,7 +783,7 @@
 							"urlencoded": [
 								{
 									"key": "campo_id",
-									"value": "2",
+									"value": "1_1",
 									"type": "text"
 								},
 								{
@@ -874,6 +794,45 @@
 								{
 									"key": "password",
 									"value": "holamundo",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get campo by clave",
+					"request": {
+						"url": "http://localhost:8000/get_campo_by_clave",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "partido_id",
+									"value": "2",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "clave_consulta",
+									"value": "abcdefgh",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "clave_edicion",
+									"value": "abcdefgh",
+									"description": "",
 									"type": "text"
 								}
 							]
@@ -988,8 +947,7 @@
 								{
 									"key": "clave_consulta",
 									"value": "abcdefgh",
-									"type": "text",
-									"disabled": true
+									"type": "text"
 								}
 							]
 						},
@@ -1003,48 +961,6 @@
 			"name": "partido",
 			"description": "",
 			"item": [
-				{
-					"name": "Get all partido",
-					"request": {
-						"url": "http://localhost:8000/partido_all",
-						"method": "GET",
-						"header": [],
-						"body": {},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Get partido by id",
-					"request": {
-						"url": "http://localhost:8000/partido_by_id",
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/x-www-form-urlencoded",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "partido_id",
-									"value": "1",
-									"type": "text"
-								},
-								{
-									"key": "clave_edicion",
-									"value": "abcdefgh",
-									"type": "text"
-								}
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
 				{
 					"name": "Insert partido",
 					"request": {
@@ -1067,7 +983,7 @@
 								},
 								{
 									"key": "campo_id",
-									"value": "2",
+									"value": "1_1",
 									"type": "text"
 								}
 							]
@@ -1077,9 +993,9 @@
 					"response": []
 				},
 				{
-					"name": "Update partido",
+					"name": "Finalizar partido",
 					"request": {
-						"url": "http://localhost:8000/partido_update",
+						"url": "http://localhost:8000/partido_finalizar",
 						"method": "PUT",
 						"header": [
 							{
@@ -1092,18 +1008,8 @@
 							"mode": "urlencoded",
 							"urlencoded": [
 								{
-									"key": "inicio",
-									"value": "2017-04-10 00:00:00",
-									"type": "text"
-								},
-								{
 									"key": "fin",
 									"value": "2017-04-10 12:00:00",
-									"type": "text"
-								},
-								{
-									"key": "campo_id",
-									"value": "1",
 									"type": "text"
 								},
 								{
@@ -1113,7 +1019,7 @@
 								},
 								{
 									"key": "partido_id",
-									"value": "1",
+									"value": "2",
 									"type": "text"
 								}
 							]
@@ -1144,22 +1050,11 @@
 								},
 								{
 									"key": "partido_id",
-									"value": "1",
+									"value": "2",
 									"type": "text"
 								}
 							]
 						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Vaciar partidos finalizados",
-					"request": {
-						"url": "http://localhost:8000/partido_vaciar_finalizados",
-						"method": "GET",
-						"header": [],
-						"body": {},
 						"description": ""
 					},
 					"response": []
@@ -1333,7 +1228,7 @@
 							"urlencoded": [
 								{
 									"key": "email",
-									"value": "porfiriss@gmail.com",
+									"value": "porfirioaffdfdds@gmail.com",
 									"type": "text"
 								}
 							]
@@ -1359,12 +1254,12 @@
 							"urlencoded": [
 								{
 									"key": "email",
-									"value": "porfirss@gmail.com",
+									"value": "angeladsg@gmail.com",
 									"type": "text"
 								},
 								{
 									"key": "password",
-									"value": "adiosmundo",
+									"value": "holamundo",
 									"type": "text"
 								}
 							]
@@ -1389,18 +1284,18 @@
 							"mode": "urlencoded",
 							"urlencoded": [
 								{
+									"key": "usuario_id",
+									"value": "11",
+									"type": "text"
+								},
+								{
 									"key": "email",
-									"value": "otrossss@gmail.com",
+									"value": "angeladsaa@gmail.com",
 									"type": "text"
 								},
 								{
 									"key": "password",
-									"value": "adiosmundo",
-									"type": "text"
-								},
-								{
-									"key": "usuario_id",
-									"value": "2",
+									"value": "holamundo",
 									"type": "text"
 								},
 								{
@@ -1431,7 +1326,7 @@
 							"urlencoded": [
 								{
 									"key": "email",
-									"value": "victorre@gmail.com",
+									"value": "angeladsg@gmail.com",
 									"type": "text"
 								},
 								{

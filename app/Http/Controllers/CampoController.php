@@ -29,9 +29,9 @@ class CampoController extends Controller
                 'ca.ventaja_hoyo_11', 'ca.ventaja_hoyo_12', 'ca.ventaja_hoyo_13',
                 'ca.ventaja_hoyo_14', 'ca.ventaja_hoyo_15', 'ca.ventaja_hoyo_16',
                 'ca.ventaja_hoyo_17', 'ca.ventaja_hoyo_18', 'ca.owner_id'])
-        ->where('pa.clave_consulta', '=', $request['clave_consulta'])
-        ->orWhere('pa.clave_edicion', '=', $request['clave_edicion'])
-        ->first();
+            ->where('pa.clave_consulta', '=', $request['clave_consulta'])
+            ->orWhere('pa.clave_edicion', '=', $request['clave_edicion'])
+            ->first();
         return response()->json($campo);
     }
 
@@ -39,8 +39,12 @@ class CampoController extends Controller
     {
         $campo = $this->crearCampo($request);
         if ($campo instanceof Campo) {
+            $existente = EntityByIdController::getCampoById($request['campo_id']);
+            if ($existente instanceof Campo)
+                return HttpResponses::insertadoErrorResponse('campo');
             try {
                 $campo->save();
+                $campo = EntityByIdController::getCampoById($request['campo_id']);
                 return HttpResponses::insertadoOkResponse('campo', $campo->id);
             } catch (\Exception $e) {
                 return HttpResponses::insertadoErrorResponse('campo');
@@ -86,11 +90,9 @@ class CampoController extends Controller
     {
         if (!$this->isCampoCompleto($request))
             return HttpResponses::parametrosIncompletosReponse();
-        if ($request['campo_id']) {
-            $campo = Campo::find($request['campo_id']);
-            if (!$campo) return HttpResponses::noEncontradoResponse('campo');
-        } else
-            $campo = new Campo();
+        $campo = Campo::find($request['campo_id']);
+        if (!$campo) $campo = new Campo();
+        $campo->id = $request['campo_id'];
         if ($request['nombre']) $campo->nombre = $request['nombre'];
         if ($request['email']) {
             $usuarioController = new UsuarioController();
@@ -203,33 +205,39 @@ class CampoController extends Controller
         $ventaja_hoyo_16 = $request['ventaja_hoyo_16'];
         $ventaja_hoyo_17 = $request['ventaja_hoyo_17'];
         $ventaja_hoyo_18 = $request['ventaja_hoyo_18'];
-        // Si es para una actualización, se verifica que al menos un
-        // parámetro del usuario venga en la request.
-        if ($request['campo_id'])
-            return $nombre || $par_hoyo_1 || $par_hoyo_2
-                || $par_hoyo_3 || $par_hoyo_4 || $par_hoyo_5 || $par_hoyo_6
-                || $par_hoyo_7 || $par_hoyo_8 || $par_hoyo_9 || $par_hoyo_10
-                || $par_hoyo_11 || $par_hoyo_12 || $par_hoyo_13 || $par_hoyo_14
-                || $par_hoyo_15 || $par_hoyo_16 || $par_hoyo_17 || $par_hoyo_18
-                || $ventaja_hoyo_1 || $ventaja_hoyo_2 || $ventaja_hoyo_3
-                || $ventaja_hoyo_4 || $ventaja_hoyo_5 || $ventaja_hoyo_6
-                || $ventaja_hoyo_7 || $ventaja_hoyo_8 || $ventaja_hoyo_9
-                || $ventaja_hoyo_10 || $ventaja_hoyo_11 || $ventaja_hoyo_12
-                || $ventaja_hoyo_13 || $ventaja_hoyo_14 || $ventaja_hoyo_15
-                || $ventaja_hoyo_16 || $ventaja_hoyo_17 || $ventaja_hoyo_18;
-        // Si es para un campo nuevo, deben venir en la request todos sus
-        // parámetros.
-        else
-            return $nombre && $par_hoyo_1 && $par_hoyo_2
-                && $par_hoyo_3 && $par_hoyo_4 && $par_hoyo_5 && $par_hoyo_6
-                && $par_hoyo_7 && $par_hoyo_8 && $par_hoyo_9 && $par_hoyo_10
-                && $par_hoyo_11 && $par_hoyo_12 && $par_hoyo_13 && $par_hoyo_14
-                && $par_hoyo_15 && $par_hoyo_16 && $par_hoyo_17 && $par_hoyo_18
-                && $ventaja_hoyo_1 && $ventaja_hoyo_2 && $ventaja_hoyo_3
-                && $ventaja_hoyo_4 && $ventaja_hoyo_5 && $ventaja_hoyo_6
-                && $ventaja_hoyo_7 && $ventaja_hoyo_8 && $ventaja_hoyo_9
-                && $ventaja_hoyo_10 && $ventaja_hoyo_11 && $ventaja_hoyo_12
-                && $ventaja_hoyo_13 && $ventaja_hoyo_14 && $ventaja_hoyo_15
-                && $ventaja_hoyo_16 && $ventaja_hoyo_17 && $ventaja_hoyo_18;
+        $campo_id = $request['campo_id'];
+
+        echo 'campo_id: ' . $campo_id . '<br>';
+
+        if ($campo_id) {
+            if (Campo::find($campo_id)) {
+                echo 'campos para actualización de campo <br>';
+                return $nombre || $par_hoyo_1 || $par_hoyo_2
+                    || $par_hoyo_3 || $par_hoyo_4 || $par_hoyo_5 || $par_hoyo_6
+                    || $par_hoyo_7 || $par_hoyo_8 || $par_hoyo_9 || $par_hoyo_10
+                    || $par_hoyo_11 || $par_hoyo_12 || $par_hoyo_13 || $par_hoyo_14
+                    || $par_hoyo_15 || $par_hoyo_16 || $par_hoyo_17 || $par_hoyo_18
+                    || $ventaja_hoyo_1 || $ventaja_hoyo_2 || $ventaja_hoyo_3
+                    || $ventaja_hoyo_4 || $ventaja_hoyo_5 || $ventaja_hoyo_6
+                    || $ventaja_hoyo_7 || $ventaja_hoyo_8 || $ventaja_hoyo_9
+                    || $ventaja_hoyo_10 || $ventaja_hoyo_11 || $ventaja_hoyo_12
+                    || $ventaja_hoyo_13 || $ventaja_hoyo_14 || $ventaja_hoyo_15
+                    || $ventaja_hoyo_16 || $ventaja_hoyo_17 || $ventaja_hoyo_18;
+            } else {
+                echo 'campos para inserción de campo <br>';
+                return $nombre && $par_hoyo_1 && $par_hoyo_2
+                    && $par_hoyo_3 && $par_hoyo_4 && $par_hoyo_5 && $par_hoyo_6
+                    && $par_hoyo_7 && $par_hoyo_8 && $par_hoyo_9 && $par_hoyo_10
+                    && $par_hoyo_11 && $par_hoyo_12 && $par_hoyo_13 && $par_hoyo_14
+                    && $par_hoyo_15 && $par_hoyo_16 && $par_hoyo_17 && $par_hoyo_18
+                    && $ventaja_hoyo_1 && $ventaja_hoyo_2 && $ventaja_hoyo_3
+                    && $ventaja_hoyo_4 && $ventaja_hoyo_5 && $ventaja_hoyo_6
+                    && $ventaja_hoyo_7 && $ventaja_hoyo_8 && $ventaja_hoyo_9
+                    && $ventaja_hoyo_10 && $ventaja_hoyo_11 && $ventaja_hoyo_12
+                    && $ventaja_hoyo_13 && $ventaja_hoyo_14 && $ventaja_hoyo_15
+                    && $ventaja_hoyo_16 && $ventaja_hoyo_17 && $ventaja_hoyo_18;
+            }
+        } else
+            return false;
     }
 }

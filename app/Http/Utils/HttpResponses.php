@@ -44,10 +44,11 @@ class HttpResponses
     */
 
     public static function partidoInsertadoOkResponse($claveConsulta,
-                                                      $claveEdicion)
+                                                      $claveEdicion, $id)
     {
         return response()->json(['code' => 200,
             'message' => 'El partido fue creado correctamente',
+            'id' => $id,
             'clave_consulta' => $claveConsulta,
             'clave_edicion' => $claveEdicion
         ]);

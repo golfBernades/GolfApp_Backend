@@ -34,5 +34,7 @@ class Kernel extends HttpKernel
         'consulta_edicion' => \App\Http\Middleware\ConsultaEdicionPartidoMiddleware::class,
         'propietario_campo' =>
             \App\Http\Middleware\PropietarioCampoMiddleware::class,
+        'usuario_logueado' =>
+            \App\Http\Middleware\LoginMiddleware::class,
     ];
 }

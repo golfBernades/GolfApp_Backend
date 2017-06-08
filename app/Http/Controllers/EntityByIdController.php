@@ -52,8 +52,6 @@ class EntityByIdController extends Controller
 
     public static function getCampoById($campoId)
     {
-        $validation = FieldValidator::validateIntegerParameterURL($campoId);
-        if ($validation instanceof JsonResponse) return $validation;
         $campo = Campo::find($campoId);
         if (!$campo) return HttpResponses::noEncontradoResponse('campo');
         return $campo;

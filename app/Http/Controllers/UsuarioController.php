@@ -9,32 +9,55 @@ use Illuminate\Http\Request;
 
 class UsuarioController extends Controller
 {
+    private function jsonResponse($code, $params)
+    {
+        return response()->json($params)->setStatusCode($code);
+    }
+
+    private function parametrosIncompletosResponse($requiredParams)
+    {
+        return $this->jsonResponse(400, [
+            'error_message' => 'Parámetros incompletos, se requieren los '
+                . 'siguientes parámetros: ['
+                . implode(', ', $requiredParams)
+                . ']'
+        ]);
+    }
+
+    private function codigoDesconocidoResponse(JsonResponse $response)
+    {
+        return $this->jsonResponse($response->getStatusCode(), [
+            'error_message' => 'Error de tipo '
+                . $response->getStatusCode()
+        ]);
+    }
+
     public function usuarioExists(Request $request)
     {
         $response = $this->getUsuarioByEmail($request);
-        if ($response instanceof JsonResponse)
-            if ($response == HttpResponses::emailInexistente())
-                return response()->json([
-                    'email' => $request['email'],
-                    'existe' => false
-                ]);
-            else
-                return $response;
-        else
-            return response()->json([
-                'email' => $request['email'],
-                'existe' => true
+        if ($response->getStatusCode() == 200) {
+            $usuario = $response->getData()->usuario;
+            return $this->jsonResponse(200, [
+                'existe' => $usuario != null
             ]);
+        } else if ($response->getStatusCode() == 400) {
+            return $response;
+        } else {
+            return $this->codigoDesconocidoResponse($response);
+        }
     }
 
     public function getUsuarioByEmail(Request $request)
     {
         $email = $request['email'];
-        if (!$email) return HttpResponses::parametrosIncompletosReponse();
+        if (!$email) return $this->parametrosIncompletosResponse(['email']);
         $usuario = Usuario::where('email', '=', $email);
-        if ($usuario->count())
-            return $usuario->first();
-        return HttpResponses::emailInexistente();
+        if ($usuario->count()) return $this->jsonResponse(200, [
+            'usuario' => $usuario->first()
+        ]);
+        return $this->jsonResponse(200, [
+            'usuario' => null
+        ]);
     }
 
     public function login(Request $request)
@@ -42,14 +65,33 @@ class UsuarioController extends Controller
         $email = $request['email'];
         $password = $request['password'];
         if (!$email || !$password)
-            return HttpResponses::parametrosIncompletosReponse();
-        $usuario = $this->getUsuarioByEmail($request);
-        if ($usuario instanceof JsonResponse)
-            return $usuario;
-        if ($usuario->password == sha1($password))
-            return HttpResponses::loginOkResponse($usuario->id);
-        else return HttpResponses::loginErrorResponse();
+            return $this->parametrosIncompletosResponse(['email', 'password']);
+        $response = $this->getUsuarioByEmail($request);
+        if ($response->getStatusCode() == 200) {
+            $usuario = $response->getData()->usuario;
+            return $this->jsonResponse(200, [
+                'logueado' => $usuario && $usuario->password == sha1($password)
+            ]);
+        } else if ($response->getStatusCode() == 400) {
+            return $response;
+        } else {
+            return $this->codigoDesconocidoResponse($response);
+        }
     }
+
+//    public function login(Request $request)
+//    {
+//        $email = $request['email'];
+//        $password = $request['password'];
+//        if (!$email || !$password)
+//            return HttpResponses::parametrosIncompletosReponse();
+//        $usuario = $this->getUsuarioByEmail($request);
+//        if ($usuario instanceof JsonResponse)
+//            return $usuario;
+//        if ($usuario->password == sha1($password))
+//            return HttpResponses::loginOkResponse($usuario->id);
+//        else return HttpResponses::loginErrorResponse();
+//    }
 
     public function store(Request $request)
     {

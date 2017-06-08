@@ -18,12 +18,6 @@ use Illuminate\Support\Facades\Log;
 
 class PartidoController extends Controller
 {
-    public function index()
-    {
-        $partidos = Partido::all();
-        return response()->json($partidos);
-    }
-
     public function store(Request $request)
     {
         $partido = $this->crearPartido($request);
@@ -31,7 +25,8 @@ class PartidoController extends Controller
             try {
                 $partido->save();
                 return HttpResponses::partidoInsertadoOkResponse(
-                    $partido->clave_consulta, $partido->clave_edicion);
+                    $partido->clave_consulta, $partido->clave_edicion,
+                    $partido->id);
             } catch (\Exception $e) {
                 return HttpResponses::insertadoErrorResponse('partido');
             }
@@ -39,26 +34,55 @@ class PartidoController extends Controller
         return $partido;
     }
 
-    public function getPartidoById(Request $request)
+    public function getPartidoByClave(Request $request)
     {
+        $claveConsulta = $request['clave_consulta'];
+        $claveEdicion = $request['clave_edicion'];
+
+        if(!$claveConsulta && !$claveEdicion) {
+
+        }
+
+        $campo = DB::table('campo as ca')
+            ->join('partido as pa', function ($join) {
+                $join->on('ca.id', '=', 'pa.campo_id');
+            })
+            ->select(['ca.id', 'ca.nombre', 'ca.par_hoyo_1', 'ca.par_hoyo_2',
+                'ca.par_hoyo_3', 'ca.par_hoyo_4', 'ca.par_hoyo_5',
+                'ca.par_hoyo_6', 'ca.par_hoyo_7', 'ca.par_hoyo_8',
+                'ca.par_hoyo_9', 'ca.par_hoyo_10', 'ca.par_hoyo_11',
+                'ca.par_hoyo_12', 'ca.par_hoyo_13', 'ca.par_hoyo_14',
+                'ca.par_hoyo_15', 'ca.par_hoyo_16', 'ca.par_hoyo_17',
+                'ca.par_hoyo_18', 'ca.par_hoyo_9', 'ca.ventaja_hoyo_1',
+                'ca.ventaja_hoyo_2', 'ca.ventaja_hoyo_3', 'ca.ventaja_hoyo_4',
+                'ca.ventaja_hoyo_5', 'ca.ventaja_hoyo_6', 'ca.ventaja_hoyo_7',
+                'ca.ventaja_hoyo_8', 'ca.ventaja_hoyo_9', 'ca.ventaja_hoyo_10',
+                'ca.ventaja_hoyo_11', 'ca.ventaja_hoyo_12', 'ca.ventaja_hoyo_13',
+                'ca.ventaja_hoyo_14', 'ca.ventaja_hoyo_15', 'ca.ventaja_hoyo_16',
+                'ca.ventaja_hoyo_17', 'ca.ventaja_hoyo_18', 'ca.owner_id'])
+            ->where('pa.clave_consulta', '=', $request['clave_consulta'])
+            ->orWhere('pa.clave_edicion', '=', $request['clave_edicion'])
+            ->first();
+        return response()->json($campo);
+
         return EntityByIdController::getPartidoById($request['partido_id']);
     }
 
-    public function update(Request $request)
+    public function finalizarPartido(Request $request)
     {
-        $partido = $this->getPartidoById($request);
+        $partido = EntityByIdController::getPartidoById($request['partido_id']);
         if ($partido instanceof Partido) {
-            $partido = $this->crearPartido($request);
-            if ($partido instanceof Partido) {
+            if ($request['fin']) {
+                $partido->fin = $request['fin'];
                 try {
                     $partido->save();
                     return HttpResponses::actualizadoOkResponse('partido');
                 } catch (\Exception $e) {
                     return HttpResponses::actualizadoErrorResponse('partido');
                 }
-            }
+            } else
+                return HttpResponses::parametrosIncompletosReponse();
         }
-        return $partido;
     }
 
     public function destroy(Request $request)
@@ -110,29 +134,5 @@ class PartidoController extends Controller
                 return HttpResponses::noEncontradoResponse('campo');
         }
         return $partido;
-    }
-
-    public function vaciarPartidosFinalizados()
-    {
-        $request = new Request();
-        $contExito = 0;
-        $contFallo = 0;
-        $partidos = Partido::all();
-        for ($i = 0; $i < count($partidos); $i++) {
-            $now = date_create();
-            $inicio = date_create($partidos[$i]->inicio);
-            $diferencia = DateTimeOperations::getDifferenceInHours($now,
-                $inicio);
-            if ($diferencia > 24) {
-                $request['partido_id'] = $partidos[$i]->id;
-                $response = $this->destroy($request);
-                if ($response == HttpResponses::partidoVaciadoOK())
-                    $contExito++;
-                else
-                    $contFallo++;
-            }
-        }
-        return HttpResponses::partidosFinalizadosVaciados($contExito,
-            $contFallo);
     }
 }

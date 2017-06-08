@@ -11,34 +11,34 @@ use Illuminate\Support\Facades\DB;
 
 class JugadorController extends Controller
 {
-    public function getAllJugador(Request $request)
-    {
-        $partidoId = $request['partido_id'];
-        if (!$partidoId)
-            return HttpResponses::parametrosIncompletosReponse();
-        $partido = EntityByIdController::getPartidoById($partidoId);
-        if ($partido instanceof JsonResponse) return $partido;
-        $jugadoresEnPartido = DB::table('jugador as ju')
-            ->join('jugador_partido as jp', function ($join) {
-                $join->on('ju.id', '=', 'jp.jugador_id');
-            })
-            ->select(['ju.id', 'nombre', 'handicap'])
-            ->where('partido_id', '=', $partidoId)
-            ->get();
-        return response()->json($jugadoresEnPartido);
-    }
+//    public function getAllJugador(Request $request)
+//    {
+//        $partidoId = $request['partido_id'];
+//        if (!$partidoId)
+//            return HttpResponses::parametrosIncompletosReponse();
+//        $partido = EntityByIdController::getPartidoById($partidoId);
+//        if ($partido instanceof JsonResponse) return $partido;
+//        $jugadoresEnPartido = DB::table('jugador as ju')
+//            ->join('jugador_partido as jp', function ($join) {
+//                $join->on('ju.id', '=', 'jp.jugador_id');
+//            })
+//            ->select(['ju.id', 'nombre', 'handicap'])
+//            ->where('partido_id', '=', $partidoId)
+//            ->get();
+//        return response()->json($jugadoresEnPartido);
+//    }
 
-    public function getJugadorById(Request $request)
-    {
-        $jugadorId = $request['jugador_id'];
-        $partidoId = $request['partido_id'];
-        if (!$jugadorId || !$partidoId)
-            return HttpResponses::parametrosIncompletosReponse();
-        $jugadorPartido = JugadorPartido::where('jugador_id', '=', $jugadorId)
-            ->where('partido_id', '=', $partidoId)->first();
-        if (!$jugadorPartido) return HttpResponses::noEncontradoResponse('jugador');
-        return Jugador::find($jugadorId);
-    }
+//    public function getJugadorById(Request $request)
+//    {
+//        $jugadorId = $request['jugador_id'];
+//        $partidoId = $request['partido_id'];
+//        if (!$jugadorId || !$partidoId)
+//            return HttpResponses::parametrosIncompletosReponse();
+//        $jugadorPartido = JugadorPartido::where('jugador_id', '=', $jugadorId)
+//            ->where('partido_id', '=', $partidoId)->first();
+//        if (!$jugadorPartido) return HttpResponses::noEncontradoResponse('jugador');
+//        return Jugador::find($jugadorId);
+//    }
 
     public function store(Request $request)
     {
@@ -46,7 +46,8 @@ class JugadorController extends Controller
         if ($jugador instanceof Jugador) {
             try {
                 $jugador->save();
-                return HttpResponses::insertadoOkResponse('jugador');
+                return HttpResponses::insertadoOkResponse('jugador',
+                    $jugador->id);
             } catch (\Exception $e) {
                 return HttpResponses::insertadoErrorResponse('jugador');
             }
