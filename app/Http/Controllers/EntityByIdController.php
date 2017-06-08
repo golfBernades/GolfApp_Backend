@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Utils\FieldValidator;
 use App\Http\Utils\HttpResponses;
+use App\Http\Utils\JsonResponses;
 use App\Models\Apuesta;
 use App\Models\Campo;
 use App\Models\Jugador;
@@ -57,12 +58,19 @@ class EntityByIdController extends Controller
         return $campo;
     }
 
-    public static function getUsuarioById($usuarioId)
-    {
-        $validation = FieldValidator::validateIntegerParameterURL($usuarioId);
-        if ($validation instanceof JsonResponse) return $validation;
-        $usuario = Usuario::find($usuarioId);
-        if (!$usuario) return HttpResponses::noEncontradoResponse('usuario');
-        return $usuario;
-    }
+//    public static function getUsuarioById($usuarioId)
+//    {
+//        $validation = FieldValidator::validateIntegerParameterURL('usuario_id',
+//            $usuarioId);
+//        if ($validation->getStatusCode() == 200
+//            && $validation->getData()->parametro_valido
+//        ) {
+//            $usuario = Usuario::find($usuarioId);
+//            return JsonResponses::jsonResponse(200, [
+//                'usuario' => $usuario ? $usuario : null
+//            ]);
+//        } else {
+//            return $validation;
+//        }
+//    }
 }
