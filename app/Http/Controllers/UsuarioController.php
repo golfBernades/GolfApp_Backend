@@ -64,7 +64,8 @@ class UsuarioController extends Controller
 
         if ($insertado) {
             return JsonResponses::jsonResponse(200, [
-                'insertado' => true
+                'insertado' => true,
+                'usuario_id' => $usuario->id
             ]);
         } else {
             return JsonResponses::jsonResponse(200, [
