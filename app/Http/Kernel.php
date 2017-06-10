@@ -3,7 +3,6 @@
 namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
-use Illuminate\Support\Facades\App;
 
 class Kernel extends HttpKernel
 {
@@ -28,13 +27,18 @@ class Kernel extends HttpKernel
      */
     protected $routeMiddleware = [
         'auth' => \App\Http\Middleware\Authenticate::class,
-        'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
+        'auth.basic' =>
+            \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
-        'edicion_partido' => \App\Http\Middleware\EdicionPartidoMiddleware::class,
-        'consulta_edicion' => \App\Http\Middleware\ConsultaEdicionPartidoMiddleware::class,
+        'edicion_partido' =>
+            \App\Http\Middleware\EdicionPartidoMiddleware::class,
+        'consulta_edicion' =>
+            \App\Http\Middleware\ConsultaEdicionPartidoMiddleware::class,
         'propietario_campo' =>
             \App\Http\Middleware\PropietarioCampoMiddleware::class,
         'usuario_logueado' =>
             \App\Http\Middleware\LoginMiddleware::class,
+        'jugador_partido' =>
+            \App\Http\Middleware\JugadorPartidoMiddleware::class,
     ];
 }

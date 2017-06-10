@@ -2,98 +2,122 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Utils\HttpResponses;
+use App\Http\Utils\JsonResponses;
 use App\Models\Jugador;
-use App\Models\JugadorPartido;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class JugadorController extends Controller
 {
-//    public function getAllJugador(Request $request)
-//    {
-//        $partidoId = $request['partido_id'];
-//        if (!$partidoId)
-//            return HttpResponses::parametrosIncompletosReponse();
-//        $partido = EntityByIdController::getPartidoById($partidoId);
-//        if ($partido instanceof JsonResponse) return $partido;
-//        $jugadoresEnPartido = DB::table('jugador as ju')
-//            ->join('jugador_partido as jp', function ($join) {
-//                $join->on('ju.id', '=', 'jp.jugador_id');
-//            })
-//            ->select(['ju.id', 'nombre', 'handicap'])
-//            ->where('partido_id', '=', $partidoId)
-//            ->get();
-//        return response()->json($jugadoresEnPartido);
-//    }
+    public function getJugadoresInPartido(Request $request)
+    {
 
-//    public function getJugadorById(Request $request)
-//    {
-//        $jugadorId = $request['jugador_id'];
-//        $partidoId = $request['partido_id'];
-//        if (!$jugadorId || !$partidoId)
-//            return HttpResponses::parametrosIncompletosReponse();
-//        $jugadorPartido = JugadorPartido::where('jugador_id', '=', $jugadorId)
-//            ->where('partido_id', '=', $partidoId)->first();
-//        if (!$jugadorPartido) return HttpResponses::noEncontradoResponse('jugador');
-//        return Jugador::find($jugadorId);
-//    }
+    }
 
     public function store(Request $request)
     {
-        $jugador = $this->crearJugador($request);
-        if ($jugador instanceof Jugador) {
-            try {
-                $jugador->save();
-                return HttpResponses::insertadoOkResponse('jugador',
-                    $jugador->id);
-            } catch (\Exception $e) {
-                return HttpResponses::insertadoErrorResponse('jugador');
+        $response = $this->crearJugador($request, true);
+
+        if ($response instanceof Jugador) {
+            $jugador = Jugador::find($request['jugador_id']);
+            $insertado = true;
+            $error_message = '';
+            $insertadoId = -1;
+
+            if ($jugador) {
+                $insertado = false;
+                $error_message = 'El jugador con el id especificado ya existe';
+            } else {
+                try {
+                    $jugador = $response;
+                    $jugador->save();
+                    $insertadoId = Jugador::find($request['jugador_id'])->id;
+                } catch (\Exception $e) {
+                    $insertado = false;
+                    $error_message = $e->getMessage();
+                }
+            }
+
+            if ($insertado) {
+                return JsonResponses::jsonResponse(200, [
+                    'ok' => true,
+                    'jugador_id' => $insertadoId
+                ]);
+            } else {
+                return JsonResponses::jsonResponse(200, [
+                    'ok' => false,
+                    'error_message' => $error_message
+                ]);
             }
         }
-        return $jugador;
+
+        return $response;
     }
 
     public function update(Request $request)
     {
-        $jugador = $this->getJugadorById($request);
-        if ($jugador instanceof Jugador) {
-            $jugador = $this->crearJugador($request);
-            if ($jugador instanceof Jugador) {
-                try {
-                    $jugador->save();
-                    return HttpResponses::actualizadoOkResponse('jugador');
-                } catch (\Exception $e) {
-                    return HttpResponses::actualizadoErrorResponse('jugador');
-                }
+        $response = $this->crearJugador($request, false);
+
+        if ($response instanceof Jugador) {
+            $actualizado = true;
+            $error_message = '';
+
+            try {
+                $jugador = $response;
+                $jugador->save();
+            } catch (\Exception $e) {
+                $actualizado = false;
+                $error_message = $e->getMessage();
+            }
+
+            if ($actualizado) {
+                return JsonResponses::jsonResponse(200, [
+                    'ok' => true
+                ]);
+            } else {
+                return JsonResponses::jsonResponse(200, [
+                    'ok' => false,
+                    'error_message' => $error_message
+                ]);
             }
         }
-        return $jugador;
+
+        return $response;
     }
 
-    private function crearJugador(Request $request)
+    private function crearJugador(Request $request, $modoNuevo)
     {
-        if (!$this->isJugadorCompleto($request))
-            return HttpResponses::parametrosIncompletosReponse();
-        if ($request['jugador_id']) {
-            $jugador = Jugador::find($request['jugador_id']);
-            if (!$jugador)
-                return HttpResponses::noEncontradoResponse('jugador');
-        } else
+        if (!$this->isJugadorCompleto($request, $modoNuevo)) {
+            return JsonResponses::parametrosIncompletosResponse(['jugador_id',
+                'nombre', 'handicap']);
+        }
+
+        if ($modoNuevo) {
             $jugador = new Jugador();
-        if ($request['nombre'])
-            $jugador->nombre = $request['nombre'];
-        if ($request['handicap'])
-            $jugador->handicap = $request['handicap'];
+            $jugador->id = $request['jugador_id'];
+        } else {
+            $jugador = Jugador::find($request['jugador_id']);
+        }
+
+        if ($request['nombre']) $jugador->nombre = $request['nombre'];
+        if ($request['handicap']) $jugador->handicap = $request['handicap'];
+
         return $jugador;
     }
 
-    private function isJugadorCompleto(Request $request)
+    private function isJugadorCompleto(Request $request, $modoNuevo)
     {
+        $jugador_id = $request['jugador_id'];
         $nombre = $request['nombre'];
         $handicap = $request['handicap'];
-        if ($request['id']) return $nombre || $handicap;
-        else return $nombre && $handicap;
+
+        if (!$jugador_id) {
+            return false;
+        } else {
+            if ($modoNuevo) {
+                return $nombre && $handicap;
+            } else {
+                return $nombre || $handicap;
+            }
+        }
     }
 }

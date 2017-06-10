@@ -19,17 +19,25 @@
 
 Route::group(['middleware' => ['edicion_partido']], function () {
     /**
+     * -------------------------------------------------------------------------
+     * Rutas donde se requiere que el jugador pertenezca al partido
+     * -------------------------------------------------------------------------
+     */
+    Route::group(['middleware' => ['jugador_partido']], function () {
+        /**
+         * Actualiza el jugador por medio de su id y los datos
+         * pasados como parámetro.
+         * Parámetros: partido_id*, clave_edicion*, jugador_id*, nombre,
+         * handicap
+         */
+        Route::put('jugador_update', 'JugadorController@update');
+    });
+
+    /**
      * Inserta un jugador con los datos pasados como parámetro.
      * Parámetros: partido_id*, clave_edicion*, nombre*, handicap*
      */
     Route::post('jugador_insert', 'JugadorController@store');
-
-    /**
-     * Actualiza el jugador por medio de su id y los datos
-     * pasados como parámetro.
-     * Parámetros: partido_id*, clave_edicion*, jugador_id*, nombre, handicap
-     */
-    Route::put('jugador_update', 'JugadorController@update');
 
     /**
      * Actualiza el partido por medio de su id y su fecha de finalización.

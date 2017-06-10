@@ -148,11 +148,11 @@ DROP TABLE IF EXISTS `jugador`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `jugador` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` varchar(20) NOT NULL,
   `nombre` varchar(20) NOT NULL,
-  `handicap` int(11) NOT NULL,
+  `handicap` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -163,14 +163,14 @@ DROP TABLE IF EXISTS `jugador_partido`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `jugador_partido` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `jugador_id` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
+  `jugador_id` varchar(20) NOT NULL,
   `partido_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `jugador_partido_jugador_id_uindex` (`jugador_id`),
+  KEY `jugador_partido_jugador_id_fk` (`jugador_id`),
   KEY `jugador_partido_partido_id_fk` (`partido_id`),
-  CONSTRAINT `jugador_partido_jugador_id_fk` FOREIGN KEY (`jugador_id`) REFERENCES `jugador` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `jugador_partido_partido_id_fk` FOREIGN KEY (`partido_id`) REFERENCES `partido` (`id`) ON DELETE CASCADE
+  CONSTRAINT `jugador_partido_partido_id_fk` FOREIGN KEY (`partido_id`) REFERENCES `partido` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `jugador_partido_jugador_id_fk` FOREIGN KEY (`jugador_id`) REFERENCES `jugador` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -210,7 +210,7 @@ CREATE TABLE `puntuaciones` (
   `hoyo` int(11) NOT NULL,
   `golpes` int(11) NOT NULL,
   `unidades` int(11) NOT NULL DEFAULT '0',
-  `jugador_id` int(11) NOT NULL,
+  `jugador_id` varchar(20) NOT NULL,
   `partido_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `puntuaciones_id_uindex` (`id`),
@@ -234,7 +234,7 @@ CREATE TABLE `usuario` (
   `password` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `usuario_email_uindex` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -246,4 +246,4 @@ CREATE TABLE `usuario` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-06-08 12:42:36
+-- Dump completed on 2017-06-09 22:27:40
