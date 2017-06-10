@@ -120,4 +120,21 @@ class JugadorController extends Controller
             }
         }
     }
+
+    public function destroy(Request $request)
+    {
+        $jugador = Jugador::find($request['jugador_id']);
+
+        try {
+            $jugador->delete();
+            return JsonResponses::jsonResponse(200, [
+                'ok' => true
+            ]);
+        } catch (\Exception $e) {
+            return JsonResponses::jsonResponse(200, [
+                'ok' => false,
+                'error_message' => $e->getMessage()
+            ]);
+        }
+    }
 }

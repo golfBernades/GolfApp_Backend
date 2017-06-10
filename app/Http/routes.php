@@ -31,6 +31,13 @@ Route::group(['middleware' => ['edicion_partido']], function () {
          * handicap
          */
         Route::put('jugador_update', 'JugadorController@update');
+
+        /**
+         * Elimina el jugador por medio de su id y los datos
+         * pasados como parámetro.
+         * Parámetros: partido_id*, clave_edicion*, jugador_id*
+         */
+        Route::delete('jugador_delete', 'JugadorController@destroy');
     });
 
     /**
