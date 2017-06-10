@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Utils\HttpResponses;
+use App\Http\Utils\JsonResponses;
 use App\Models\Campo;
+use App\Models\Usuario;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -37,20 +39,42 @@ class CampoController extends Controller
 
     public function store(Request $request)
     {
-        $campo = $this->crearCampo($request);
-        if ($campo instanceof Campo) {
-            $existente = EntityByIdController::getCampoById($request['campo_id']);
-            if ($existente instanceof Campo)
-                return HttpResponses::insertadoErrorResponse('campo');
-            try {
-                $campo->save();
-                $campo = EntityByIdController::getCampoById($request['campo_id']);
-                return HttpResponses::insertadoOkResponse('campo', $campo->id);
-            } catch (\Exception $e) {
-                return HttpResponses::insertadoErrorResponse('campo');
+        $response = $this->crearCampo($request, true);
+
+        if ($response instanceof Campo) {
+            $campo = Campo::find($request['campo_id']);
+            $insertado = true;
+            $error_message = '';
+            $insertadoId = -1;
+
+            if ($campo) {
+                $insertado = false;
+                $error_message = 'El campo especificado ya existe';
+            } else {
+                try {
+                    $campo = $response;
+                    $campo->save();
+                    $insertadoId = Campo::find($request['campo_id'])->id;
+                } catch (\Exception $e) {
+                    $insertado = false;
+                    $error_message = $e->getMessage();
+                }
+            }
+
+            if ($insertado) {
+                return JsonResponses::jsonResponse(200, [
+                    'insertado' => true,
+                    'campo_id' => $insertadoId
+                ]);
+            } else {
+                return JsonResponses::jsonResponse(200, [
+                    'insertado' => false,
+                    'error_message' => $error_message
+                ]);
             }
         }
-        return $campo;
+
+        return $response;
     }
 
     public function update(Request $request)
@@ -86,18 +110,30 @@ class CampoController extends Controller
         }
     }
 
-    private function crearCampo(Request $request)
+    private function crearCampo(Request $request, $modoNuevo)
     {
-        if (!$this->isCampoCompleto($request))
-            return HttpResponses::parametrosIncompletosReponse();
+        if (!$this->isCampoCompleto($request, $modoNuevo))
+            return JsonResponses::parametrosIncompletosResponse([
+                'campo_id', 'nombre', 'par_hoyo_1', 'par_hoyo_2', 'par_hoyo_3',
+                'par_hoyo_4', 'par_hoyo_5', 'par_hoyo_6', 'par_hoyo_7',
+                'par_hoyo_8', 'par_hoyo_9', 'par_hoyo_10', 'par_hoyo_11',
+                'par_hoyo_12', 'par_hoyo_13', 'par_hoyo_14', 'par_hoyo_15',
+                'par_hoyo_16', 'par_hoyo_17', 'par_hoyo_18', 'ventaja_hoyo_1',
+                'ventaja_hoyo_2', 'ventaja_hoyo_3', 'ventaja_hoyo_4',
+                'ventaja_hoyo_5', 'ventaja_hoyo_6', 'ventaja_hoyo_7',
+                'ventaja_hoyo_8', 'ventaja_hoyo_9', 'ventaja_hoyo_10',
+                'ventaja_hoyo_11', 'ventaja_hoyo_12', 'ventaja_hoyo_13',
+                'ventaja_hoyo_14', 'ventaja_hoyo_15', 'ventaja_hoyo_16',
+                'ventaja_hoyo_17', 'ventaja_hoyo_18', 'email', 'password'
+            ]);
+
         $campo = Campo::find($request['campo_id']);
         if (!$campo) $campo = new Campo();
         $campo->id = $request['campo_id'];
+
         if ($request['nombre']) $campo->nombre = $request['nombre'];
         if ($request['email']) {
-            $usuarioController = new UsuarioController();
-            $owner = $usuarioController->getUsuarioByEmail($request);
-            if ($owner instanceof JsonResponse) return $owner;
+            $owner = Usuario::where('email', '=', $request['email'])->first();
             $campo->owner_id = $owner->id;
         }
         if ($request['par_hoyo_1']) $campo->par_hoyo_1 = $request['par_hoyo_1'];
@@ -166,8 +202,9 @@ class CampoController extends Controller
         return $campo;
     }
 
-    private function isCampoCompleto(Request $request)
+    private function isCampoCompleto(Request $request, $modoNuevo)
     {
+        $campo_id = $request['campo_id'];
         $nombre = $request['nombre'];
         $par_hoyo_1 = $request['par_hoyo_1'];
         $par_hoyo_2 = $request['par_hoyo_2'];
@@ -205,39 +242,33 @@ class CampoController extends Controller
         $ventaja_hoyo_16 = $request['ventaja_hoyo_16'];
         $ventaja_hoyo_17 = $request['ventaja_hoyo_17'];
         $ventaja_hoyo_18 = $request['ventaja_hoyo_18'];
-        $campo_id = $request['campo_id'];
 
-        echo 'campo_id: ' . $campo_id . '<br>';
+        if (!$campo_id) return false;
 
-        if ($campo_id) {
-            if (Campo::find($campo_id)) {
-                echo 'campos para actualización de campo <br>';
-                return $nombre || $par_hoyo_1 || $par_hoyo_2
-                    || $par_hoyo_3 || $par_hoyo_4 || $par_hoyo_5 || $par_hoyo_6
-                    || $par_hoyo_7 || $par_hoyo_8 || $par_hoyo_9 || $par_hoyo_10
-                    || $par_hoyo_11 || $par_hoyo_12 || $par_hoyo_13 || $par_hoyo_14
-                    || $par_hoyo_15 || $par_hoyo_16 || $par_hoyo_17 || $par_hoyo_18
-                    || $ventaja_hoyo_1 || $ventaja_hoyo_2 || $ventaja_hoyo_3
-                    || $ventaja_hoyo_4 || $ventaja_hoyo_5 || $ventaja_hoyo_6
-                    || $ventaja_hoyo_7 || $ventaja_hoyo_8 || $ventaja_hoyo_9
-                    || $ventaja_hoyo_10 || $ventaja_hoyo_11 || $ventaja_hoyo_12
-                    || $ventaja_hoyo_13 || $ventaja_hoyo_14 || $ventaja_hoyo_15
-                    || $ventaja_hoyo_16 || $ventaja_hoyo_17 || $ventaja_hoyo_18;
-            } else {
-                echo 'campos para inserción de campo <br>';
-                return $nombre && $par_hoyo_1 && $par_hoyo_2
-                    && $par_hoyo_3 && $par_hoyo_4 && $par_hoyo_5 && $par_hoyo_6
-                    && $par_hoyo_7 && $par_hoyo_8 && $par_hoyo_9 && $par_hoyo_10
-                    && $par_hoyo_11 && $par_hoyo_12 && $par_hoyo_13 && $par_hoyo_14
-                    && $par_hoyo_15 && $par_hoyo_16 && $par_hoyo_17 && $par_hoyo_18
-                    && $ventaja_hoyo_1 && $ventaja_hoyo_2 && $ventaja_hoyo_3
-                    && $ventaja_hoyo_4 && $ventaja_hoyo_5 && $ventaja_hoyo_6
-                    && $ventaja_hoyo_7 && $ventaja_hoyo_8 && $ventaja_hoyo_9
-                    && $ventaja_hoyo_10 && $ventaja_hoyo_11 && $ventaja_hoyo_12
-                    && $ventaja_hoyo_13 && $ventaja_hoyo_14 && $ventaja_hoyo_15
-                    && $ventaja_hoyo_16 && $ventaja_hoyo_17 && $ventaja_hoyo_18;
-            }
-        } else
-            return false;
+        if ($modoNuevo) {
+            return $nombre && $par_hoyo_1 && $par_hoyo_2
+                && $par_hoyo_3 && $par_hoyo_4 && $par_hoyo_5 && $par_hoyo_6
+                && $par_hoyo_7 && $par_hoyo_8 && $par_hoyo_9 && $par_hoyo_10
+                && $par_hoyo_11 && $par_hoyo_12 && $par_hoyo_13 && $par_hoyo_14
+                && $par_hoyo_15 && $par_hoyo_16 && $par_hoyo_17 && $par_hoyo_18
+                && $ventaja_hoyo_1 && $ventaja_hoyo_2 && $ventaja_hoyo_3
+                && $ventaja_hoyo_4 && $ventaja_hoyo_5 && $ventaja_hoyo_6
+                && $ventaja_hoyo_7 && $ventaja_hoyo_8 && $ventaja_hoyo_9
+                && $ventaja_hoyo_10 && $ventaja_hoyo_11 && $ventaja_hoyo_12
+                && $ventaja_hoyo_13 && $ventaja_hoyo_14 && $ventaja_hoyo_15
+                && $ventaja_hoyo_16 && $ventaja_hoyo_17 && $ventaja_hoyo_18;
+        } else {
+            return $nombre || $par_hoyo_1 || $par_hoyo_2
+                || $par_hoyo_3 || $par_hoyo_4 || $par_hoyo_5 || $par_hoyo_6
+                || $par_hoyo_7 || $par_hoyo_8 || $par_hoyo_9 || $par_hoyo_10
+                || $par_hoyo_11 || $par_hoyo_12 || $par_hoyo_13 || $par_hoyo_14
+                || $par_hoyo_15 || $par_hoyo_16 || $par_hoyo_17 || $par_hoyo_18
+                || $ventaja_hoyo_1 || $ventaja_hoyo_2 || $ventaja_hoyo_3
+                || $ventaja_hoyo_4 || $ventaja_hoyo_5 || $ventaja_hoyo_6
+                || $ventaja_hoyo_7 || $ventaja_hoyo_8 || $ventaja_hoyo_9
+                || $ventaja_hoyo_10 || $ventaja_hoyo_11 || $ventaja_hoyo_12
+                || $ventaja_hoyo_13 || $ventaja_hoyo_14 || $ventaja_hoyo_15
+                || $ventaja_hoyo_16 || $ventaja_hoyo_17 || $ventaja_hoyo_18;
+        }
     }
 }

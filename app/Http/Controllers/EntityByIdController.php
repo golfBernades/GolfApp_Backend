@@ -51,12 +51,12 @@ class EntityByIdController extends Controller
         return $apuesta;
     }
 
-    public static function getCampoById($campoId)
-    {
-        $campo = Campo::find($campoId);
-        if (!$campo) return HttpResponses::noEncontradoResponse('campo');
-        return $campo;
-    }
+//    public static function getCampoById($campoId)
+//    {
+//        $campo = Campo::find($campoId);
+//        if (!$campo) return HttpResponses::noEncontradoResponse('campo');
+//        return $campo;
+//    }
 
 //    public static function getUsuarioById($usuarioId)
 //    {
