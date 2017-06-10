@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Utils\HttpResponses;
 use App\Http\Utils\JsonResponses;
 use App\Models\Campo;
 use App\Models\Usuario;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -34,7 +32,10 @@ class CampoController extends Controller
             ->where('pa.clave_consulta', '=', $request['clave_consulta'])
             ->orWhere('pa.clave_edicion', '=', $request['clave_edicion'])
             ->first();
-        return response()->json($campo);
+
+        return JsonResponses::jsonResponse(200, [
+            'campo' => $campo
+        ]);
     }
 
     public function store(Request $request)
@@ -49,7 +50,7 @@ class CampoController extends Controller
 
             if ($campo) {
                 $insertado = false;
-                $error_message = 'El campo especificado ya existe';
+                $error_message = 'El campo con el id especificado ya existe';
             } else {
                 try {
                     $campo = $response;
@@ -63,12 +64,12 @@ class CampoController extends Controller
 
             if ($insertado) {
                 return JsonResponses::jsonResponse(200, [
-                    'insertado' => true,
+                    'ok' => true,
                     'campo_id' => $insertadoId
                 ]);
             } else {
                 return JsonResponses::jsonResponse(200, [
-                    'insertado' => false,
+                    'ok' => false,
                     'error_message' => $error_message
                 ]);
             }
@@ -79,34 +80,48 @@ class CampoController extends Controller
 
     public function update(Request $request)
     {
-        $id = $request['campo_id'];
-        if (!$id) return HttpResponses::parametrosIncompletosReponse();
-        $campo = EntityByIdController::getCampoById($id);
-        if ($campo instanceof JsonResponse) return $campo;
-        $request['campo_id'] = $id;
-        $campo = $this->crearCampo($request);
-        if ($campo instanceof Campo) {
+        $response = $this->crearCampo($request, false);
+
+        if ($response instanceof Campo) {
+            $actualizado = true;
+            $error_message = '';
+
             try {
+                $campo = $response;
                 $campo->save();
-                return HttpResponses::actualizadoOkResponse('campo');
             } catch (\Exception $e) {
-                return HttpResponses::actualizadoErrorResponse('campo');
+                $actualizado = false;
+                $error_message = $e->getMessage();
+            }
+
+            if ($actualizado) {
+                return JsonResponses::jsonResponse(200, [
+                    'ok' => true
+                ]);
+            } else {
+                return JsonResponses::jsonResponse(200, [
+                    'ok' => false,
+                    'error_message' => $error_message
+                ]);
             }
         }
-        return $campo;
+
+        return $response;
     }
 
     public function destroy(Request $request)
     {
-        $id = $request['campo_id'];
-        if (!$id) return HttpResponses::parametrosIncompletosReponse();
-        $campo = EntityByIdController::getCampoById($id);
-        if ($campo instanceof JsonResponse) return $campo;
+        $campo = Campo::find($request['campo_id']);
         try {
             $campo->delete();
-            return HttpResponses::eliminadoOkResponse('campo');
+            return JsonResponses::jsonResponse(200, [
+                'ok' => true
+            ]);
         } catch (\Exception $e) {
-            return HttpResponses::eliminadoErrorResponse('campo');
+            return JsonResponses::jsonResponse(200, [
+                'ok' => false,
+                'error_message' => $e->getMessage()
+            ]);
         }
     }
 
@@ -127,9 +142,14 @@ class CampoController extends Controller
                 'ventaja_hoyo_17', 'ventaja_hoyo_18', 'email', 'password'
             ]);
 
-        $campo = Campo::find($request['campo_id']);
-        if (!$campo) $campo = new Campo();
-        $campo->id = $request['campo_id'];
+        if ($modoNuevo) {
+            $campo = new Campo();
+            $campo->id = $request['campo_id'];
+        } else {
+            // En modo de edición asumimos que el campo existe porque ya fue
+            // validado en el middleware PropietarioCampoMiddleware
+            $campo = Campo::find($request['campo_id']);
+        }
 
         if ($request['nombre']) $campo->nombre = $request['nombre'];
         if ($request['email']) {

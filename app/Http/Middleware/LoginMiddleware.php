@@ -24,7 +24,7 @@ class LoginMiddleware
         $response = $usuarioController->login($request);
 
         if ($response->getStatusCode() == 200) {
-            return $response->getData()->logueado ? $next($request) : $response;
+            return $response->getData()->ok ? $next($request) : $response;
         } else {
             return $response;
         }

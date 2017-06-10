@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Utils\HttpResponses;
 use App\Http\Utils\JsonResponseParser;
+use App\Http\Utils\JsonResponses;
+use App\Models\Campo;
 use App\Models\Partido;
+use App\Models\Usuario;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -38,29 +41,36 @@ class AutenticacionController extends Controller
         return HttpResponses::claveEdicionErrorResponse();
     }
 
-    public function autenticarUsuario(Request $request)
-    {
-        $usuarioController = new UsuarioController();
-        return $usuarioController->login($request);
-    }
+//    public function autenticarUsuario(Request $request)
+//    {
+//        $usuarioController = new UsuarioController();
+//        return $usuarioController->login($request);
+//    }
 
-    public function autenticarUsuarioCampo(Request $request)
-    {
-        $campoId = $request['campo_id'];
-        if (!$campoId) return HttpResponses::parametrosIncompletosReponse();
-        $campo = EntityByIdController::getCampoById($campoId);
-        if ($campo instanceof JsonResponse) return $campo;
-        $usuarioController = new UsuarioController();
-        $response = $usuarioController->login($request);
-        $data = JsonResponseParser::parse($response);
-        if ($data->code == 200) {
-            $usuario = $usuarioController->getUsuarioByEmail($request);
-            if ($campo->owner_id == $usuario->id)
-                return HttpResponses::propietarioCampoOkResponse();
-            else
-                return HttpResponses::propietarioCampoErrorResponse();
+//    public function autenticarUsuarioCampo(Request $request)
+//    {
+//        $campoId = $request['campo_id'];
+//        $email = $request['email'];
+//
+//        if (!$campoId)
+//            return JsonResponses::parametrosIncompletosResponse(['campo_id']);
+//
+//        $campo = Campo::find($campoId);
+//
+//        if (!$campo) {
+//            return JsonResponses::jsonResponse(200, [
+//                'ok' => false,
+//                'error_message' => 'El campo con el id especificado no existe'
+//            ]);
+//        } else {
+//            $usuario = Usuario::where('email', '=', $email)->first();
+//
+//            if ($campo->owner_id == $usuario->id) {
+//                return JsonResponses::jsonResponse(200, [
+//                    'ok' => true,
+//                ]);
+//            }
+//        }
+//    }
 
-        }
-        return $response;
-    }
 }

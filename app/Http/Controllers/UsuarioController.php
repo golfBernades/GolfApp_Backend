@@ -14,6 +14,7 @@ class UsuarioController extends Controller
         if (!$email) return JsonResponses::parametrosIncompletosResponse(['email']);
         $usuario = Usuario::where('email', '=', $email)->first();
         return JsonResponses::jsonResponse(200, [
+            'ok' => true,
             'existe' => $usuario != null
         ]);
     }
@@ -29,9 +30,16 @@ class UsuarioController extends Controller
 
         $usuario = Usuario::where('email', '=', $email)->first();
 
-        return JsonResponses::jsonResponse(200, [
-            'logueado' => $usuario && $usuario->password == sha1($password)
-        ]);
+        if ($usuario && $usuario->password == sha1($password)) {
+            return JsonResponses::jsonResponse(200, [
+                'ok' => true
+            ]);
+        } else {
+            return JsonResponses::jsonResponse(200, [
+                'ok' => false,
+                'error_message' => 'Datos de login incorrectos'
+            ]);
+        }
     }
 
     public function store(Request $request)
@@ -64,17 +72,18 @@ class UsuarioController extends Controller
 
         if ($insertado) {
             return JsonResponses::jsonResponse(200, [
-                'insertado' => true,
+                'ok' => true,
                 'usuario_id' => $usuario->id
             ]);
         } else {
             return JsonResponses::jsonResponse(200, [
-                'insertado' => false,
+                'ok' => false,
                 'error_message' => $error_message
             ]);
         }
     }
 
+    // TODO acomodarlo para que dependa del LoginMiddleware
     public function update(Request $request)
     {
         $usuarioId = $request['usuario_id'];
@@ -120,11 +129,11 @@ class UsuarioController extends Controller
         }
         if ($actualizado) {
             return JsonResponses::jsonResponse(200, [
-                'actualizado' => true
+                'ok' => true
             ]);
         } else {
             return JsonResponses::jsonResponse(200, [
-                'actualizado' => false,
+                'ok' => false,
                 'error_message' => $error_message
             ]);
         }
@@ -155,13 +164,13 @@ class UsuarioController extends Controller
             $error_message = 'No existe el usuario con el email especificado';
         }
 
-        if($eliminado) {
+        if ($eliminado) {
             return JsonResponses::jsonResponse(200, [
-                'eliminado' => true
+                'ok' => true
             ]);
         } else {
             return JsonResponses::jsonResponse(200, [
-                'eliminado' => false,
+                'ok' => false,
                 'error_message' => $error_message
             ]);
         }
