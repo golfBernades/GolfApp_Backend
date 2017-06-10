@@ -8,11 +8,6 @@ use Illuminate\Http\Request;
 
 class JugadorController extends Controller
 {
-    public function getJugadoresInPartido(Request $request)
-    {
-
-    }
-
     public function store(Request $request)
     {
         $response = $this->crearJugador($request, true);

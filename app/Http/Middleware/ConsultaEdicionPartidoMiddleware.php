@@ -6,6 +6,8 @@ use App\Http\Controllers\Au;
 use App\Http\Controllers\AutenticacionController;
 use App\Http\Utils\HttpResponses;
 use App\Http\Utils\JsonResponseParser;
+use App\Http\Utils\JsonResponses;
+use App\Models\Partido;
 use Closure;
 
 class ConsultaEdicionPartidoMiddleware
@@ -19,16 +21,43 @@ class ConsultaEdicionPartidoMiddleware
      */
     public function handle($request, Closure $next)
     {
-        $autenticacionController = new AutenticacionController();
-        if ($request['clave_consulta']) {
-            $response = $autenticacionController->autenticarPermisoAccesoPartido($request);
-            $data = JsonResponseParser::parse($response);
-            if ($data->code == 200) return $next($request);
-        } else if ($request['clave_edicion']) {
-            $response = $autenticacionController->autenticarPermisoEdicionPartido($request);
-            $data = JsonResponseParser::parse($response);
-            if ($data->code == 200) return $next($request);
-        } else return HttpResponses::parametrosIncompletosReponse();
-        return $response;
+        $partidoId = $request['partido_id'];
+        $claveEdicion = $request['clave_edicion'];
+        $claveConsulta = $request['clave_consulta'];
+
+        if (!$partidoId || (!$claveEdicion && !$claveConsulta))
+            return JsonResponses::parametrosIncompletosResponse(['partido_id',
+                'clave_edicion', 'clave_consulta']);
+
+        $partido = Partido::find($partidoId);
+
+        if (!$partido) {
+            return JsonResponses::jsonResponse(200, [
+                'ok' => false,
+                'error_message' => 'No existe el partido con el id especificado'
+            ]);
+        } else {
+            $claveCorrecta = false;
+
+            if ($claveEdicion) {
+                if ($partido->clave_edicion == $claveEdicion) {
+                    $claveCorrecta = true;
+                }
+            } else {
+                if ($partido->clave_consulta == $claveConsulta) {
+                    $claveCorrecta = true;
+                }
+            }
+
+            if ($claveCorrecta) {
+                return $next($request);
+            } else {
+                return JsonResponses::jsonResponse(200, [
+                    'ok' => false,
+                    'error_message' => 'La clave de consulta o edición del '
+                        . 'partido es incorrecta'
+                ]);
+            }
+        }
     }
 }

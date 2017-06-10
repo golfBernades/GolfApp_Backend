@@ -33,7 +33,10 @@ class CampoController extends Controller
             ->orWhere('pa.clave_edicion', '=', $request['clave_edicion'])
             ->first();
 
+        // Siempre va a estar correcto porque no se permite que un partido no
+        // tenga asociado un campo.
         return JsonResponses::jsonResponse(200, [
+            'ok' => true,
             'campo' => $campo
         ]);
     }

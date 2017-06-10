@@ -1,9 +1,9 @@
 <?php
 
 /*
-|--------------------------------------------------------------------------
+|-------------------------------------------------------------------------------
 | Application Routes
-|--------------------------------------------------------------------------
+|-------------------------------------------------------------------------------
 |
 | Here is where you can register all of the routes for an application.
 | It's a breeze. Simply tell Laravel the URIs it should respond to
@@ -24,26 +24,89 @@ Route::group(['middleware' => ['edicion_partido']], function () {
      * -------------------------------------------------------------------------
      */
     Route::group(['middleware' => ['jugador_partido']], function () {
-        /**
-         * Actualiza el jugador por medio de su id y los datos
-         * pasados como parámetro.
-         * Parámetros: partido_id*, clave_edicion*, jugador_id*, nombre,
-         * handicap
-         */
+        /*
+        ------------------------------------------------------------------------
+        Descripción: Actualiza el jugador por medio de su id y los datos
+        pasados como parámetro.
+        ------------------------------------------------------------------------
+        Parámetros: partido_id*, clave_edicion*, jugador_id*, nombre, handicap
+        ------------------------------------------------------------------------
+        Respuestas con código 200 (ok):
+
+        {
+            "ok": true
+        }
+
+        {
+            "ok": false,
+            "error_message": "El mensaje de error aquí"
+        }
+        ------------------------------------------------------------------------
+        Respuestas con código 400 (bad request)
+
+        {
+            "error_message": "Parámetros incompletos, se requieren los
+                              siguientes parámetros: [par_1, ..., par_n]"
+        }
+        ------------------------------------------------------------------------
+        */
         Route::put('jugador_update', 'JugadorController@update');
 
-        /**
-         * Elimina el jugador por medio de su id y los datos
-         * pasados como parámetro.
-         * Parámetros: partido_id*, clave_edicion*, jugador_id*
-         */
+        /*
+        ------------------------------------------------------------------------
+        Descripción: Elimina el jugador con el id pasado como parámetro,
+        ------------------------------------------------------------------------
+        Parámetros: partido_id*, clave_edicion*, jugador_id*
+        ------------------------------------------------------------------------
+        Respuestas con código 200 (ok):
+
+        {
+            "ok": true
+        }
+
+        {
+            "ok": false,
+            "error_message": "El mensaje de error aquí"
+        }
+        ------------------------------------------------------------------------
+        Respuestas con código 400 (bad request)
+
+        {
+            "error_message": "Parámetros incompletos, se requieren los
+                              siguientes parámetros: [par_1, ..., par_n]"
+        }
+        ------------------------------------------------------------------------
+        */
         Route::delete('jugador_delete', 'JugadorController@destroy');
     });
 
-    /**
-     * Inserta un jugador con los datos pasados como parámetro.
-     * Parámetros: partido_id*, clave_edicion*, nombre*, handicap*
-     */
+    /*
+    ----------------------------------------------------------------------------
+    Descripción: Inserta un jugador con los datos pasados como parámetro.
+    ----------------------------------------------------------------------------
+    Parámetros: partido_id*, clave_edicion*, nombre*, handicap*
+    ----------------------------------------------------------------------------
+    Respuestas con código 200 (ok):
+
+    {
+        "ok": true,
+        "jugador_id": "jugadorInsertadoId"
+    }
+
+    {
+        "ok": false,
+        "error_message": "El mensaje de error aquí"
+    }
+
+    ----------------------------------------------------------------------------
+    Respuestas con código 400 (bad request)
+
+    {
+        "error_message": "Parámetros incompletos, se requieren los siguientes
+                          parámetros: [par_1, ..., par_n]"
+    }
+    ----------------------------------------------------------------------------
+    */
     Route::post('jugador_insert', 'JugadorController@store');
 
     /**
@@ -135,12 +198,75 @@ Route::group(['middleware' => ['consulta_edicion']], function () {
     Route::post('get_hoyo_puntuaciones_jugador',
         'PuntuacionesController@getHoyoPuntuacionesJugador');
 
-    /**
-     * Devuele el campo que se está llevando a cabo en el partido cuya clave
-     * de consulta o clave de edición están dadas.
-     * Parámetros: partido_id*, clave_consulta, clave_edicion. [alguna de las
-     * dos claves es obligatoria]
-     */
+    /*
+    ----------------------------------------------------------------------------
+    Descripción: Devuele el campo que se está llevando a cabo en el partido
+    cuya clave de consulta o clave de edición están dadas.
+    ----------------------------------------------------------------------------
+    Parámetros: partido_id*, clave_consulta, clave_edicion. [alguna de las dos
+    claves es obligatoria]
+    ----------------------------------------------------------------------------
+    Respuestas con código 200 (ok):
+
+    {
+        "ok": true,
+        "campo": {
+            "id": "1_5",
+            "nombre": "CampitoActualizado",
+            "par_hoyo_1": "4",
+            "par_hoyo_2": "5",
+            "par_hoyo_3": "6",
+            "par_hoyo_4": "6",
+            "par_hoyo_5": "3",
+            "par_hoyo_6": "7",
+            "par_hoyo_7": "5",
+            "par_hoyo_8": "6",
+            "par_hoyo_9": "5",
+            "par_hoyo_10": "4",
+            "par_hoyo_11": "3",
+            "par_hoyo_12": "5",
+            "par_hoyo_13": "8",
+            "par_hoyo_14": "8",
+            "par_hoyo_15": "6",
+            "par_hoyo_16": "5",
+            "par_hoyo_17": "4",
+            "par_hoyo_18": "4",
+            "ventaja_hoyo_1": "18",
+            "ventaja_hoyo_2": "17",
+            "ventaja_hoyo_3": "16",
+            "ventaja_hoyo_4": "15",
+            "ventaja_hoyo_5": "14",
+            "ventaja_hoyo_6": "13",
+            "ventaja_hoyo_7": "12",
+            "ventaja_hoyo_8": "11",
+            "ventaja_hoyo_9": "10",
+            "ventaja_hoyo_10": "9",
+            "ventaja_hoyo_11": "8",
+            "ventaja_hoyo_12": "7",
+            "ventaja_hoyo_13": "6",
+            "ventaja_hoyo_14": "5",
+            "ventaja_hoyo_15": "4",
+            "ventaja_hoyo_16": "3",
+            "ventaja_hoyo_17": "2",
+            "ventaja_hoyo_18": "1",
+            "owner_id": "25"
+        }
+    }
+
+    {
+        "ok": false,
+        "error_message": "El mensaje de error aquí"
+    }
+
+    ----------------------------------------------------------------------------
+    Respuestas con código 400 (bad request)
+
+    {
+        "error_message": "Parámetros incompletos, se requieren los siguientes
+                          parámetros: [par_1, ..., par_n]"
+    }
+    ----------------------------------------------------------------------------
+    */
     Route::post('get_campo_by_clave', 'CampoController@getCampoByClave');
 });
 
@@ -150,11 +276,34 @@ Route::group(['middleware' => ['consulta_edicion']], function () {
  * -----------------------------------------------------------------------------
  */
 Route::group(['middleware' => ['usuario_logueado']], function () {
-    /**
-     * Inserta un nuevo campo.
-     * Parámetros: id*, email*, password*, nombre,
-     * par_hoyo_1*...par_hoyo_18*, ventaja_hoyo_1*...ventaja_hoyo_18*
-     */
+    /*
+    ----------------------------------------------------------------------------
+    Descripción: Inserta un campo con los datos pasados como parámetro.
+    ----------------------------------------------------------------------------
+    Parámetros: campo_id*, email*, password*, nombre,
+    par_hoyo_1*...par_hoyo_18*, ventaja_hoyo_1*...ventaja_hoyo_18*
+    ----------------------------------------------------------------------------
+    Respuestas con código 200 (ok):
+
+    {
+        "ok": true,
+        "campo_id": "campoInsertadoId"
+    }
+
+    {
+        "ok": false,
+        "error_message": "El mensaje de error aquí"
+    }
+
+    ----------------------------------------------------------------------------
+    Respuestas con código 400 (bad request)
+
+    {
+        "error_message": "Parámetros incompletos, se requieren los siguientes
+                          parámetros: [par_1, ..., par_n]"
+    }
+    ----------------------------------------------------------------------------
+    */
     Route::post('campo_insert', 'CampoController@store');
 
     /**
@@ -163,17 +312,60 @@ Route::group(['middleware' => ['usuario_logueado']], function () {
      * -------------------------------------------------------------------------
      */
     Route::group(['middleware' => ['propietario_campo']], function () {
-        /**
-         * Actualiza un campo existente.
-         * Parámetros: email*, password*, campo_id*, nombre,
-         * par_hoyo_1...par_hoyo_18, ventaja_hoyo_1...ventaja_hoyo_18
-         */
+        /*
+        ------------------------------------------------------------------------
+        Descripción: Actualiza el campo por medio de su id y los datos
+        pasados como parámetro.
+        ------------------------------------------------------------------------
+        Parámetros: email*, password*, campo_id*, nombre,
+        par_hoyo_1...par_hoyo_18, ventaja_hoyo_1...ventaja_hoyo_18
+        ------------------------------------------------------------------------
+        Respuestas con código 200 (ok):
+
+        {
+            "ok": true
+        }
+
+        {
+            "ok": false,
+            "error_message": "El mensaje de error aquí"
+        }
+        ------------------------------------------------------------------------
+        Respuestas con código 400 (bad request)
+
+        {
+            "error_message": "Parámetros incompletos, se requieren los
+                              siguientes parámetros: [par_1, ..., par_n]"
+        }
+        ------------------------------------------------------------------------
+        */
         Route::put('campo_update', 'CampoController@update');
 
-        /**
-         * Elimina un campo por medio de su id.
-         * Parámetros: email*, password*, campo_id*.
-         */
+        /*
+        ------------------------------------------------------------------------
+        Descripción: Elimina un campo por medio de su id.
+        ------------------------------------------------------------------------
+        Parámetros: email*, password*, campo_id*.
+        ------------------------------------------------------------------------
+        Respuestas con código 200 (ok):
+
+        {
+            "ok": true
+        }
+
+        {
+            "ok": false,
+            "error_message": "El mensaje de error aquí"
+        }
+        ------------------------------------------------------------------------
+        Respuestas con código 400 (bad request)
+
+        {
+            "error_message": "Parámetros incompletos, se requieren los
+                              siguientes parámetros: [par_1, ..., par_n]"
+        }
+        ------------------------------------------------------------------------
+        */
         Route::delete('campo_delete', 'CampoController@destroy');
     });
 });
@@ -203,34 +395,149 @@ Route::get('apuesta_all', 'ApuestaController@index');
  */
 Route::post('apuesta_by_id', 'ApuestaController@getApuestaById');
 
-/**
- * Realiza la autenticación del usuario por medio de su email y password.
- * Parámetros: email*, password*.
- */
+/*
+--------------------------------------------------------------------------------
+Descripción: Realiza la autenticación del usuario por medio de su email y
+password.
+--------------------------------------------------------------------------------
+Parámetros: Parámetros: email*, password*.
+--------------------------------------------------------------------------------
+Respuestas con código 200 (ok):
+
+{
+    "ok": true
+}
+
+{
+    "ok": false,
+    "error_message": "El mensaje de error aquí"
+}
+
+--------------------------------------------------------------------------------
+Respuestas con código 400 (bad request)
+
+{
+    "error_message": "Parámetros incompletos, se requieren los siguientes
+                      parámetros: [par_1, ..., par_n]"
+}
+--------------------------------------------------------------------------------
+*/
 Route::post('usuario_login', 'UsuarioController@login');
 
-/**
- * Obtiene un usuario por medio de su email.
- * Parámetros: email*.
- */
+/*
+--------------------------------------------------------------------------------
+Descripción: Determina si existe el usuario con el email pasado como
+parámetro.
+--------------------------------------------------------------------------------
+Parámetros: email*
+--------------------------------------------------------------------------------
+Respuestas con código 200 (ok):
+
+{
+    "ok": true,
+    "existe": true|false
+}
+
+{
+    "ok": false,
+    "error_message": "El mensaje de error aquí"
+}
+
+--------------------------------------------------------------------------------
+Respuestas con código 400 (bad request)
+
+{
+    "error_message": "Parámetros incompletos, se requieren los siguientes
+                      parámetros: [par_1, ..., par_n]"
+}
+--------------------------------------------------------------------------------
+*/
 Route::post('usuario_exists', 'UsuarioController@usuarioExists');
 
-/**
- * Inserta un usuario con los datos pasados como parámetro.
- * Parámetros: email*, password*.
- */
+/*
+--------------------------------------------------------------------------------
+Descripción: Inserta un usuario con los datos pasados como parámetro.
+--------------------------------------------------------------------------------
+Parámetros: email*, password*.
+--------------------------------------------------------------------------------
+Respuestas con código 200 (ok):
+
+{
+    "ok": true,
+    "usuario_id": usuarioInsertadoId
+}
+
+{
+    "ok": false,
+    "error_message": "El mensaje de error aquí"
+}
+
+--------------------------------------------------------------------------------
+Respuestas con código 400 (bad request)
+
+{
+    "error_message": "Parámetros incompletos, se requieren los siguientes
+                      parámetros: [par_1, ..., par_n]"
+}
+--------------------------------------------------------------------------------
+*/
 Route::post('usuario_insert', 'UsuarioController@store');
 
-/**
- * Actualiza un usuario por medio de su id y los datos pasados como parámetro.
- * Parámetros: usuario_id*, email*, password*, new_password.
- */
+/*
+--------------------------------------------------------------------------------
+Descripción: Actualiza un usuario por medio de su id y los datos pasados
+como parámetro.
+--------------------------------------------------------------------------------
+Parámetros: usuario_id*, email*, password*, new_password.
+--------------------------------------------------------------------------------
+Respuestas con código 200 (ok):
+
+{
+    "ok": true
+}
+
+{
+    "ok": false,
+    "error_message": "El mensaje de error aquí"
+}
+
+--------------------------------------------------------------------------------
+Respuestas con código 400 (bad request)
+
+{
+    "error_message": "Parámetros incompletos, se requieren los siguientes
+                      parámetros: [par_1, ..., par_n]"
+}
+--------------------------------------------------------------------------------
+*/
 Route::put('usuario_update', 'UsuarioController@update');
 
-/**
- * Elimina un usuario por medio de sus datos de loguin.
- * Parámetros: email*, password*.
- */
+/*
+--------------------------------------------------------------------------------
+Descripción: Elimina un usuario por medio de sus datos de loguin.
+--------------------------------------------------------------------------------
+Parámetros: Parámetros: email*, password*.
+--------------------------------------------------------------------------------
+Respuestas con código 200 (ok):
+
+{
+    "ok": true
+}
+
+{
+    "ok": false,
+    "error_message": "El mensaje de error aquí"
+}
+
+--------------------------------------------------------------------------------
+Respuestas con código 400 (bad request)
+
+{
+    "error_message": "Parámetros incompletos, se requieren los siguientes
+                      parámetros: [par_1, ..., par_n]"
+}
+--------------------------------------------------------------------------------
+*/
 Route::delete('usuario_delete', 'UsuarioController@destroy');
 
 /**
