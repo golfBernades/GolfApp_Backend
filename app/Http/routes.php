@@ -54,7 +54,7 @@ Route::group(['middleware' => ['edicion_partido']], function () {
 
         /*
         ------------------------------------------------------------------------
-        Descripción: Elimina el jugador con el id pasado como parámetro,
+        Descripción: Elimina el jugador con el id pasado como parámetro.
         ------------------------------------------------------------------------
         Parámetros: partido_id*, clave_edicion*, jugador_id*
         ------------------------------------------------------------------------
@@ -78,7 +78,64 @@ Route::group(['middleware' => ['edicion_partido']], function () {
         ------------------------------------------------------------------------
         */
         Route::delete('jugador_delete', 'JugadorController@destroy');
+
+        /*
+        ------------------------------------------------------------------------
+        Descripción: Elimina un jugador de un partido por medio de sus ids.
+        ------------------------------------------------------------------------
+        Parámetros: Parámetros: partido_id*, clave_edicion*, jugador_id*
+        ------------------------------------------------------------------------
+        Respuestas con código 200 (ok):
+
+        {
+            "ok": true
+        }
+
+        {
+            "ok": false,
+            "error_message": "El mensaje de error aquí"
+        }
+        ------------------------------------------------------------------------
+        Respuestas con código 400 (bad request)
+
+        {
+            "error_message": "Parámetros incompletos, se requieren los
+                              siguientes parámetros: [par_1, ..., par_n]"
+        }
+        ------------------------------------------------------------------------
+        */
+        Route::post('jugador_partido_remove',
+            'JugadorPartidoController@removeJugador');
     });
+
+    /*
+    ----------------------------------------------------------------------------
+    Descripción: Agrega un jugador a un partido por medio de sus ids.
+    ----------------------------------------------------------------------------
+    Parámetros: partido_id*, clave_edicion*, jugador_id*
+    ----------------------------------------------------------------------------
+    Respuestas con código 200 (ok):
+
+    {
+        "ok": true,
+        "campo_id": "jugadorPartidoInsertadoId"
+    }
+
+    {
+        "ok": false,
+        "error_message": "El mensaje de error aquí"
+    }
+
+    ----------------------------------------------------------------------------
+    Respuestas con código 400 (bad request)
+
+    {
+        "error_message": "Parámetros incompletos, se requieren los siguientes
+                          parámetros: [par_1, ..., par_n]"
+    }
+    ----------------------------------------------------------------------------
+    */
+    Route::post('jugador_partido_add', 'JugadorPartidoController@addJugador');
 
     /*
     ----------------------------------------------------------------------------
@@ -123,20 +180,6 @@ Route::group(['middleware' => ['edicion_partido']], function () {
     Route::delete('partido_delete', 'PartidoController@destroy');
 
     /**
-     * Agrega un jugador a un partido por medio de sus ids.
-     * Parámetros: partido_id*, clave_edicion*, jugador_id*
-     */
-    Route::post('add_jugador_to_partido',
-        'JugadorPartidoController@addJugador');
-
-    /**
-     * Elimina un jugador de un partido por medio de sus ids.
-     * Parámetros: partido_id*, clave_edicion*, jugador_id*
-     */
-    Route::post('remove_jugador_from_partido',
-        'JugadorPartidoController@removeJugador');
-
-    /**
      * Agrega una apuesta a un partido por medio de sus ids.
      * Parámetros: partido_id*, clave_edicion*, apuesta_id*
      */
@@ -164,12 +207,44 @@ Route::group(['middleware' => ['edicion_partido']], function () {
  * -----------------------------------------------------------------------------
  */
 Route::group(['middleware' => ['consulta_edicion']], function () {
-    /**
-     * Devuelve los jugadores que participan en un partido.
-     * Parámetros: partido_id*, clave_consulta, clave_edicion. [alguna de las
-     * dos claves es obligatoria]
-     */
-    Route::post('jugadores_en_partido',
+    /*
+    ----------------------------------------------------------------------------
+    Descripción: Devuelve los jugadores que participan en un partido.
+    ----------------------------------------------------------------------------
+    Parámetros: partido_id*, clave_consulta, clave_edicion. [alguna de las
+    dos claves es obligatoria]
+    ----------------------------------------------------------------------------
+    Respuestas con código 200 (ok):
+
+    {
+        "ok": true,
+        "jugadores": [
+            {
+                "id": jugador_1_id,
+                "nombre": jugador_1_nombre,
+                "handicap": jugador_1_handicap
+            },
+            {
+                ...
+            }
+        ]
+    }
+
+    {
+        "ok": false,
+        "error_message": "El mensaje de error aquí"
+    }
+
+    ----------------------------------------------------------------------------
+    Respuestas con código 400 (bad request)
+
+    {
+        "error_message": "Parámetros incompletos, se requieren los siguientes
+                          parámetros: [par_1, ..., par_n]"
+    }
+    ----------------------------------------------------------------------------
+    */
+    Route::post('jugador_partido_get',
         'JugadorPartidoController@getJugadoresEnPartido');
 
     /**

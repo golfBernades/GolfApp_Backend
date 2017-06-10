@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\JugadorPartidoMiddleware;
+use App\Http\Utils\JsonResponses;
+use App\Models\Jugador;
 use App\Models\Puntuaciones;
 use Illuminate\Http\Request;
 use App\Http\Utils\HttpResponses;
@@ -16,22 +19,36 @@ class JugadorPartidoController extends Controller
     {
         $jugadorId = $request['jugador_id'];
         $partidoId = $request['partido_id'];
-        if (!$jugadorId || !$partidoId)
-            return HttpResponses::parametrosIncompletosReponse();
-        $jugador = EntityByIdController::getJugadorById($jugadorId);
-        if ($jugador instanceof JsonResponse)
-            return $jugador;
-        $partido = EntityByIdController::getPartidoById($partidoId);
-        if ($partido instanceof JsonResponse)
-            return $partido;
+
+        if (!$jugadorId) {
+            return JsonResponses::parametrosIncompletosResponse(['jugador_id']);
+        }
+
+        $jugador = Jugador::find($jugadorId);
+
+        if (!$jugador) {
+            return JsonResponses::jsonResponse(200, [
+                'ok' => false,
+                'error_message' => 'El jugador con el id especificado no existe'
+            ]);
+        }
+
         $jugadorPartido = new JugadorPartido();
         $jugadorPartido->jugador_id = $jugadorId;
         $jugadorPartido->partido_id = $partidoId;
+
         try {
             $jugadorPartido->save();
-            return HttpResponses::insertadoOkResponse('jugador_partido');
+
+            return JsonResponses::jsonResponse(200, [
+                'ok' => true,
+                'jugador_partido_id' => $jugadorPartido->id
+            ]);
         } catch (\Exception $e) {
-            return HttpResponses::insertadoErrorResponse('jugador_partido');
+            return JsonResponses::jsonResponse(200, [
+                'ok' => false,
+                'error_message' => $e->getMessage()
+            ]);
         }
     }
 
@@ -39,45 +56,47 @@ class JugadorPartidoController extends Controller
     {
         $jugadorId = $request['jugador_id'];
         $partidoId = $request['partido_id'];
-        if (!$jugadorId || !$partidoId)
-            return HttpResponses::parametrosIncompletosReponse();
-        $jugador = EntityByIdController::getJugadorById($jugadorId);
-        if ($jugador instanceof JsonResponse) return $jugador;
-        $partido = EntityByIdController::getPartidoById($partidoId);
-        if ($partido instanceof JsonResponse) return $partido;
+
         $jugadorPartido = JugadorPartido::where('jugador_id', '=', $jugadorId)
             ->where('partido_id', '=', $partidoId);
-        $puntuacionesJugador = Puntuaciones::where('jugador_id', '=', $jugadorId)
-            ->where('partido_id', '=', $partidoId);
-        if (!$jugadorPartido) return HttpResponses::jugadorNoEnPartido();
+
         try {
-            DB::beginTransaction();
-            $puntuacionesJugador->delete();
-            $jugadorPartido->delete();
-            $jugador->delete();
-            DB::commit();
-            return HttpResponses::eliminadoOkResponse('jugador_partido');
+            $eliminados = $jugadorPartido->delete();
+
+            if ($eliminados > 0) {
+                return JsonResponses::jsonResponse(200, [
+                    'ok' => true
+                ]);
+            } else {
+                return JsonResponses::jsonResponse(200, [
+                    'ok' => false,
+                    'error_message' => 'El jugador especificado no estaba '
+                        . 'participando en el partido'
+                ]);
+            }
         } catch (\Exception $e) {
-            echo $e->getMessage() . '<br>';
-            DB::rollBack();
-            return HttpResponses::eliminadoErrorResponse('jugador_partido');
+            return JsonResponses::jsonResponse(200, [
+                'ok' => false,
+                'error_message' => $e->getMessage()
+            ]);
         }
     }
 
     public function getJugadoresEnPartido(Request $request)
     {
-        $partidoController = new PartidoController();
-        $partido = $partidoController->getPartidoById($request);
-        if ($partido instanceof Partido) {
-            $jugadoresDelPartido = DB::table('jugador as ju')
-                ->join('jugador_partido as jp', function ($join) {
-                    $join->on('ju.id', '=', 'jp.jugador_id');
-                })
-                ->select(['ju.id', 'nombre', 'handicap'])
-                ->where('jp.partido_id', '=', $partido->id)
-                ->get();
-            return $jugadoresDelPartido;
-        }
-        return $partido;
+        $partidoId = $request['partido_id'];
+
+        $jugadores = DB::table('jugador as ju')
+            ->join('jugador_partido as jp', function ($join) {
+                $join->on('ju.id', '=', 'jp.jugador_id');
+            })
+            ->select(['ju.id', 'nombre', 'handicap'])
+            ->where('jp.partido_id', '=', $partidoId)
+            ->get();
+
+        return JsonResponses::jsonResponse(200, [
+            'ok' => true,
+            'jugadores' => $jugadores
+        ]);
     }
 }
