@@ -17,6 +17,7 @@
  * -----------------------------------------------------------------------------
  */
 Route::group(['middleware' => ['edicion_partido']], function () {
+    Route::post('partido_tablero_write', 'PartidoController@writeTableroStatus');
     /**
      * -------------------------------------------------------------------------
      * Rutas donde se requiere que el jugador pertenezca al partido
@@ -691,3 +692,5 @@ Respuestas con código 400 (bad request)
 Route::delete('usuario_delete', 'UsuarioController@destroy');
 
 Route::post('campo_count', 'CampoController@getCamposCount');
+
+Route::post('partido_tablero_get', 'PartidoController@getTableroStatus');

@@ -6,8 +6,6 @@ use App\Http\Utils\JsonResponses;
 use App\Models\Apuesta;
 use Illuminate\Http\Request;
 use App\Models\ApuestaPartido;
-use App\Models\Partido;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 
 class ApuestaPartidoController extends Controller
