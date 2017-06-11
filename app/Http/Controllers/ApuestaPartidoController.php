@@ -86,18 +86,19 @@ class ApuestaPartidoController extends Controller
 
     public function getApuestasEnPartido(Request $request)
     {
-        $partidoController = new PartidoController();
-        $partido = $partidoController->getPartidoById($request);
-        if ($partido instanceof Partido) {
-            $apuestasEnPartido = DB::table('apuesta as ap')
-                ->join('apuesta_partido as a_p', function ($join) {
-                    $join->on('ap.id', '=', 'a_p.apuesta_id');
-                })
-                ->select(['ap.id', 'nombre'])
-                ->where('a_p.partido_id', '=', $partido->id)
-                ->get();
-            return $apuestasEnPartido;
-        }
-        return $partido;
+        $partidoId = $request['partido_id'];
+
+        $apuestas = DB::table('apuesta as ap')
+            ->join('apuesta_partido as appa', function ($join) {
+                $join->on('ap.id', '=', 'appa.apuesta_id');
+            })
+            ->select(['ap.id', 'nombre'])
+            ->where('appa.partido_id', '=', $partidoId)
+            ->get();
+
+        return JsonResponses::jsonResponse(200, [
+            'ok' => true,
+            'apuestas' => $apuestas
+        ]);
     }
 }
