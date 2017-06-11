@@ -7,10 +7,7 @@ use App\Http\Utils\JsonResponses;
 use App\Models\Jugador;
 use App\Models\Puntuaciones;
 use Illuminate\Http\Request;
-use App\Http\Utils\HttpResponses;
 use App\Models\JugadorPartido;
-use App\Models\Partido;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 
 class JugadorPartidoController extends Controller

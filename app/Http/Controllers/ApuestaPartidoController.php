@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Utils\JsonResponses;
+use App\Models\Apuesta;
 use Illuminate\Http\Request;
-use App\Http\Utils\HttpResponses;
 use App\Models\ApuestaPartido;
 use App\Models\Partido;
 use Illuminate\Http\JsonResponse;
@@ -15,22 +16,35 @@ class ApuestaPartidoController extends Controller
     {
         $apuestaId = $request['apuesta_id'];
         $partidoId = $request['partido_id'];
-        if (!$apuestaId || !$partidoId)
-            return HttpResponses::parametrosIncompletosReponse();
-        $apuesta = EntityByIdController::getApuestaById($apuestaId);
-        if ($apuesta instanceof JsonResponse)
-            return $apuesta;
-        $partido = EntityByIdController::getPartidoById($partidoId);
-        if ($partido instanceof JsonResponse)
-            return $partido;
+
+        if (!$apuestaId) {
+            return JsonResponses::parametrosIncompletosResponse(['apuesta_id']);
+        }
+
+        $apuesta = Apuesta::find($apuestaId);
+
+        if (!$apuesta) {
+            return JsonResponses::jsonResponse(200, [
+                'ok' => false,
+                'error_message' => 'La apuesta con el id especificado no existe'
+            ]);
+        }
+
         $apuestaPartido = new ApuestaPartido();
         $apuestaPartido->apuesta_id = $apuestaId;
         $apuestaPartido->partido_id = $partidoId;
+
         try {
             $apuestaPartido->save();
-            return HttpResponses::insertadoOkResponse('apuesta_partido');
+            return JsonResponses::jsonResponse(200, [
+                'ok' => true,
+                'apuesta_partido_id' => $apuestaPartido->id
+            ]);
         } catch (\Exception $e) {
-            return HttpResponses::insertadoErrorResponse('apuesta_partido');
+            return JsonResponses::jsonResponse(200, [
+                'ok' => false,
+                'error_message' => $e->getMessage()
+            ]);
         }
     }
 
@@ -38,22 +52,35 @@ class ApuestaPartidoController extends Controller
     {
         $apuestaId = $request['apuesta_id'];
         $partidoId = $request['partido_id'];
-        if (!$apuestaId || !$partidoId)
-            return HttpResponses::parametrosIncompletosReponse();
-        $apuesta = EntityByIdController::getApuestaById($apuestaId);
-        if ($apuesta instanceof JsonResponse)
-            return $apuesta;
-        $partido = EntityByIdController::getPartidoById($partidoId);
-        if ($partido instanceof JsonResponse)
-            return $partido;
+
+        if (!$apuestaId) {
+            return JsonResponses::parametrosIncompletosResponse(['apuesta_id']);
+        }
+
+        $apuesta = Apuesta::find($apuestaId);
+
+        if (!$apuesta) {
+            return JsonResponses::jsonResponse(200, [
+                'ok' => false,
+                'error_message' => 'La apuesta con el id especificado no existe'
+            ]);
+        }
+
         $apuestaPartido = ApuestaPartido::where('apuesta_id', '=', $apuestaId)
             ->where('partido_id', '=', $partidoId)->first();
-        if (!$apuestaPartido) return HttpResponses::apuestaNoEnPartido();
+
         try {
-            $apuestaPartido->delete();
-            return HttpResponses::eliminadoOkResponse('apuesta_partido');
+            if ($apuestaPartido) {
+                $apuestaPartido->delete();
+            }
+            return JsonResponses::jsonResponse(200, [
+                'ok' => true
+            ]);
         } catch (\Exception $e) {
-            return HttpResponses::eliminadoErrorResponse('apuesta_partido');
+            return JsonResponses::jsonResponse(200, [
+                'ok' => false,
+                'error_message' => $e->getMessage()
+            ]);
         }
     }
 

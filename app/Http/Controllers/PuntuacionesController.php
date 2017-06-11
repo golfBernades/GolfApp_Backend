@@ -3,12 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Utils\FieldValidator;
-use App\Http\Utils\HttpResponses;
 use App\Http\Utils\JsonResponseParser;
 use App\Models\Puntuaciones;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class PuntuacionesController extends Controller
 {

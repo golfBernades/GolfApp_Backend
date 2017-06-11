@@ -32,7 +32,8 @@ class UsuarioController extends Controller
 
         if ($usuario && $usuario->password == sha1($password)) {
             return JsonResponses::jsonResponse(200, [
-                'ok' => true
+                'ok' => true,
+                'usuario_id' => $usuario->id
             ]);
         } else {
             return JsonResponses::jsonResponse(200, [

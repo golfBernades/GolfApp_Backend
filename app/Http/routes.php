@@ -16,7 +16,6 @@
  * Rutas donde se requiere contar el permiso de edición en un partido.
  * -----------------------------------------------------------------------------
  */
-
 Route::group(['middleware' => ['edicion_partido']], function () {
     /**
      * -------------------------------------------------------------------------
@@ -118,7 +117,7 @@ Route::group(['middleware' => ['edicion_partido']], function () {
 
     {
         "ok": true,
-        "campo_id": "jugadorPartidoInsertadoId"
+        "jugador_partido_id": "jugadorPartidoInsertadoId"
     }
 
     {
@@ -176,7 +175,7 @@ Route::group(['middleware' => ['edicion_partido']], function () {
     Respuestas con código 200 (ok):
 
     {
-        "ok": true,
+        "ok": true
     }
 
     {
@@ -205,7 +204,7 @@ Route::group(['middleware' => ['edicion_partido']], function () {
     Respuestas con código 200 (ok):
 
     {
-        "ok": true,
+        "ok": true
     }
 
     {
@@ -224,19 +223,40 @@ Route::group(['middleware' => ['edicion_partido']], function () {
     */
     Route::delete('partido_delete', 'PartidoController@destroy');
 
-    /**
-     * Agrega una apuesta a un partido por medio de sus ids.
-     * Parámetros: partido_id*, clave_edicion*, apuesta_id*
-     */
-    Route::post('add_apuesta_to_partido',
-        'ApuestaPartidoController@addApuesta');
+    /*
+    ----------------------------------------------------------------------------
+    Descripción: Agrega una apuesta a un partido por medio de sus ids.
+    ----------------------------------------------------------------------------
+    Parámetros: partido_id*, clave_edicion*, apuesta_id*
+    ----------------------------------------------------------------------------
+    Respuestas con código 200 (ok):
+
+    {
+        "ok": true,
+        "apuesta_partido_id": apuestaPartidoInsertadoId
+    }
+
+    {
+        "ok": false,
+        "error_message": "El mensaje de error aquí"
+    }
+
+    ----------------------------------------------------------------------------
+    Respuestas con código 400 (bad request)
+
+    {
+        "error_message": "Parámetros incompletos, se requieren los siguientes
+                          parámetros: [par_1, ..., par_n]"
+    }
+    ----------------------------------------------------------------------------
+    */
+    Route::post('apuesta_partido_add', 'ApuestaPartidoController@addApuesta');
 
     /**
      * Elimina una apuesta de un partido por medio de sus ids.
      * Parámetros: partido_id*, clave_edicion*, apuesta_id*
      */
-    Route::post('remove_apuesta_from_partido',
-        'ApuestaPartidoController@removeApuesta');
+    Route::post('apuesta_partido_remove', 'ApuestaPartidoController@removeApuesta');
 
     /**
      * Registra la puntuación para cierto hoyo de un jugador en un partido.
@@ -297,7 +317,7 @@ Route::group(['middleware' => ['consulta_edicion']], function () {
      * Parámetros: partido_id*, clave_consulta, clave_edicion. [alguna de las
      * dos claves es obligatoria]
      */
-    Route::post('apuestas_en_partido',
+    Route::post('apuesta_partido_get',
         'ApuestaPartidoController@getApuestasEnPartido');
 
     /**
@@ -525,18 +545,6 @@ Route::group(['middleware' => ['usuario_logueado']], function () {
  * -----------------------------------------------------------------------------
  */
 
-/**
- * Obtiene un listado con las apuestas existentes.
- * Parámetros: Ninguno
- */
-Route::get('apuesta_all', 'ApuestaController@index');
-
-/**
- * Obtiene los detalles de la apuesta por medio de su id.
- * Parámetros: apuesta_id*.
- */
-Route::post('apuesta_by_id', 'ApuestaController@getApuestaById');
-
 /*
 --------------------------------------------------------------------------------
 Descripción: Realiza la autenticación del usuario por medio de su email y
@@ -682,9 +690,4 @@ Respuestas con código 400 (bad request)
 */
 Route::delete('usuario_delete', 'UsuarioController@destroy');
 
-/**
- * Devuelve el partido por medio de su clave de consulta o de edición.
- * Parámetros: clave_consulta, clave_edicion. [alguna de las dos claves
- * es obligatoria]
- */
-Route::post('partido_by_clave', 'PartidoController@getPartidoByClave');
+Route::post('campo_count', 'CampoController@getCamposCount');

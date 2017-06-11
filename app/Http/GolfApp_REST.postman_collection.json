@@ -146,50 +146,13 @@
 			]
 		},
 		{
-			"name": "apuesta",
-			"description": "",
-			"item": [
-				{
-					"name": "Get all apuesta",
-					"request": {
-						"url": "http://localhost:8000/apuesta_all",
-						"method": "GET",
-						"header": [],
-						"body": {},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Get apuesta by id",
-					"request": {
-						"url": "http://localhost:8000/apuesta_by_id",
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "apuesta_id",
-									"value": "1",
-									"type": "text"
-								}
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				}
-			]
-		},
-		{
 			"name": "apuesta_partido",
 			"description": "",
 			"item": [
 				{
 					"name": "Add apuesta to partido",
 					"request": {
-						"url": "http://localhost:8000/add_apuesta_to_partido",
+						"url": "http://localhost:8000/apuesta_partido_add",
 						"method": "POST",
 						"header": [
 							{
@@ -208,7 +171,7 @@
 								},
 								{
 									"key": "partido_id",
-									"value": "1",
+									"value": "33",
 									"type": "text"
 								},
 								{
@@ -225,7 +188,7 @@
 				{
 					"name": "Remove apuesta from partido",
 					"request": {
-						"url": "http://localhost:8000/remove_apuesta_from_partido",
+						"url": "http://localhost:8000/apuesta_partido_remove",
 						"method": "POST",
 						"header": [
 							{
@@ -244,12 +207,12 @@
 								},
 								{
 									"key": "partido_id",
-									"value": "1",
+									"value": "33",
 									"type": "text"
 								},
 								{
 									"key": "apuesta_id",
-									"value": "1",
+									"value": "3",
 									"type": "text"
 								}
 							]
@@ -261,7 +224,7 @@
 				{
 					"name": "Get apuestas en partido",
 					"request": {
-						"url": "http://localhost:8000/apuestas_en_partido",
+						"url": "http://localhost:8000/apuesta_partido_get",
 						"method": "POST",
 						"header": [
 							{
@@ -818,6 +781,33 @@
 						"description": ""
 					},
 					"response": []
+				},
+				{
+					"name": "Get user's campo count",
+					"request": {
+						"url": "http://localhost:8000/campo_count",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "usuario_id",
+									"value": "25",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
 				}
 			]
 		},
@@ -847,7 +837,7 @@
 								},
 								{
 									"key": "partido_id",
-									"value": "32",
+									"value": "33",
 									"type": "text"
 								},
 								{
@@ -1244,7 +1234,7 @@
 							"urlencoded": [
 								{
 									"key": "email",
-									"value": "angeladsgddsscs@gmail.com",
+									"value": "angeladsgddssscs@gmail.com",
 									"type": "text"
 								},
 								{

@@ -294,4 +294,29 @@ class CampoController extends Controller
                 || $ventaja_hoyo_16 || $ventaja_hoyo_17 || $ventaja_hoyo_18;
         }
     }
+
+    public function getCamposCount(Request $request)
+    {
+        $usuarioId = $request['usuario_id'];
+
+        if (!$usuarioId) {
+            return JsonResponses::parametrosIncompletosResponse(['usuario_id']);
+        }
+
+        try {
+            $camposCount = DB::table('campo')
+                ->select(['id'])
+                ->where('owner_id', '=', $usuarioId)
+                ->count();
+            return JsonResponses::jsonResponse(200, [
+                'ok' => true,
+                'campos_count' => $camposCount
+            ]);
+        } catch (\Exception $e) {
+            return JsonResponses::jsonResponse(200, [
+                'ok' => false,
+                'error_message' => $e->getMessage()
+            ]);
+        }
+    }
 }
