@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Utils\DateTimeOperations;
 use App\Http\Utils\FieldValidator;
 use App\Http\Utils\HttpResponses;
+use App\Http\Utils\JsonResponses;
 use App\Models\ApuestaPartido;
 use App\Models\Campo;
 use App\Models\Jugador;
@@ -20,18 +21,95 @@ class PartidoController extends Controller
 {
     public function store(Request $request)
     {
-        $partido = $this->crearPartido($request);
-        if ($partido instanceof Partido) {
+        $response = $this->crearPartido($request);
+
+        if ($response instanceof Partido) {
             try {
+                $partido = $response;
                 $partido->save();
-                return HttpResponses::partidoInsertadoOkResponse(
-                    $partido->clave_consulta, $partido->clave_edicion,
-                    $partido->id);
+                return JsonResponses::jsonResponse(200, [
+                    'ok' => true,
+                    'partido_id' => $partido->id
+                ]);
             } catch (\Exception $e) {
-                return HttpResponses::insertadoErrorResponse('partido');
+                return JsonResponses::jsonResponse(200, [
+                    'ok' => false,
+                    'error_message' => $e->getMessage()
+                ]);
             }
         }
+
+        return $response;
+    }
+
+    private function crearPartido(Request $request)
+    {
+        $inicio = $request['inicio'];
+        $campoId = $request['campo_id'];
+
+        if (!$inicio) {
+            return JsonResponses::parametrosIncompletosResponse(['inicio']);
+        }
+
+        $partido = new Partido();
+        $claveController = new ClavePartidoController();
+        $partido->clave_consulta = $claveController->obtenerClaveConsulta();
+        $partido->clave_edicion = $claveController->obtenerClaveEdicion();
+        $partido->inicio = $inicio;
+        $partido->campo_id = $campoId;
+
         return $partido;
+    }
+
+    public function finalizarPartido(Request $request)
+    {
+        $fin = $request['fin'];
+
+        if (!$fin) {
+            return JsonResponses::parametrosIncompletosResponse(['fin']);
+        }
+
+        $partido = Partido::find($request['partido_id']);
+        $partido->fin = $fin;
+
+        try {
+            $partido->save();
+            return JsonResponses::jsonResponse(200, [
+                'ok' => true
+            ]);
+        } catch (\Exception $e) {
+            return JsonResponses::jsonResponse(200, [
+                'ok' => false,
+                'error_message' => $e->getMessage()
+            ]);
+        }
+    }
+
+    public function destroy(Request $request)
+    {
+        $partidoId = $request['partido_id'];
+        $partido = Partido::find($partidoId);
+        $puntuaciones = Puntuaciones::where('partido_id', '=', $partidoId);
+        $jugadores = JugadorPartido::where('partido_id', '=', $partidoId);
+        $apuestas = ApuestaPartido::where('partido_id', '=', $partidoId);
+
+        DB::beginTransaction();
+        try {
+            $puntuaciones->delete();
+            $jugadores->delete();
+            $apuestas->delete();
+            $partido->delete();
+            DB::commit();
+            return JsonResponses::jsonResponse(200, [
+                'ok' => true
+            ]);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return JsonResponses::jsonResponse(200, [
+                'ok' => false,
+                'error_message' => $e->getMessage()
+            ]);
+        }
     }
 
     public function getPartidoByClave(Request $request)
@@ -39,7 +117,7 @@ class PartidoController extends Controller
         $claveConsulta = $request['clave_consulta'];
         $claveEdicion = $request['clave_edicion'];
 
-        if(!$claveConsulta && !$claveEdicion) {
+        if (!$claveConsulta && !$claveEdicion) {
 
         }
 
@@ -66,73 +144,5 @@ class PartidoController extends Controller
         return response()->json($campo);
 
         return EntityByIdController::getPartidoById($request['partido_id']);
-    }
-
-    public function finalizarPartido(Request $request)
-    {
-        $partido = EntityByIdController::getPartidoById($request['partido_id']);
-        if ($partido instanceof Partido) {
-            if ($request['fin']) {
-                $partido->fin = $request['fin'];
-                try {
-                    $partido->save();
-                    return HttpResponses::actualizadoOkResponse('partido');
-                } catch (\Exception $e) {
-                    return HttpResponses::actualizadoErrorResponse('partido');
-                }
-            } else
-                return HttpResponses::parametrosIncompletosReponse();
-        }
-    }
-
-    public function destroy(Request $request)
-    {
-        $partido = $this->getPartidoById($request);
-        if ($partido instanceof Partido) {
-            $puntuacionesPartido = Puntuaciones::where('partido_id', '=',
-                $request['partido_id']);
-            $jugadoresPartido = JugadorPartido::where('partido_id', '=',
-                $request['partido_id']);
-            $apuestasPartido = ApuestaPartido::where('partido_id', '=',
-                $request['partido_id']);
-            DB::beginTransaction();
-            try {
-                $puntuacionesPartido->delete();
-                $jugadoresPartido->delete();
-                $apuestasPartido->delete();
-                $partido->delete();
-                DB::commit();
-                return HttpResponses::partidoVaciadoOK();
-            } catch (\Exception $e) {
-                DB::rollBack();
-                return HttpResponses::partidoVaciadoError();
-            }
-        }
-        return $partido;
-    }
-
-    private function crearPartido(Request $request)
-    {
-        if ($request['partido_id']) {
-            $partido = Partido::find($request['partido_id']);
-            if (!$partido)
-                return HttpResponses::noEncontradoResponse('partido');
-        } else {
-            $partido = new Partido();
-            $claveController = new ClavePartidoController();
-            $partido->clave_consulta = $claveController->obtenerClaveConsulta();
-            $partido->clave_edicion = $claveController->obtenerClaveEdicion();
-        }
-        if ($request['inicio'])
-            $partido->inicio = $request['inicio'];
-        if ($request['fin'])
-            $partido->fin = $request['fin'];
-        if ($request['campo_id']) {
-            $partido->campo_id = $request['campo_id'];
-            $campo = Campo::find($partido->campo_id);
-            if (!$campo)
-                return HttpResponses::noEncontradoResponse('campo');
-        }
-        return $partido;
     }
 }

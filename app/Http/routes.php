@@ -166,17 +166,62 @@ Route::group(['middleware' => ['edicion_partido']], function () {
     */
     Route::post('jugador_insert', 'JugadorController@store');
 
-    /**
-     * Actualiza el partido por medio de su id y su fecha de finalización.
-     * Parámetros: partido_id*, clave_edicion*, fin*
-     */
+    /*
+    ----------------------------------------------------------------------------
+    Descripción: Actualiza el partido por medio de su id y su fecha de
+    finalización.
+    ----------------------------------------------------------------------------
+    Parámetros: partido_id*, clave_edicion*, fin*
+    ----------------------------------------------------------------------------
+    Respuestas con código 200 (ok):
+
+    {
+        "ok": true,
+    }
+
+    {
+        "ok": false,
+        "error_message": "El mensaje de error aquí"
+    }
+
+    ----------------------------------------------------------------------------
+    Respuestas con código 400 (bad request)
+
+    {
+        "error_message": "Parámetros incompletos, se requieren los siguientes
+                          parámetros: [par_1, ..., par_n]"
+    }
+    ----------------------------------------------------------------------------
+    */
     Route::put('partido_finalizar', 'PartidoController@finalizarPartido');
 
-    /**
-     * Elimina el partido por medio de su id así como sus puntuaciones
-     * asociadas.
-     * Parámetros: partido_id*, clave_edicion*
-     */
+    /*
+    ----------------------------------------------------------------------------
+    Descripción: Elimina el partido por medio de su id así como sus puntuaciones
+    asociadas.
+    ----------------------------------------------------------------------------
+    Parámetros: partido_id*, clave_edicion*
+    ----------------------------------------------------------------------------
+    Respuestas con código 200 (ok):
+
+    {
+        "ok": true,
+    }
+
+    {
+        "ok": false,
+        "error_message": "El mensaje de error aquí"
+    }
+
+    ----------------------------------------------------------------------------
+    Respuestas con código 400 (bad request)
+
+    {
+        "error_message": "Parámetros incompletos, se requieren los siguientes
+                          parámetros: [par_1, ..., par_n]"
+    }
+    ----------------------------------------------------------------------------
+    */
     Route::delete('partido_delete', 'PartidoController@destroy');
 
     /**
@@ -442,6 +487,34 @@ Route::group(['middleware' => ['usuario_logueado']], function () {
         ------------------------------------------------------------------------
         */
         Route::delete('campo_delete', 'CampoController@destroy');
+
+        /*
+        ------------------------------------------------------------------------
+        Descripción: Inserta un partido con los datos pasados como parámetro.
+        ------------------------------------------------------------------------
+        Parámetros: email*, password*, campo_id*, inicio*, fin
+        ------------------------------------------------------------------------
+        Respuestas con código 200 (ok):
+
+        {
+            "ok": true,
+            "partido_id": partidoInsertadoId
+        }
+
+        {
+            "ok": false,
+            "error_message": "El mensaje de error aquí"
+        }
+        ------------------------------------------------------------------------
+        Respuestas con código 400 (bad request)
+
+        {
+            "error_message": "Parámetros incompletos, se requieren los
+                              siguientes parámetros: [par_1, ..., par_n]"
+        }
+        ------------------------------------------------------------------------
+        */
+        Route::post('partido_insert', 'PartidoController@store');
     });
 });
 
@@ -451,12 +524,6 @@ Route::group(['middleware' => ['usuario_logueado']], function () {
  * Rutas que no requieren el uso de ningún middleware.
  * -----------------------------------------------------------------------------
  */
-
-/**
- * Inserta un partido con los datos pasados como parámetro.
- * Parámetros: inicio, fin, campo_id
- */
-Route::post('partido_insert', 'PartidoController@store');
 
 /**
  * Obtiene un listado con las apuestas existentes.
