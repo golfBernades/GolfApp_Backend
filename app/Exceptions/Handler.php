@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use App\Http\Utils\JsonResponses;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
@@ -46,8 +47,9 @@ class Handler extends ExceptionHandler
         if ($e instanceof MethodNotAllowedHttpException
             || $e instanceof NotFoundHttpException
         ) {
-            return response()->json(['code' => 404,
-                'message' => 'Ruta no existente']);
+            return JsonResponses::jsonResponse(404, [
+                'error_message' => 'Ruta no encontrada'
+            ]);
         } else if ($e instanceof ModelNotFoundException) {
             $e = new NotFoundHttpException($e->getMessage(), $e);
         }

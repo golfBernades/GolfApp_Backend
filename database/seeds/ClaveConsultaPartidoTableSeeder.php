@@ -20,6 +20,7 @@ class ClaveConsultaPartidoTableSeeder extends Seeder
         ]));
 
         $controller = new ClavePartidoController();
+
         for ($i = 0; $i < 3; $i++)
             $controller->insertarClaveConsulta();
     }

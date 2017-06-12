@@ -16,15 +16,14 @@ class JsonResponseParser
     public static function parse(JsonResponse $response)
     {
         $isArray = strpos($response, '[');
+
         if ($isArray === false)
             $keyIndex = strpos($response, '{');
         else
             $keyIndex = strpos($response, '[');
-//        // Obtiene el índice de la cadena donde comienza la respuesta JSON
-//        $keyIndex = strpos($response, '{');
+
         // Extrae la subcadena con la respuesta JSON
         $jsonSubstring = substr($response, $keyIndex);
-//        echo '<br> json ' . $jsonSubstring . '<br>';
         // Parsea el JSON obtenido
         $responseData = json_decode($jsonSubstring);
         return $responseData;

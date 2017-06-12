@@ -115,6 +115,7 @@ class CampoController extends Controller
     public function destroy(Request $request)
     {
         $campo = Campo::find($request['campo_id']);
+
         try {
             $campo->delete();
             return JsonResponses::jsonResponse(200, [

@@ -29,21 +29,31 @@ class PartidoTableSeeder extends Seeder
             'clave_edicion' => 'abcdefgh'
         ]));
 
+        $this->insertPartido('2017-04-10 00:00:00', null, 2, null);
+        $this->insertPartido('2017-03-11 00:00:00', null, 1, null);
+        $this->insertPartido('2017-02-12 00:00:00', null, 2, null);
+        $this->insertPartido('2017-01-13 00:00:00', null, 1, null);
+        $this->insertPartido('2017-12-14 00:00:00', '2017-12-14 02:00:00', 2,
+            'test_tablero');
 
-        $this->insertPartido('2017-04-10 00:00:00', null, 2);
-        $this->insertPartido('2017-03-11 00:00:00', null, 1);
-        $this->insertPartido('2017-02-12 00:00:00', null, 2);
-        $this->insertPartido('2017-01-13 00:00:00', null, 1);
-        $this->insertPartido('2017-12-14 00:00:00', null, 2);
+        $partidoTest = Partido::all()->first();
+        $controller = new PartidoController();
+        $request = new Request();
+        $request['partido_id'] = $partidoTest->id;
+        $request['clave_edicion'] = $partidoTest->clave_edicion;
+        $request['tablero_json'] = '{"testBoolean": true, "testString": "hi"}';
+        $controller->writeTableroStatus($request);
     }
 
-    private function insertPartido($inicio, $fin, $campo_id)
+    private function insertPartido($inicio, $fin, $campo_id, $tablero_json)
     {
         $request = new Request();
         $request['inicio'] = $inicio;
         $request['fin'] = $fin;
         $request['campo_id'] = $campo_id;
+        $request['tablero_json'] = $tablero_json;
         $controller = new PartidoController();
         $controller->store($request);
+
     }
 }

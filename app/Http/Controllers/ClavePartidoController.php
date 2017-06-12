@@ -15,6 +15,7 @@ class ClavePartidoController extends Controller
             ->select(['almacen.clave as clave'])
             ->where('pa.id', null)
             ->first();
+
         if ($claveNoUsada)
             return $claveNoUsada->clave;
         else if ($tablaClaves == 'clave_consulta_partido')
@@ -37,6 +38,7 @@ class ClavePartidoController extends Controller
     {
         $digitos = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
         $longitud = 8;
+
         do {
             $clave = '';
             for ($i = 0; $i < $longitud; $i++)
@@ -46,10 +48,12 @@ class ClavePartidoController extends Controller
             else
                 $clavePartido = ClaveEdicionPartido::find($clave);
         } while ($clavePartido);
+
         if ($tabla == 'clave_consulta_partido')
             $clavePartido = new ClaveConsultaPartido();
         else
             $clavePartido = new ClaveEdicionPartido();
+
         $clavePartido->clave = $clave;
         $clavePartido->save();
         return $clave;

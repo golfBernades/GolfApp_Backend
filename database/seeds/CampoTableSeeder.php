@@ -14,8 +14,8 @@ class CampoTableSeeder extends Seeder
         DB::table('campo')->truncate();
 
         DB::table('campo')->insert(array([
+            'id' => '1_1',
             'nombre' => 'Bernardes',
-            'ciudad' => 'Zacatecas',
             'par_hoyo_1' => 5,
             'par_hoyo_2' => 4,
             'par_hoyo_3' => 3,
@@ -54,8 +54,8 @@ class CampoTableSeeder extends Seeder
             'ventaja_hoyo_18' => 18,
             'owner_id' => 1
         ], [
+            'id' => '1_2',
             'nombre' => 'AguasCampo',
-            'ciudad' => 'Aguascalientes',
             'par_hoyo_1' => 6,
             'par_hoyo_2' => 5,
             'par_hoyo_3' => 3,

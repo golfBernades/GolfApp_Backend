@@ -52,6 +52,9 @@ class PartidoController extends Controller
         $partido->inicio = $inicio;
         $partido->campo_id = $campoId;
 
+        if($request['fin']) $partido->fin = $request['fin'];
+        if($request['tablero_json']) $partido->fin = $request['tablero_json'];
+
         return $partido;
     }
 
@@ -93,6 +96,9 @@ class PartidoController extends Controller
             $jugadores->delete();
             $apuestas->delete();
             $partido->delete();
+            if (file_exists($partido->tablero_json)) {
+                unlink($partido->tablero_json);
+            }
             DB::commit();
             return JsonResponses::jsonResponse(200, [
                 'ok' => true

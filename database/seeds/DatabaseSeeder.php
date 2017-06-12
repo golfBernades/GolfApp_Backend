@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Eloquent\Model;
 
 class DatabaseSeeder extends Seeder
 {
@@ -22,15 +21,10 @@ class DatabaseSeeder extends Seeder
 
     private function seedTables()
     {
-        $this->call(JugadorTableSeeder::class);
         $this->call(CampoTableSeeder::class);
-        $this->call(ApuestaTableSeeder::class);
         $this->call(ClaveConsultaPartidoTableSeeder::class);
         $this->call(ClaveEdicionPartidoTableSeeder::class);
         $this->call(PartidoTableSeeder::class);
-        $this->call(JugadorPartidoTableSeeder::class);
-        $this->call(ApuestaPartidoTableSeeder::class);
-        $this->call(PuntuacionesTableSeeder::class);
         $this->call(UsuarioTableSeeder::class);
     }
 }
