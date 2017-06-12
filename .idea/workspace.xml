@@ -2,39 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="16df6c25-8ea6-4bb9-9c3c-df6e63c1bf54" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Http/Controllers/ApuestaPartidoController.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Http/Controllers/CreadorPartidoController.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Http/Controllers/JugadorController.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Http/Controllers/JugadorPartidoController.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Http/Controllers/MiembroPartidoController.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Http/Controllers/PuntuacionesController.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Http/Middleware/ConsultaEdicionPartidoMiddleware.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Http/Middleware/JugadorPartidoMiddleware.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Http/Utils/FieldValidator.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Models/Apuesta.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Models/ApuestaPartido.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Models/Jugador.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Models/JugadorPartido.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Models/Puntuaciones.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/database/seeds/ApuestaPartidoTableSeeder.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/database/seeds/ApuestaTableSeeder.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/database/seeds/JugadorPartidoTableSeeder.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/database/seeds/JugadorTableSeeder.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/database/seeds/PuntuacionesTableSeeder.php" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Exceptions/Handler.php" afterPath="$PROJECT_DIR$/app/Exceptions/Handler.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/CampoController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/CampoController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ClavePartidoController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ClavePartidoController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/PartidoController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/PartidoController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Kernel.php" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Utils/JsonResponseParser.php" afterPath="$PROJECT_DIR$/app/Http/Utils/JsonResponseParser.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/GolfApp_REST.postman_collection.json" afterPath="$PROJECT_DIR$/app/Http/GolfApp_REST.postman_collection.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/db_create_script/createdb.sql" afterPath="$PROJECT_DIR$/database/db_create_script/createdb.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/seeds/CampoTableSeeder.php" afterPath="$PROJECT_DIR$/database/seeds/CampoTableSeeder.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/seeds/ClaveConsultaPartidoTableSeeder.php" afterPath="$PROJECT_DIR$/database/seeds/ClaveConsultaPartidoTableSeeder.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/seeds/ClaveEdicionPartidoTableSeeder.php" afterPath="$PROJECT_DIR$/database/seeds/ClaveEdicionPartidoTableSeeder.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/seeds/PartidoTableSeeder.php" afterPath="$PROJECT_DIR$/database/seeds/PartidoTableSeeder.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -52,7 +23,7 @@
       <file leaf-file-name="PartidoController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PartidoController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="37">
+            <state relative-caret-position="1129">
               <caret line="155" column="8" lean-forward="false" selection-start-line="155" selection-start-column="8" selection-end-line="156" selection-end-column="48" />
               <folding />
             </state>
@@ -62,8 +33,8 @@
       <file leaf-file-name="routes.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-7083">
-              <caret line="85" column="3" lean-forward="true" selection-start-line="81" selection-start-column="0" selection-end-line="85" selection-end-column="3" />
+            <state relative-caret-position="-900">
+              <caret line="393" column="63" lean-forward="false" selection-start-line="393" selection-start-column="63" selection-end-line="393" selection-end-column="63" />
               <folding>
                 <element signature="e#7#402#0#PHP" expanded="true" />
               </folding>
@@ -71,61 +42,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CampoTableSeeder.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/seeds/CampoTableSeeder.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1205">
-              <caret line="56" column="24" lean-forward="false" selection-start-line="56" selection-start-column="24" selection-end-line="56" selection-end-column="24" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ClaveConsultaPartidoTableSeeder.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/seeds/ClaveConsultaPartidoTableSeeder.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="560">
-              <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ClaveEdicionPartidoTableSeeder.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/seeds/ClaveEdicionPartidoTableSeeder.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="560">
-              <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PartidoTableSeeder.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/seeds/PartidoTableSeeder.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="281">
-              <caret line="40" column="33" lean-forward="false" selection-start-line="40" selection-start-column="33" selection-end-line="40" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UsuarioTableSeeder.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/seeds/UsuarioTableSeeder.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="645">
-              <caret line="25" column="33" lean-forward="false" selection-start-line="25" selection-start-column="33" selection-end-line="25" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="CampoController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CampoController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="448">
-              <caret line="43" column="8" lean-forward="true" selection-start-line="43" selection-start-column="8" selection-end-line="43" selection-end-column="8" />
+            <state relative-caret-position="337">
+              <caret line="301" column="71" lean-forward="false" selection-start-line="301" selection-start-column="71" selection-end-line="301" selection-end-column="71" />
               <folding>
                 <element signature="e#40#73#0#PHP" expanded="true" />
               </folding>
@@ -224,9 +145,7 @@
         <option value="$PROJECT_DIR$/database/db_create_script/createdb.sql" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ApuestaPartidoController.php" />
         <option value="$PROJECT_DIR$/app/Http/Kernel.php" />
-        <option value="$PROJECT_DIR$/app/Http/routes.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ClavePartidoController.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/CampoController.php" />
         <option value="$PROJECT_DIR$/app/Http/Utils/JsonResponseParser.php" />
         <option value="$PROJECT_DIR$/app/Exceptions/Handler.php" />
         <option value="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" />
@@ -235,6 +154,8 @@
         <option value="$PROJECT_DIR$/database/seeds/CampoTableSeeder.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/PartidoController.php" />
         <option value="$PROJECT_DIR$/database/seeds/PartidoTableSeeder.php" />
+        <option value="$PROJECT_DIR$/app/Http/routes.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/CampoController.php" />
       </list>
     </option>
   </component>
@@ -658,14 +579,7 @@
       <workItem from="1497193465231" duration="9643000" />
       <workItem from="1497207709491" duration="4364000" />
       <workItem from="1497216128376" duration="3333000" />
-      <workItem from="1497280563777" duration="5995000" />
-    </task>
-    <task id="LOCAL-00043" summary="Se actualizó el script de la BD para considerar cambios en la tabla de puntuaciones">
-      <created>1492034098092</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1492034098092</updated>
+      <workItem from="1497280563777" duration="7903000" />
     </task>
     <task id="LOCAL-00044" summary="Se implementaron los métodos del PuntuacionesController">
       <created>1492098694856</created>
@@ -1003,11 +917,18 @@
       <option name="project" value="LOCAL" />
       <updated>1497219101506</updated>
     </task>
-    <option name="localTasksCounter" value="92" />
+    <task id="LOCAL-00092" summary="Se borraron las rutas, modelos, controllers y middlewares que ya no serán utilizados">
+      <created>1497286937755</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1497286937756</updated>
+    </task>
+    <option name="localTasksCounter" value="93" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="308881000" />
+    <option name="totallyTimeSpent" value="310789000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="1922" height="1050" extended-state="6" />
@@ -1067,7 +988,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Se implementó el CRUD de partidos con las validaciones de acceso correspondientes" />
     <MESSAGE value="Se implementó la gestión de los jugadores en los partidos con la autenticación de claves" />
     <MESSAGE value="Se implementó la gestión de las apuestas en los partidos con la autenticación de claves" />
     <MESSAGE value="Se actualizó la collection de postman actual" />
@@ -1092,7 +1012,8 @@
     <MESSAGE value="Se ajustaron rutas del ApuestaPartidoController" />
     <MESSAGE value="Se terminó de ajustar el ApuestaPartidoController" />
     <MESSAGE value="Se implementó la lectura y escritura del archivo del status del tablero" />
-    <option name="LAST_COMMIT_MESSAGE" value="Se implementó la lectura y escritura del archivo del status del tablero" />
+    <MESSAGE value="Se borraron las rutas, modelos, controllers y middlewares que ya no serán utilizados" />
+    <option name="LAST_COMMIT_MESSAGE" value="Se borraron las rutas, modelos, controllers y middlewares que ya no serán utilizados" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1359,16 +1280,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CampoController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="448">
-          <caret line="43" column="8" lean-forward="true" selection-start-line="43" selection-start-column="8" selection-end-line="43" selection-end-column="8" />
-          <folding>
-            <element signature="e#40#73#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Exceptions/Handler.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="421">
@@ -1419,22 +1330,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/seeds/CampoTableSeeder.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1205">
-          <caret line="56" column="24" lean-forward="false" selection-start-line="56" selection-start-column="24" selection-end-line="56" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PartidoController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="37">
-          <caret line="155" column="8" lean-forward="false" selection-start-line="155" selection-start-column="8" selection-end-line="156" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/seeds/PartidoTableSeeder.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="281">
@@ -1443,10 +1338,36 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/database/seeds/CampoTableSeeder.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1568">
+          <caret line="56" column="24" lean-forward="false" selection-start-line="56" selection-start-column="24" selection-end-line="56" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PartidoController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1129">
+          <caret line="155" column="8" lean-forward="false" selection-start-line="155" selection-start-column="8" selection-end-line="156" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CampoController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="337">
+          <caret line="301" column="71" lean-forward="false" selection-start-line="301" selection-start-column="71" selection-end-line="301" selection-end-column="71" />
+          <folding>
+            <element signature="e#40#73#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7083">
-          <caret line="85" column="3" lean-forward="true" selection-start-line="81" selection-start-column="0" selection-end-line="85" selection-end-column="3" />
+        <state relative-caret-position="-900">
+          <caret line="393" column="63" lean-forward="false" selection-start-line="393" selection-start-column="63" selection-end-line="393" selection-end-column="63" />
           <folding>
             <element signature="e#7#402#0#PHP" expanded="true" />
           </folding>

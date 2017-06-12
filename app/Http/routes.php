@@ -359,6 +359,104 @@ Respuestas con código 400 (bad request)
 */
 Route::delete('usuario_delete', 'UsuarioController@destroy');
 
-Route::post('campo_count', 'CampoController@getCamposCount');
+/*
+--------------------------------------------------------------------------------
+Descripción: Obtiene la cantidad de campos asociados al usuario con el id
+pasado como parámetro
+--------------------------------------------------------------------------------
+Parámetros: usuario_id
+--------------------------------------------------------------------------------
+Respuestas con código 200 (ok):
 
+{
+    "ok": true,
+    "campos_count": usuarioCamposCount
+}
+
+{
+    "ok": false,
+    "error_message": "El mensaje de error aquí"
+}
+
+--------------------------------------------------------------------------------
+Respuestas con código 400 (bad request)
+
+{
+    "error_message": "Parámetros incompletos, se requieren los siguientes
+                      parámetros: [par_1, ..., par_n]"
+}
+--------------------------------------------------------------------------------
+*/
+Route::post('campo_user_count', 'CampoController@getUserCamposCount');
+
+/*
+--------------------------------------------------------------------------------
+Descripción: Obtiene los campos asociados al usuario con el id pasado como
+parámetro
+--------------------------------------------------------------------------------
+Parámetros: usuario_id
+--------------------------------------------------------------------------------
+Respuestas con código 200 (ok):
+
+{
+    "ok": true,
+    "campos_count": usuarioCamposCount
+}
+
+{
+    "ok": false,
+    "error_message": "El mensaje de error aquí"
+}
+
+--------------------------------------------------------------------------------
+Respuestas con código 400 (bad request)
+
+{
+    "error_message": "Parámetros incompletos, se requieren los siguientes
+                      parámetros: [par_1, ..., par_n]"
+}
+--------------------------------------------------------------------------------
+*/
+Route::post('campo_user_all', 'CampoController@getUserCampos');
+
+/*
+--------------------------------------------------------------------------------
+Descripción: Obtiene tablero del partido cuya clave de consulta es pasada como
+parámetro;
+--------------------------------------------------------------------------------
+Parámetros: clave_consulta*
+--------------------------------------------------------------------------------
+Respuestas con código 200 (ok):
+
+{
+    "ok": true,
+    "tablero": {
+    "atributo_1": true,
+        "atributo_2": [
+        1,
+        2,
+        3,
+        4
+    ],
+        "atributo_3": {
+        "atributo_1_1": 4,
+            "atributo_1_2": "holapepe"
+        }
+    }
+}
+
+{
+    "ok": false,
+    "error_message": "El mensaje de error aquí"
+}
+
+--------------------------------------------------------------------------------
+Respuestas con código 400 (bad request)
+
+{
+    "error_message": "Parámetros incompletos, se requieren los siguientes
+                      parámetros: [par_1, ..., par_n]"
+}
+--------------------------------------------------------------------------------
+*/
 Route::post('partido_tablero_get', 'PartidoController@getTableroStatus');

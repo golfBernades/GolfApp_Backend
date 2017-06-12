@@ -8,258 +8,6 @@
 	},
 	"item": [
 		{
-			"name": "Jugador",
-			"description": "",
-			"item": [
-				{
-					"name": "Insert jugador",
-					"request": {
-						"url": "http://localhost:8000/jugador_insert",
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/x-www-form-urlencoded",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "nombre",
-									"value": "Porfirio",
-									"type": "text"
-								},
-								{
-									"key": "handicap",
-									"value": "10",
-									"type": "text"
-								},
-								{
-									"key": "partido_id",
-									"value": "32",
-									"type": "text"
-								},
-								{
-									"key": "clave_edicion",
-									"value": "abcdefgh",
-									"type": "text"
-								},
-								{
-									"key": "jugador_id",
-									"value": "1_2",
-									"description": "",
-									"type": "text"
-								}
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Update jugador",
-					"request": {
-						"url": "http://localhost:8000/jugador_update",
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/x-www-form-urlencoded",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "nombre",
-									"value": "Jimena Sofía",
-									"type": "text"
-								},
-								{
-									"key": "handicap",
-									"value": "10",
-									"type": "text"
-								},
-								{
-									"key": "clave_edicion",
-									"value": "abcdefgh",
-									"type": "text"
-								},
-								{
-									"key": "partido_id",
-									"value": "328",
-									"type": "text"
-								},
-								{
-									"key": "jugador_id",
-									"value": "1_1",
-									"type": "text"
-								}
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Delete jugador",
-					"request": {
-						"url": "http://localhost:8000/jugador_delete",
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/x-www-form-urlencoded",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "partido_id",
-									"value": "32",
-									"description": "",
-									"type": "text"
-								},
-								{
-									"key": "clave_edicion",
-									"value": "abcdefgh",
-									"description": "",
-									"type": "text"
-								},
-								{
-									"key": "jugador_id",
-									"value": "1_2",
-									"description": "",
-									"type": "text"
-								}
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "apuesta_partido",
-			"description": "",
-			"item": [
-				{
-					"name": "Add apuesta to partido",
-					"request": {
-						"url": "http://localhost:8000/apuesta_partido_add",
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/x-www-form-urlencoded",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "clave_edicion",
-									"value": "abcdefgh",
-									"type": "text"
-								},
-								{
-									"key": "partido_id",
-									"value": "33",
-									"type": "text"
-								},
-								{
-									"key": "apuesta_id",
-									"value": "3",
-									"type": "text"
-								}
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Remove apuesta from partido",
-					"request": {
-						"url": "http://localhost:8000/apuesta_partido_remove",
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/x-www-form-urlencoded",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "clave_edicion",
-									"value": "abcdefgh",
-									"type": "text"
-								},
-								{
-									"key": "partido_id",
-									"value": "33",
-									"type": "text"
-								},
-								{
-									"key": "apuesta_id",
-									"value": "3",
-									"type": "text"
-								}
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Get apuestas en partido",
-					"request": {
-						"url": "http://localhost:8000/apuesta_partido_get",
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/x-www-form-urlencoded",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "partido_id",
-									"value": "1",
-									"type": "text"
-								},
-								{
-									"key": "clave_consulta",
-									"value": "abcdefgh",
-									"type": "text"
-								},
-								{
-									"key": "clave_edicion",
-									"value": "abcdefgh",
-									"type": "text"
-								}
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				}
-			]
-		},
-		{
 			"name": "campo",
 			"description": "",
 			"item": [
@@ -280,7 +28,7 @@
 							"urlencoded": [
 								{
 									"key": "campo_id",
-									"value": "1_653",
+									"value": "1_6536",
 									"description": "",
 									"type": "text"
 								},
@@ -812,120 +560,6 @@
 			]
 		},
 		{
-			"name": "jugador_partido",
-			"description": "",
-			"item": [
-				{
-					"name": "Add jugador to partido",
-					"request": {
-						"url": "http://localhost:8000/jugador_partido_add",
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/x-www-form-urlencoded",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "clave_edicion",
-									"value": "abcdefgh",
-									"type": "text"
-								},
-								{
-									"key": "partido_id",
-									"value": "33",
-									"type": "text"
-								},
-								{
-									"key": "jugador_id",
-									"value": "1_2",
-									"type": "text"
-								}
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Remove jugador from partido",
-					"request": {
-						"url": "http://localhost:8000/jugador_partido_remove",
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/x-www-form-urlencoded",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "clave_edicion",
-									"value": "abcdefgh",
-									"type": "text"
-								},
-								{
-									"key": "partido_id",
-									"value": "32",
-									"type": "text"
-								},
-								{
-									"key": "jugador_id",
-									"value": "1_2",
-									"type": "text"
-								}
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Get jugadores en partido",
-					"request": {
-						"url": "http://localhost:8000/jugador_partido_get",
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/x-www-form-urlencoded",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "partido_id",
-									"value": "32",
-									"type": "text"
-								},
-								{
-									"key": "clave_edicion",
-									"value": "abcdefgh",
-									"type": "text"
-								},
-								{
-									"key": "clave_consulta",
-									"value": "abcdefgh",
-									"type": "text"
-								}
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				}
-			]
-		},
-		{
 			"name": "partido",
 			"description": "",
 			"item": [
@@ -1030,55 +664,7 @@
 								},
 								{
 									"key": "partido_id",
-									"value": "32",
-									"type": "text"
-								}
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "puntuaciones",
-			"description": "",
-			"item": [
-				{
-					"name": "Get all puntuaciones jugador",
-					"request": {
-						"url": "http://localhost:8000/get_all_puntuaciones_jugador",
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/x-www-form-urlencoded",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "jugador_id",
-									"value": "1",
-									"type": "text"
-								},
-								{
-									"key": "partido_id",
-									"value": "1",
-									"type": "text"
-								},
-								{
-									"key": "clave_edicion",
-									"value": "abcdefgh",
-									"type": "text",
-									"disabled": true
-								},
-								{
-									"key": "clave_consulta",
-									"value": "abcdefgh",
+									"value": "33",
 									"type": "text"
 								}
 							]
@@ -1088,9 +674,9 @@
 					"response": []
 				},
 				{
-					"name": "Get hoyo puntuaciones jugador",
+					"name": "Write tablero partido",
 					"request": {
-						"url": "http://localhost:8000/get_hoyo_puntuaciones_jugador",
+						"url": "http://localhost:8000/partido_tablero_write",
 						"method": "POST",
 						"header": [
 							{
@@ -1103,80 +689,21 @@
 							"mode": "urlencoded",
 							"urlencoded": [
 								{
-									"key": "jugador_id",
-									"value": "1",
-									"type": "text"
-								},
-								{
 									"key": "partido_id",
-									"value": "1",
+									"value": "33",
+									"description": "",
 									"type": "text"
 								},
 								{
 									"key": "clave_edicion",
 									"value": "abcdefgh",
-									"type": "text",
-									"disabled": true
-								},
-								{
-									"key": "clave_consulta",
-									"value": "abcdefgh",
+									"description": "",
 									"type": "text"
 								},
 								{
-									"key": "hoyo",
-									"value": "1",
-									"type": "text"
-								}
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Registrar puntuaciones jugador partido hoyo",
-					"request": {
-						"url": "http://localhost:8000/registrar_puntuaciones",
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/x-www-form-urlencoded",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "jugador_id",
-									"value": "1",
-									"type": "text"
-								},
-								{
-									"key": "partido_id",
-									"value": "1",
-									"type": "text"
-								},
-								{
-									"key": "hoyo",
-									"value": "18",
-									"type": "text"
-								},
-								{
-									"key": "golpes",
-									"value": "6",
-									"type": "text"
-								},
-								{
-									"key": "unidades",
-									"value": "1",
-									"type": "text"
-								},
-								{
-									"key": "clave_edicion",
-									"value": "abcdefgh",
+									"key": "tablero_json",
+									"value": "{\"atributo_1\": true, \"atributo_2\": [1, 2, 3, 4], \"atributo_3\": {\"atributo_1_1\": 4, \"atributo_1_2\": \"holapepe\"}}",
+									"description": "",
 									"type": "text"
 								}
 							]
