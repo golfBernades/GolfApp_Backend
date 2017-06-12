@@ -492,35 +492,17 @@
 					"response": []
 				},
 				{
-					"name": "Get campo by clave",
+					"name": "Get user's campo",
 					"request": {
-						"url": "http://localhost:8000/get_campo_by_clave",
+						"url": "http://localhost:8000/campo_user_all",
 						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/x-www-form-urlencoded",
-								"description": ""
-							}
-						],
+						"header": [],
 						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
+							"mode": "formdata",
+							"formdata": [
 								{
-									"key": "partido_id",
-									"value": "32",
-									"description": "",
-									"type": "text"
-								},
-								{
-									"key": "clave_consulta",
-									"value": "abcdefgh",
-									"description": "",
-									"type": "text"
-								},
-								{
-									"key": "clave_edicion",
-									"value": "abcdefgh",
+									"key": "usuario_id",
+									"value": "1",
 									"description": "",
 									"type": "text"
 								}
@@ -533,7 +515,7 @@
 				{
 					"name": "Get user's campo count",
 					"request": {
-						"url": "http://localhost:8000/campo_count",
+						"url": "http://localhost:8000/campo_user_count",
 						"method": "POST",
 						"header": [
 							{
@@ -547,7 +529,7 @@
 							"urlencoded": [
 								{
 									"key": "usuario_id",
-									"value": "25",
+									"value": "1",
 									"description": "",
 									"type": "text"
 								}
@@ -690,7 +672,7 @@
 							"urlencoded": [
 								{
 									"key": "partido_id",
-									"value": "33",
+									"value": "1",
 									"description": "",
 									"type": "text"
 								},
@@ -703,6 +685,39 @@
 								{
 									"key": "tablero_json",
 									"value": "{\"atributo_1\": true, \"atributo_2\": [1, 2, 3, 4], \"atributo_3\": {\"atributo_1_1\": 4, \"atributo_1_2\": \"holapepe\"}}",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get tablero partido",
+					"request": {
+						"url": "http://localhost:8000/partido_tablero_get",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "partido_id",
+									"value": "1",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "clave_consulta",
+									"value": "abcdefgh",
 									"description": "",
 									"type": "text"
 								}
