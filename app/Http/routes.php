@@ -361,16 +361,15 @@ Route::delete('usuario_delete', 'UsuarioController@destroy');
 
 /*
 --------------------------------------------------------------------------------
-Descripción: Obtiene la cantidad de campos asociados al usuario con el id
-pasado como parámetro
+Descripción: Obtiene el contador para el siguiente id de un campo
 --------------------------------------------------------------------------------
-Parámetros: usuario_id
+Parámetros:
 --------------------------------------------------------------------------------
 Respuestas con código 200 (ok):
 
 {
     "ok": true,
-    "campos_count": usuarioCamposCount
+    "next_id": enteroAutoincremental
 }
 
 {
@@ -387,7 +386,7 @@ Respuestas con código 400 (bad request)
 }
 --------------------------------------------------------------------------------
 */
-Route::post('campo_user_count', 'CampoController@getUserCamposCount');
+Route::post('campo_user_next_id', 'CampoController@getCampoNextId');
 
 /*
 --------------------------------------------------------------------------------

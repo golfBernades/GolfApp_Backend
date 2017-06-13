@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Utils\JsonResponses;
 use App\Models\Campo;
+use App\Models\ContadorIdCampo;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -265,22 +266,14 @@ class CampoController extends Controller
         }
     }
 
-    public function getUserCamposCount(Request $request)
+    public function getCampoNextId(Request $request)
     {
-        $usuarioId = $request['usuario_id'];
-
-        if (!$usuarioId) {
-            return JsonResponses::parametrosIncompletosResponse(['usuario_id']);
-        }
-
         try {
-            $camposCount = DB::table('campo')
-                ->select(['id'])
-                ->where('owner_id', '=', $usuarioId)
-                ->count();
+            $nextId = new ContadorIdCampo();
+            $nextId->save();
             return JsonResponses::jsonResponse(200, [
                 'ok' => true,
-                'campos_count' => $camposCount
+                'next_id' => $nextId->id
             ]);
         } catch (\Exception $e) {
             return JsonResponses::jsonResponse(200, [
