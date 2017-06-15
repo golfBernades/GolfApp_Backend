@@ -36,5 +36,6 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\PropietarioCampoMiddleware::class,
         'usuario_logueado' =>
             \App\Http\Middleware\LoginMiddleware::class,
+        'cors' => \App\Http\Middleware\Cors::class,
     ];
 }
