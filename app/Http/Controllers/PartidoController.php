@@ -21,7 +21,7 @@ class PartidoController extends Controller
                     'ok' => true,
                     'partido_id' => $partido->id,
                     'clave_edicion' => $partido->clave_edicion,
-                    'clave_cosulta' => $partido->clave_consulta
+                    'clave_consulta' => $partido->clave_consulta
                 ]);
             } catch (\Exception $e) {
                 return JsonResponses::jsonResponse(200, [

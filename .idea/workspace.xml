@@ -4,8 +4,6 @@
     <list default="true" id="16df6c25-8ea6-4bb9-9c3c-df6e63c1bf54" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/PartidoController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/PartidoController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/db_create_script/createdb.sql" afterPath="$PROJECT_DIR$/database/db_create_script/createdb.sql" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,11 +18,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="routes.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="496">
-              <caret line="207" column="10" lean-forward="true" selection-start-line="207" selection-start-column="10" selection-end-line="207" selection-end-column="10" />
+            <state relative-caret-position="1036">
+              <caret line="207" column="10" lean-forward="false" selection-start-line="207" selection-start-column="10" selection-end-line="207" selection-end-column="10" />
               <folding>
                 <element signature="e#7#402#0#PHP" expanded="true" />
               </folding>
@@ -65,11 +63,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PartidoController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="PartidoController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PartidoController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1651">
-              <caret line="91" column="13" lean-forward="false" selection-start-line="91" selection-start-column="13" selection-end-line="91" selection-end-column="13" />
+            <state relative-caret-position="420">
+              <caret line="18" column="33" lean-forward="true" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
               <folding>
                 <element signature="e#40#73#0#PHP" expanded="true" />
               </folding>
@@ -81,7 +79,7 @@
         <entry file="file://$PROJECT_DIR$/bash_scripts/GolfApp_backend_run.sh">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="784">
-              <caret line="28" column="0" lean-forward="true" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+              <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -123,7 +121,7 @@
         <entry file="file://$PROJECT_DIR$/database/db_create_script/dumpdb.sh">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="28">
-              <caret line="1" column="93" lean-forward="true" selection-start-line="1" selection-start-column="93" selection-end-line="1" selection-end-column="93" />
+              <caret line="1" column="93" lean-forward="false" selection-start-line="1" selection-start-column="93" selection-end-line="1" selection-end-column="93" />
               <folding />
             </state>
           </provider>
@@ -219,8 +217,8 @@
         <option value="$PROJECT_DIR$/bash_scripts/GolfApp_backend_run.sh" />
         <option value="$PROJECT_DIR$/app/Http/Middleware/Cors.php" />
         <option value="$PROJECT_DIR$/app/Http/Kernel.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/PartidoController.php" />
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/PartidoController.php" />
       </list>
     </option>
   </component>
@@ -256,6 +254,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -392,8 +392,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -552,14 +550,8 @@
       <workItem from="1497371507326" duration="1362000" />
       <workItem from="1497376330666" duration="1532000" />
       <workItem from="1497543176284" duration="618000" />
-      <workItem from="1497722404002" duration="1048000" />
-    </task>
-    <task id="LOCAL-00051" summary="Se realizó la autenticación de permisos para acceder a los partidos">
-      <created>1492451765264</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1492451765264</updated>
+      <workItem from="1497722404002" duration="1100000" />
+      <workItem from="1497723986395" duration="30000" />
     </task>
     <task id="LOCAL-00052" summary="Se actualizó el readme.md">
       <created>1492452259491</created>
@@ -897,11 +889,18 @@
       <option name="project" value="LOCAL" />
       <updated>1497722621042</updated>
     </task>
-    <option name="localTasksCounter" value="100" />
+    <task id="LOCAL-00100" summary="Se quitó la columna campo_id de la tabla partido">
+      <created>1497723685702</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1497723685702</updated>
+    </task>
+    <option name="localTasksCounter" value="101" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="317241000" />
+    <option name="totallyTimeSpent" value="317323000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="1922" height="1050" extended-state="6" />
@@ -961,7 +960,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Se agregó la ruta de login, así como los ON DELETE CASCADE en las tablas de la bd" />
     <MESSAGE value="Se obtiene el id del usuario cuando se inserta y se obtiene el campo por medio de alguna de las claves del partido donde se está usando" />
     <MESSAGE value="Se ajustaron las rutas del UsuarioController" />
     <MESSAGE value="Implementación del login y del usuarioExists manejando correctamente las responses" />
@@ -986,7 +984,8 @@
     <MESSAGE value="Se realizó el script para actualizar el proyecto en el servidor remoto y echarlo a andar" />
     <MESSAGE value="Se agregaron los cors para permitir las conexiones" />
     <MESSAGE value="Se devuelven las llaves de edición y consulta al insertar un partido" />
-    <option name="LAST_COMMIT_MESSAGE" value="Se devuelven las llaves de edición y consulta al insertar un partido" />
+    <MESSAGE value="Se quitó la columna campo_id de la tabla partido" />
+    <option name="LAST_COMMIT_MESSAGE" value="Se quitó la columna campo_id de la tabla partido" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1214,7 +1213,7 @@
     <entry file="file://$PROJECT_DIR$/bash_scripts/GolfApp_backend_run.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="784">
-          <caret line="28" column="0" lean-forward="true" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+          <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1248,7 +1247,7 @@
     <entry file="file://$PROJECT_DIR$/database/db_create_script/dumpdb.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="28">
-          <caret line="1" column="93" lean-forward="true" selection-start-line="1" selection-start-column="93" selection-end-line="1" selection-end-column="93" />
+          <caret line="1" column="93" lean-forward="false" selection-start-line="1" selection-start-column="93" selection-end-line="1" selection-end-column="93" />
           <folding />
         </state>
       </provider>
@@ -1264,22 +1263,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PartidoController.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1651">
-          <caret line="91" column="13" lean-forward="false" selection-start-line="91" selection-start-column="13" selection-end-line="91" selection-end-column="13" />
+        <state relative-caret-position="1036">
+          <caret line="207" column="10" lean-forward="false" selection-start-line="207" selection-start-column="10" selection-end-line="207" selection-end-column="10" />
           <folding>
-            <element signature="e#40#73#0#PHP" expanded="true" />
+            <element signature="e#7#402#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PartidoController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="496">
-          <caret line="207" column="10" lean-forward="true" selection-start-line="207" selection-start-column="10" selection-end-line="207" selection-end-column="10" />
+        <state relative-caret-position="420">
+          <caret line="18" column="33" lean-forward="true" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
           <folding>
-            <element signature="e#7#402#0#PHP" expanded="true" />
+            <element signature="e#40#73#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
