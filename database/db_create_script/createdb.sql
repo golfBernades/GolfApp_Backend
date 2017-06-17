@@ -130,15 +130,12 @@ CREATE TABLE `partido` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `inicio` datetime NOT NULL,
   `fin` datetime DEFAULT NULL,
-  `campo_id` varchar(20) NOT NULL,
   `clave_consulta` char(8) NOT NULL,
   `clave_edicion` char(8) NOT NULL,
   `tablero_json` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `partido_clave_consulta_uindex` (`clave_consulta`),
   UNIQUE KEY `partido_clave_edicion_uindex` (`clave_edicion`),
-  KEY `partido_campo_id_fk` (`campo_id`),
-  CONSTRAINT `partido_campo_id_fk` FOREIGN KEY (`campo_id`) REFERENCES `campo` (`id`) ON DELETE CASCADE,
   CONSTRAINT `partido_clave_consulta_partido_clave_fk` FOREIGN KEY (`clave_consulta`) REFERENCES `clave_consulta_partido` (`clave`) ON DELETE CASCADE,
   CONSTRAINT `partido_clave_edicion_partido_clave_fk` FOREIGN KEY (`clave_edicion`) REFERENCES `clave_edicion_partido` (`clave`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
@@ -169,4 +166,4 @@ CREATE TABLE `usuario` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-06-13 11:32:42
+-- Dump completed on 2017-06-17 13:17:18

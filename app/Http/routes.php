@@ -178,35 +178,35 @@ Route::group(['middleware' => ['cors']], function () {
             ------------------------------------------------------------------------
             */
             Route::delete('campo_delete', 'CampoController@destroy');
-
-            /*
-            ------------------------------------------------------------------------
-            Descripción: Inserta un partido con los datos pasados como parámetro.
-            ------------------------------------------------------------------------
-            Parámetros: email*, password*, campo_id*, inicio*, fin
-            ------------------------------------------------------------------------
-            Respuestas con código 200 (ok):
-
-            {
-                "ok": true,
-                "partido_id": partidoInsertadoId
-            }
-
-            {
-                "ok": false,
-                "error_message": "El mensaje de error aquí"
-            }
-            ------------------------------------------------------------------------
-            Respuestas con código 400 (bad request)
-
-            {
-                "error_message": "Parámetros incompletos, se requieren los
-                                  siguientes parámetros: [par_1, ..., par_n]"
-            }
-            ------------------------------------------------------------------------
-            */
-            Route::post('partido_insert', 'PartidoController@store');
         });
+
+        /*
+        ------------------------------------------------------------------------
+        Descripción: Inserta un partido con los datos pasados como parámetro.
+        ------------------------------------------------------------------------
+        Parámetros: email*, password*, campo_id*, inicio*, fin
+        ------------------------------------------------------------------------
+        Respuestas con código 200 (ok):
+
+        {
+            "ok": true,
+            "partido_id": partidoInsertadoId
+        }
+
+        {
+            "ok": false,
+            "error_message": "El mensaje de error aquí"
+        }
+        ------------------------------------------------------------------------
+        Respuestas con código 400 (bad request)
+
+        {
+            "error_message": "Parámetros incompletos, se requieren los
+                          siguientes parámetros: [par_1, ..., par_n]"
+        }
+        ------------------------------------------------------------------------
+        */
+        Route::post('partido_insert', 'PartidoController@store');
     });
 
 

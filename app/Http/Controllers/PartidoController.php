@@ -3,13 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Utils\JsonResponses;
-use App\Models\ApuestaPartido;
-use App\Models\JugadorPartido;
 use App\Models\Partido;
-use App\Models\Puntuaciones;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Psy\Util\Json;
 
 class PartidoController extends Controller
 {
@@ -41,7 +37,6 @@ class PartidoController extends Controller
     private function crearPartido(Request $request)
     {
         $inicio = $request['inicio'];
-        $campoId = $request['campo_id'];
 
         if (!$inicio) {
             return JsonResponses::parametrosIncompletosResponse(['inicio']);
@@ -52,7 +47,6 @@ class PartidoController extends Controller
         $partido->clave_consulta = $claveController->obtenerClaveConsulta();
         $partido->clave_edicion = $claveController->obtenerClaveEdicion();
         $partido->inicio = $inicio;
-        $partido->campo_id = $campoId;
 
         if($request['fin']) $partido->fin = $request['fin'];
         if($request['tablero_json']) $partido->fin = $request['tablero_json'];
@@ -88,15 +82,10 @@ class PartidoController extends Controller
     {
         $partidoId = $request['partido_id'];
         $partido = Partido::find($partidoId);
-        $puntuaciones = Puntuaciones::where('partido_id', '=', $partidoId);
-        $jugadores = JugadorPartido::where('partido_id', '=', $partidoId);
-        $apuestas = ApuestaPartido::where('partido_id', '=', $partidoId);
+
 
         DB::beginTransaction();
         try {
-            $puntuaciones->delete();
-            $jugadores->delete();
-            $apuestas->delete();
             $partido->delete();
             if (file_exists($partido->tablero_json)) {
                 unlink($partido->tablero_json);
