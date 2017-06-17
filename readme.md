@@ -20,3 +20,43 @@ Documentation for the framework can be found on the [Laravel website](http://lar
 ```
 php artisan cache:clear
 ```
+
+# Instalar CORS
+
+Require the `barryvdh/laravel-cors` package in your `composer.json` and update your dependencies:
+```sh
+$ composer require barryvdh/laravel-cors
+```
+
+Add the Cors\ServiceProvider to your `config/app.php` providers array:
+```php
+Barryvdh\Cors\ServiceProvider::class,
+```
+
+## Global usage
+
+To allow CORS for all your routes, add the `HandleCors` middleware in the `$middleware` property of  `app/Http/Kernel.php` class:
+
+```php
+protected $middleware = [
+    // ...
+    \Barryvdh\Cors\HandleCors::class,
+];
+```
+
+## Group middleware
+
+If you want to allow CORS on a specific middleware group or route, add the `HandleCors` middleware to your group:
+
+```php
+protected $middlewareGroups = [
+    'web' => [
+       // ...
+    ],
+
+    'api' => [
+        // ...
+        \Barryvdh\Cors\HandleCors::class,
+    ],
+];
+```

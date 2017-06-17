@@ -18,6 +18,7 @@ class Kernel extends HttpKernel
         \Illuminate\Session\Middleware\StartSession::class,
         \Illuminate\View\Middleware\ShareErrorsFromSession::class,
         \App\Http\Middleware\VerifyCsrfToken::class,
+        \Barryvdh\Cors\HandleCors::class,
     ];
 
     /**
@@ -36,6 +37,6 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\PropietarioCampoMiddleware::class,
         'usuario_logueado' =>
             \App\Http\Middleware\LoginMiddleware::class,
-        'cors' => \App\Http\Middleware\Cors::class,
+//        'cors' => \App\Http\Middleware\Cors::class,
     ];
 }

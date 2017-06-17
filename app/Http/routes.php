@@ -11,7 +11,7 @@
 |
 */
 
-Route::group(['middleware' => ['cors']], function () {
+//Route::group(['middleware' => ['cors']], function () {
 
     /**
      * -----------------------------------------------------------------------------
@@ -462,4 +462,4 @@ Route::group(['middleware' => ['cors']], function () {
     */
     Route::post('partido_tablero_get', 'PartidoController@getTableroStatus');
 
-});
+//});
