@@ -7,7 +7,6 @@ use App\Models\Campo;
 use App\Models\ContadorIdCampo;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class CampoController extends Controller
 {

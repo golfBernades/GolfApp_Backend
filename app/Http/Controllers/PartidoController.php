@@ -48,8 +48,8 @@ class PartidoController extends Controller
         $partido->clave_edicion = $claveController->obtenerClaveEdicion();
         $partido->inicio = $inicio;
 
-        if($request['fin']) $partido->fin = $request['fin'];
-        if($request['tablero_json']) $partido->fin = $request['tablero_json'];
+        if ($request['fin']) $partido->fin = $request['fin'];
+        if ($request['tablero_json']) $partido->fin = $request['tablero_json'];
 
         return $partido;
     }
@@ -170,6 +170,25 @@ class PartidoController extends Controller
                 'error_message' => $e->getMessage()
             ]);
         }
+    }
+
+    public function partidoConsultaExists(Request $request)
+    {
+        $claveConsulta = $request['clave_consulta'];
+
+        if (!$claveConsulta) {
+            return JsonResponses::parametrosIncompletosResponse(
+                ['clave_consulta']);
+        }
+
+        $partido = DB::table('partido')
+            ->where('clave_consulta', '=', $claveConsulta)
+            ->first();
+
+        return JsonResponses::jsonResponse(200, [
+            'ok' => true,
+            'exists' => $partido != null
+        ]);
     }
 
 }
